@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 class AppTheme{
   final Color primaryColor = Color(0xFF3EB62B);
+  final Color secondaryColor = Color(0xFF111828);
   TextStyle textStyle(Set<MaterialState> states){
     return const TextStyle( color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500);
   }
@@ -51,13 +52,14 @@ class AppTheme{
   Color primarySwitchThumbColor(Set<MaterialState> states){
     return const Color(0xFFFFFFFF);
   }
+
   get defaultTheme => ThemeData(
     fontFamily: "Montserrat",
     primaryColor: Color(0xFF3EB62B),
     chipTheme: ChipThemeData(
       backgroundColor: Color(0xFFF9F9F9),
       side: BorderSide(color: Colors.transparent, width: 0),
-      labelStyle: TextStyle(fontSize: 16, color: Color(0xFF111828))
+      labelStyle: TextStyle(fontSize: 16, color: secondaryColor)
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
@@ -121,6 +123,13 @@ class AppTheme{
       inactiveTrackColor: Color(0xFFE6E7EB),
       thumbColor: Color(0xFF3EB62B),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8))
+      ),
+    ),
+    colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF3EB62B)),
     useMaterial3: true,
   );
 }
