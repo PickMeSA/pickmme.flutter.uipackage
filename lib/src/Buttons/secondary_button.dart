@@ -82,7 +82,7 @@ class SecondaryButton extends StatelessWidget{
     required this.onPressed,
     this.onLongPress,
     required this.child,
-    this.width = 326,
+    this.width,
     this.height = 56,
     this.padding = EdgeInsets.zero,
     this.elevation = 0,

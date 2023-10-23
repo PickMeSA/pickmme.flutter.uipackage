@@ -16,3 +16,4 @@ export 'src/rating/rating.dart' show StarRating;
 export 'src/sliders/slider.dart';
 export 'src/input/otp.dart';
 export 'src/input/app_text_field.dart';
+export 'src/datepickers/datepicker.dart';
