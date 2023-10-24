@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import '../constants/patterns.dart';
 import '../functions/functions.dart';
+import 'package:flutter/material.dart';
 
 RegExp alphaRegExp = RegExp(r'^[a-zA-Z]+$');
 
@@ -12,7 +13,12 @@ extension StringExtension on String? {
     if(this.isEmptyOrNull) {
       return false;
     }
-    return int.parse(this!) != null;
+    try{
+      double.parse(this!);
+      return true;
+    }catch(e){
+      return false;
+    }
   }
   /// Check email validation
   bool validateEmail() => hasMatch(this, Patterns.email);

@@ -1,32 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../constants/enums.dart';
 import '../extensions/widget.dart';
 import '../extensions/bool.dart';
 import '../extensions/string.dart';
 import '../extensions/numbers.dart';
-import '../constants/strings.dart';
-import '../constants/numbers.dart';
 import '../theme/decorations.dart';
 
-/// Enum for Text Field
-enum TextFieldType {
-  EMAIL,
-  EMAIL_ENHANCED,
-  PASSWORD,
-  NAME,
-  @Deprecated('Use MULTILINE instead. ADDRESS will be removed in major update')
-  ADDRESS,
-  MULTILINE,
-  OTHER,
-  PHONE,
-  URL,
-  NUMBER,
-  USERNAME
-}
-
 /// Default Text Form Field
-class AppTextField extends StatefulWidget {
+class AppTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextFieldType textFieldType;
 
@@ -87,6 +70,10 @@ class AppTextField extends StatefulWidget {
   final Color? bgColor;
   final Color? borderColor;
   final EdgeInsets? padding;
+  bool isPasswordVisible = false;
+  final Color secondaryColor = const Color(0xFF111828);
+  final Color errorColor = const Color(0xFFF44F4E);
+  
   AppTextField({
     this.controller,
     required this.textFieldType,
@@ -147,183 +134,35 @@ class AppTextField extends StatefulWidget {
     this.labelText,
     Key? key,
   }) : super(key: key);
-
-  @override
-  _AppTextFieldState createState() => _AppTextFieldState();
-}
-
-class _AppTextFieldState extends State<AppTextField> {
-  bool isPasswordVisible = false;
-  final Color secondaryColor = const Color(0xFF111828);
-  final Color errorColor = const Color(0xFFF44F4E);
-
-
-  FormFieldValidator<String>? applyValidation() {
-    if (widget.isValidationRequired.validate(value: true)) {
-      if (widget.validator != null) {
-        return widget.validator;
-      } else if (widget.textFieldType == TextFieldType.EMAIL) {
-        return (s) {
-          if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
-          }
-          if (!s.trim().validateEmail()) {
-            return widget.errorInvalidEmail.validate(value: 'Email is invalid');
-          }
-          return null;
-        };
-      } else if (widget.textFieldType == TextFieldType.EMAIL_ENHANCED) {
-        return (s) {
-          if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
-          }
-          if (!s.trim().validateEmailEnhanced()) {
-            return widget.errorInvalidEmail.validate(value: 'Email is invalid');
-          }
-          return null;
-        };
-      } else if (widget.textFieldType == TextFieldType.PASSWORD) {
-        return (s) {
-          if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
-          }
-          if (s.trim().length < passwordLengthGlobal) {
-            return widget.errorMinimumPasswordLength.validate(
-                value:
-                'Minimum password length should be $passwordLengthGlobal');
-          }
-          return null;
-        };
-      } else if (widget.textFieldType == TextFieldType.NAME ||
-          widget.textFieldType == TextFieldType.PHONE ||
-          widget.textFieldType == TextFieldType.NUMBER) {
-        return (s) {
-          if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
-          }
-          return null;
-        };
-      } else if (widget.textFieldType == TextFieldType.URL) {
-        return (s) {
-          if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
-          }
-          if (!s.validateURL()) {
-            return widget.errorInvalidURL.validate(value: 'Invalid URL');
-          }
-          return null;
-        };
-      } else if (widget.textFieldType == TextFieldType.USERNAME) {
-        return (s) {
-          if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
-          }
-          if (s.contains(' ')) {
-            return widget.errorInvalidUsername
-                .validate(value: 'Username should not contain space');
-          }
-          return null;
-        };
-      } else if (widget.textFieldType == TextFieldType.MULTILINE) {
-        return (s) {
-          if (s!.trim().isEmpty) {
-            return widget.errorThisFieldRequired
-                .validate(value: errorThisFieldRequired);
-          }
-          return null;
-        };
-      } else {
-        return null;
-      }
-    } else {
-      return null;
-    }
-  }
-
-  TextCapitalization applyTextCapitalization() {
-    if (widget.textCapitalization != null) {
-      return widget.textCapitalization!;
-    } else if (widget.textFieldType == TextFieldType.NAME) {
-      return TextCapitalization.words;
-    } else if (widget.textFieldType == TextFieldType.MULTILINE) {
-      return TextCapitalization.sentences;
-    } else {
-      return TextCapitalization.none;
-    }
-  }
-
-  TextInputAction? applyTextInputAction() {
-    if (widget.textInputAction != null) {
-      return widget.textInputAction;
-    } else if (widget.textFieldType == TextFieldType.MULTILINE) {
-      return TextInputAction.newline;
-    } else if (widget.nextFocus != null) {
-      return TextInputAction.next;
-    } else {
-      return TextInputAction.done;
-    }
-  }
-
-  TextInputType? applyTextInputType() {
-    if (widget.keyboardType != null) {
-      return widget.keyboardType;
-    } else if (widget.textFieldType == TextFieldType.EMAIL ||
-        widget.textFieldType == TextFieldType.EMAIL_ENHANCED) {
-      return TextInputType.emailAddress;
-    } else if (widget.textFieldType == TextFieldType.MULTILINE) {
-      return TextInputType.multiline;
-    } else if (widget.textFieldType == TextFieldType.PASSWORD) {
-      return TextInputType.visiblePassword;
-    } else if (widget.textFieldType == TextFieldType.PHONE ||
-        widget.textFieldType == TextFieldType.NUMBER) {
-      return TextInputType.number;
-    } else if (widget.textFieldType == TextFieldType.URL) {
-      return TextInputType.url;
-    } else {
-      return TextInputType.text;
-    }
-  }
-
-  void onPasswordVisibilityChange(bool val) {
-    isPasswordVisible = val;
-    setState(() {});
-  }
-
-  Widget? suffixIcon() {
-    if (widget.textFieldType == TextFieldType.PASSWORD) {
-      if (widget.suffix != null) {
-        return widget.suffix;
+  Widget? suffixIcon(BuildContext context) {
+    if (textFieldType == TextFieldType.PASSWORD) {
+      if (suffix != null) {
+        return suffix;
       } else {
         if (isPasswordVisible) {
-          if (widget.suffixPasswordVisibleWidget != null) {
-            return widget.suffixPasswordVisibleWidget!.onTap(() {
+          if (suffixPasswordVisibleWidget != null) {
+            return suffixPasswordVisibleWidget!.onTap(() {
               onPasswordVisibilityChange(false);
             });
           } else {
             return Icon(
               Icons.visibility,
               color:
-              widget.suffixIconColor ?? Theme.of(context).iconTheme.color,
+              suffixIconColor ?? Theme.of(context).iconTheme.color,
             ).onTap(() {
               onPasswordVisibilityChange(false);
             });
           }
         } else {
-          if (widget.suffixPasswordInvisibleWidget != null) {
-            return widget.suffixPasswordInvisibleWidget!.onTap(() {
+          if (suffixPasswordInvisibleWidget != null) {
+            return suffixPasswordInvisibleWidget!.onTap(() {
               onPasswordVisibilityChange(true);
             });
           } else {
             return Icon(
               Icons.visibility_off,
               color:
-              widget.suffixIconColor ?? Theme.of(context).iconTheme.color,
+              suffixIconColor ?? Theme.of(context).iconTheme.color,
             ).onTap(() {
               onPasswordVisibilityChange(true);
             });
@@ -331,20 +170,56 @@ class _AppTextFieldState extends State<AppTextField> {
         }
       }
     } else {
-      return widget.suffix;
+      return suffix;
+    }
+  }
+
+  TextInputType? applyTextInputType() {
+    if (keyboardType != null) {
+      return keyboardType;
+    } else if (textFieldType == TextFieldType.EMAIL ||
+        textFieldType == TextFieldType.EMAIL_ENHANCED) {
+      return TextInputType.emailAddress;
+    } else if (textFieldType == TextFieldType.MULTILINE) {
+      return TextInputType.multiline;
+    } else if (textFieldType == TextFieldType.PASSWORD) {
+      return TextInputType.visiblePassword;
+    } else if (textFieldType == TextFieldType.PHONE ||
+        textFieldType == TextFieldType.NUMBER) {
+      return TextInputType.number;
+    } else if (textFieldType == TextFieldType.URL) {
+      return TextInputType.url;
+    } else {
+      return TextInputType.text;
     }
   }
 
   Iterable<String>? applyAutofillHints() {
-    if (widget.textFieldType == TextFieldType.EMAIL ||
-        widget.textFieldType == TextFieldType.EMAIL_ENHANCED) {
+    if (textFieldType == TextFieldType.EMAIL ||
+        textFieldType == TextFieldType.EMAIL_ENHANCED) {
       return [AutofillHints.email];
-    } else if (widget.textFieldType == TextFieldType.PASSWORD) {
+    } else if (textFieldType == TextFieldType.PASSWORD) {
       return [AutofillHints.password];
     }
     return null;
   }
-  InputDecoration appInputDecoration({Icon? prefixIcon, String? hint, String? labelText, Color? bgColor, Color? borderColor, EdgeInsets? padding}) {
+  void onPasswordVisibilityChange(bool val) {
+    isPasswordVisible = val;
+  }
+
+  TextCapitalization applyTextCapitalization() {
+    if (textCapitalization != null) {
+      return textCapitalization!;
+    } else if (textFieldType == TextFieldType.NAME) {
+      return TextCapitalization.words;
+    } else if (textFieldType == TextFieldType.MULTILINE) {
+      return TextCapitalization.sentences;
+    } else {
+      return TextCapitalization.none;
+    }
+  }
+
+  InputDecoration appInputDecoration(BuildContext context, {Icon? prefixIcon, String? hint, String? labelText, Color? bgColor, Color? borderColor, EdgeInsets? padding}) {
     return InputDecoration(
       contentPadding: padding ?? const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       counter: const Offstage(),
@@ -356,87 +231,89 @@ class _AppTextFieldState extends State<AppTextField> {
       labelText: labelText,
       prefixIcon: prefixIcon,
       filled: true,
-      suffixIcon: suffixIcon(),
+      suffixIcon: suffixIcon(context),
     );
   }
-  Widget textFormFieldWidget() {
-    return TextFormField(
-      controller: widget.controller,
+  Widget textFormFieldWidget(BuildContext context) {
+    return TextField(
+      controller: controller,
       obscureText:
-      widget.textFieldType == TextFieldType.PASSWORD && !isPasswordVisible,
-      validator: applyValidation(),
+      textFieldType == TextFieldType.PASSWORD && !isPasswordVisible,
       textCapitalization: applyTextCapitalization(),
       textInputAction: applyTextInputAction(),
-      onFieldSubmitted: (s) {
-        if (widget.nextFocus != null) {
-          FocusScope.of(context).requestFocus(widget.nextFocus);
-        }
-
-        if (widget.onFieldSubmitted != null) widget.onFieldSubmitted!.call(s);
-      },
       keyboardType: applyTextInputType(),
-      decoration: appInputDecoration(
-          prefixIcon: widget.prefixIcon,
-          hint: widget.hint,
-          bgColor: widget.bgColor??Colors.white,
-          borderColor: widget.borderColor??secondaryColor,
-          padding: widget.padding,
-          labelText: widget.labelText
+      decoration: appInputDecoration(context,
+          prefixIcon: prefixIcon,
+          hint: hint,
+          bgColor: bgColor??Colors.white,
+          borderColor: borderColor??secondaryColor,
+          padding: padding,
+          labelText: labelText
       ),
-      focusNode: widget.focus,
-      style: widget.textStyle,
-      textAlign: widget.textAlign ?? TextAlign.start,
-      maxLines: widget.maxLines.validate(
-          value: widget.textFieldType == TextFieldType.MULTILINE ? 10 : 1),
-      minLines: widget.minLines.validate(
-          value: widget.textFieldType == TextFieldType.MULTILINE ? 2 : 1),
-      autofocus: widget.autoFocus ?? false,
-      enabled: widget.enabled,
-      onChanged: widget.onChanged,
-      cursorColor: widget.cursorColor ??
+      focusNode: focus,
+      style: textStyle,
+      textAlign: textAlign ?? TextAlign.start,
+      maxLines: maxLines.validate(
+          value: textFieldType == TextFieldType.MULTILINE ? 10 : 1),
+      minLines: minLines.validate(
+          value: textFieldType == TextFieldType.MULTILINE ? 2 : 1),
+      autofocus: autoFocus ?? false,
+      enabled: enabled,
+      onChanged: onChanged,
+      cursorColor: cursorColor ??
           Theme.of(context).textSelectionTheme.cursorColor,
-      readOnly: widget.readOnly.validate(),
-      maxLength: widget.maxLength,
-      enableSuggestions: widget.enableSuggestions.validate(value: true),
-      autofillHints: widget.autoFillHints ?? applyAutofillHints(),
-      scrollPadding: widget.scrollPadding ?? const EdgeInsets.all(20),
-      cursorWidth: widget.cursorWidth.validate(value: 2.0),
-      cursorHeight: widget.cursorHeight,
+      readOnly: readOnly.validate(),
+      maxLength: maxLength,
+      enableSuggestions: enableSuggestions.validate(value: true),
+      autofillHints: autoFillHints ?? applyAutofillHints(),
+      scrollPadding: scrollPadding ?? const EdgeInsets.all(20),
+      cursorWidth: cursorWidth.validate(value: 2.0),
+      cursorHeight: cursorHeight,
       cursorRadius: radiusCircular(4),
-      onTap: widget.onTap,
-      buildCounter: widget.buildCounter,
+      onTap: onTap,
+      buildCounter: buildCounter,
       scrollPhysics: const BouncingScrollPhysics(),
       enableInteractiveSelection: true,
-      inputFormatters: widget.inputFormatters,
-      textAlignVertical: widget.textAlignVertical,
-      expands: widget.expands.validate(),
-      showCursor: widget.showCursor,
+      inputFormatters: inputFormatters,
+      textAlignVertical: textAlignVertical,
+      expands: expands.validate(),
+      showCursor: showCursor,
       selectionControls:
-      widget.selectionControls ?? MaterialTextSelectionControls(),
-      strutStyle: widget.strutStyle,
-      obscuringCharacter: widget.obscuringCharacter.validate(value: '•'),
-      initialValue: widget.initialValue,
-      keyboardAppearance: widget.keyboardAppearance,
-      contextMenuBuilder: widget.contextMenuBuilder,
+      selectionControls ?? MaterialTextSelectionControls(),
+      strutStyle: strutStyle,
+      obscuringCharacter: obscuringCharacter.validate(value: '•'),
+      keyboardAppearance: keyboardAppearance,
+      contextMenuBuilder: contextMenuBuilder,
     );
+  }
+  TextInputAction? applyTextInputAction() {
+    if (textInputAction != null) {
+      return textInputAction;
+    } else if (textFieldType == TextFieldType.MULTILINE) {
+      return TextInputAction.newline;
+    } else if (nextFocus != null) {
+      return TextInputAction.next;
+    } else {
+      return TextInputAction.done;
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    if (widget.title.validate().isNotEmpty) {
+    if (title.validate().isNotEmpty) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            widget.title!,
-            style: widget.textStyle,
+            title!,
+            style: textStyle,
           ),
-          widget.spacingBetweenTitleAndTextFormField.height,
-          textFormFieldWidget(),
+          spacingBetweenTitleAndTextFormField.height,
+          textFormFieldWidget(context),
         ],
       );
     }
 
-    return textFormFieldWidget();
+    return textFormFieldWidget(context);
   }
 }

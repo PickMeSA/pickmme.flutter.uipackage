@@ -8,6 +8,7 @@ class PrimaryButton extends StatelessWidget{
   final double? height;
   final double? elevation;
   final EdgeInsetsGeometry? padding;
+  final double? widthDivisionFactor;
 
   EdgeInsetsGeometry? getPadding(Set<MaterialState> states) => padding;
   double? getElevation(Set<MaterialState> states) => elevation;
@@ -21,16 +22,18 @@ class PrimaryButton extends StatelessWidget{
     this.padding = EdgeInsets.zero,
     this.elevation = 0,
     this.width,
+    this.widthDivisionFactor = 1,
   });
 
   factory PrimaryButton.halfWidth({
     required VoidCallback? onPressed,
     required Widget child,
     VoidCallback? onLongPress,
-    double width = 155,
+    double? width,
     double height = 56,
     padding = EdgeInsets.zero,
     double elevation = 0,
+    double widthDivisionFactor = 2,
   }){
     return PrimaryButton(
       onPressed: onPressed,
@@ -51,6 +54,7 @@ class PrimaryButton extends StatelessWidget{
     double height = 32,
     padding = EdgeInsets.zero,
     double elevation = 0,
+    double? widthDivisionFactor,
   }){
     return PrimaryButton(
       onPressed: onPressed,
@@ -71,6 +75,7 @@ class PrimaryButton extends StatelessWidget{
     double height = 56,
     padding = EdgeInsets.zero,
     double elevation = 0,
+    double? widthDivisionFactor,
   }){
     return PrimaryButton(
       onPressed: onPressed,
@@ -91,6 +96,7 @@ class PrimaryButton extends StatelessWidget{
     double height = 40,
     padding = EdgeInsets.zero,
     double elevation = 0,
+    double? widthDivisionFactor,
   }){
     return PrimaryButton(
       onPressed: onPressed,
@@ -102,9 +108,16 @@ class PrimaryButton extends StatelessWidget{
       child: child,
     );
   }
-  Widget button(){
+  Widget button(BuildContext context){
+    double _width;
+    if(width!=null){
+      _width = width!;
+    }else{
+      _width = MediaQuery.of(context).size.width / widthDivisionFactor!;
+    }
+
     return SizedBox(
-      width: width,
+      width: _width,
       height: height,
       child: ElevatedButton(
           onPressed: onPressed,
@@ -122,6 +135,6 @@ class PrimaryButton extends StatelessWidget{
   }
   @override
   Widget build(BuildContext context) {
-    return button();
+    return button(context);
   }
 }
