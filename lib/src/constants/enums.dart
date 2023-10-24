@@ -12,6 +12,6 @@ enum TextFieldType {
   PHONE,
   URL,
   NUMBER,
-  Date,
+  DATE,
   USERNAME
 }

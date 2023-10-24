@@ -11,7 +11,7 @@ import '../constants/numbers.dart';
 import '../theme/decorations.dart';
 
 /// Default Text Form Field
-class AppTextFormField extends StatefulWidget {
+class AppTextFormField<T> extends StatefulWidget {
   final TextEditingController? controller;
   final TextFieldType textFieldType;
 
@@ -72,7 +72,10 @@ class AppTextFormField extends StatefulWidget {
   final Color? bgColor;
   final Color? borderColor;
   final EdgeInsets? padding;
+  final FormFieldSetter<T>? onSaved;
+
   AppTextFormField({
+    this.onSaved,
     this.controller,
     required this.textFieldType,
     this.decoration,

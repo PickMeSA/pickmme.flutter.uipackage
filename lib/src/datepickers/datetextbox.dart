@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_components/flutter_ui_components.dart';
 import 'package:flutter_ui_components/src/datepickers/datepicker.dart';
-import 'package:flutter_ui_components/src/extensions/date.dart';
 
 class DateTextBox extends StatelessWidget{
   final TextEditingController? controller;
@@ -26,10 +25,11 @@ class DateTextBox extends StatelessWidget{
   Widget build(BuildContext context) {
     return AppTextField(
       controller: controller,
-      textFieldType: TextFieldType.Date,
+      textFieldType: TextFieldType.DATE,
       labelText: labelText,
       hint: hint,
-      suffix: SizedBox(height:50, width:50, child: AppDatePicker(onDateSelected: onDateSelected,)),
+      suffix: SizedBox(
+          height:50, width:40, child: AppDatePicker(onDateSelected: onDateSelected,)),
     );
   }
 

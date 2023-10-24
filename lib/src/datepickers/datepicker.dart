@@ -90,7 +90,7 @@ class _AppDatePickerState extends State<AppDatePicker>
           style: ButtonStyle(
               padding: MaterialStateProperty.all(EdgeInsets.zero),
               minimumSize: MaterialStateProperty.all(Size(50, 30)),
-              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              tapTargetSize: MaterialTapTargetSize.padded,
               alignment: Alignment.center
           ),
           onPressed: () {
