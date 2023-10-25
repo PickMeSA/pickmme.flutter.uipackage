@@ -262,10 +262,10 @@ class _AppDatePickerFormFieldState extends State<AppDatePickerFormField> {
       textFieldType: TextFieldType.DATE,
       autoFocus: widget.autofocus,
       controller: _controller,
-      suffix: SizedBox(height:50, width:50, child: AppDatePicker(onDateSelected: (DateTime selectedDate){
+      suffix: AppDatePicker(onDateSelected: (DateTime selectedDate){
         _controller.text ="${selectedDate.day}/${selectedDate.month}/${selectedDate.year}";
         widget.onDateSelected?.call(selectedDate);
-      },)),
+      },),
 
     );
   }

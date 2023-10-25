@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppTheme{
-  final Color primaryColor = Color(0xFF3EB62B);
-  final Color secondaryColor = Color(0xFF111828);
+  final Color primaryColor = const Color(0xFF3EB62B);
+  final Color secondaryColor = const Color(0xFF111828);
   TextStyle textStyle(Set<MaterialState> states){
     return const TextStyle( color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500);
   }
@@ -55,10 +55,10 @@ class AppTheme{
 
   get defaultTheme => ThemeData(
     fontFamily: "Montserrat",
-    primaryColor: Color(0xFF3EB62B),
+    primaryColor: const Color(0xFF3EB62B),
     chipTheme: ChipThemeData(
-      backgroundColor: Color(0xFFF9F9F9),
-      side: BorderSide(color: Colors.transparent, width: 0),
+      backgroundColor: const Color(0xFFF9F9F9),
+      side: const BorderSide(color: Colors.transparent, width: 0),
       labelStyle: TextStyle(fontSize: 16, color: secondaryColor)
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -123,13 +123,13 @@ class AppTheme{
       inactiveTrackColor: Color(0xFFE6E7EB),
       thumbColor: Color(0xFF3EB62B),
     ),
-    inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: const InputDecorationTheme(
 
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(8))
       ),
     ),
-    colorScheme: ColorScheme.fromSeed(seedColor: Color(0xFF3EB62B)),
+    colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3EB62B)),
     useMaterial3: true,
   );
 }

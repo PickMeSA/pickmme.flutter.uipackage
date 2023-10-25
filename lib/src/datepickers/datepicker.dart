@@ -84,22 +84,18 @@ class _AppDatePickerState extends State<AppDatePicker>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: TextButton(
-          style: ButtonStyle(
-              padding: MaterialStateProperty.all(EdgeInsets.zero),
-              minimumSize: MaterialStateProperty.all(Size(50, 30)),
-              tapTargetSize: MaterialTapTargetSize.padded,
-              alignment: Alignment.center
-          ),
-          onPressed: () {
-            _restorableDatePickerRouteFuture.present();
-          },
-          child: Icon(Icons.calendar_month_rounded,),
-
-        ),
+    return TextButton(
+      style: ButtonStyle(
+          foregroundColor: MaterialStateProperty.all(const Color(0xFF111828)),
+          padding: MaterialStateProperty.all(EdgeInsets.zero),
+          // minimumSize: MaterialStateProperty.all(const Size(50, 30)),
+          tapTargetSize: MaterialTapTargetSize.padded,
+          alignment: Alignment.center
       ),
+      onPressed: () {
+        _restorableDatePickerRouteFuture.present();
+      },
+      child: const Icon(Icons.calendar_month_rounded,),
     );
   }
 }

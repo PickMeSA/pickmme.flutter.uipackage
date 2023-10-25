@@ -25,11 +25,10 @@ class DateTextBox extends StatelessWidget{
   Widget build(BuildContext context) {
     return AppTextField(
       controller: controller,
-      textFieldType: TextFieldType.DATE,
+      textFieldType: TextFieldType.NUMBER,
       labelText: labelText,
       hint: hint,
-      suffix: SizedBox(
-          height:50, width:40, child: AppDatePicker(onDateSelected: onDateSelected,)),
+      suffix: AppDatePicker(onDateSelected: onDateSelected,),
     );
   }
 
