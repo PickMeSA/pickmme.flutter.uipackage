@@ -6,6 +6,7 @@ class AppDropdownMenu<T> extends StatelessWidget {
   final bool filled;
   final Widget? leadingIcon;
   final Widget? label;
+  final double? width;
   final List<DropdownMenuEntry<T>> dropdownMenuEntries;
   /// The callback is called when a selection is made.
   ///
@@ -19,6 +20,7 @@ class AppDropdownMenu<T> extends StatelessWidget {
     required this.enableFilter,
     this.leadingIcon,
     this.label,
+    this.width,
     required this.dropdownMenuEntries,
     this.onSelected,
     this.filled = false, this.contentPadding
@@ -31,7 +33,7 @@ class AppDropdownMenu<T> extends StatelessWidget {
         enableFilter: enableFilter,
         leadingIcon: leadingIcon,
     label: label,
-    width: MediaQuery.of(context).size.width,
+    width: width??MediaQuery.of(context).size.width,
     dropdownMenuEntries: dropdownMenuEntries,
     inputDecorationTheme: InputDecorationTheme(
     filled: filled,

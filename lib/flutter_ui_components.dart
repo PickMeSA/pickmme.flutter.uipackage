@@ -2,6 +2,7 @@ library flutter_ui_components;
 
 export 'src/Buttons/primary_button.dart' show PrimaryButton;
 export 'src/Buttons/secondary_button.dart' show SecondaryButton;
+export 'src/Buttons/tertiary_button.dart' show TertiaryButton;
 export 'src/toggle/primary_switch.dart' show PrimarySwitch;
 export 'src/toggle/radio_buttons.dart' show RadioButtonList;
 export 'src/toggle/radio_buttons.dart' show RadioOption;

@@ -89,6 +89,12 @@ class AppTheme{
           foregroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
         )
     ),
+    textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          textStyle: MaterialStateProperty.resolveWith(textStyle),
+          foregroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
+        )
+    ),
     textTheme: const TextTheme(
         bodyMedium: TextStyle(
             color: Colors.black
