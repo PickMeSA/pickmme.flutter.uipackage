@@ -22,6 +22,8 @@ export 'src/input/app_text_form_field.dart';
 export 'src/dropdown/dropdown.dart';
 export 'src/datepickers/datetextbox.dart';
 export 'src/datepickers/date_text_box.dart';
+export 'src/avatars/image_avatar.dart';
+export 'src/avatars/text_avatar.dart';
 export 'src/extensions/numbers.dart';
 export 'src/extensions/string.dart';
 export 'src/extensions/date.dart';
