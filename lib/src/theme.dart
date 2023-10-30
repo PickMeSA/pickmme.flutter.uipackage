@@ -53,6 +53,16 @@ class AppTheme{
     return const Color(0xFFFFFFFF);
   }
 
+  Color tabOverlayColor(Set<MaterialState> states){
+    // if(states.contains(MaterialState.focused)){
+    //   return  Colors.blue;
+    // }
+    // if(states.contains(MaterialState.hovered)){
+    //   return  Colors.white;
+    // }
+    return  Colors.blue;
+  }
+
   get defaultTheme => ThemeData(
     fontFamily: "Montserrat",
     primaryColor: const Color(0xFF3EB62B),
@@ -134,6 +144,27 @@ class AppTheme{
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(8))
       ),
+    ),
+    tabBarTheme: TabBarTheme(
+      indicator: BoxDecoration(
+        color: Colors.white,
+
+        boxShadow: const [
+          BoxShadow(
+              color: Color(0xFFC8C8C8),
+              offset: Offset.zero,
+              blurRadius: 8.0,
+             spreadRadius: 0.0
+          ),
+          BoxShadow(
+              color: Color(0xFFFFFFFF),
+              offset: Offset.zero,
+              blurRadius: 8.0,
+             spreadRadius: 0.0
+          ),
+        ],
+        borderRadius: BorderRadius.circular(8),
+      )
     ),
     colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3EB62B)),
     useMaterial3: true,
