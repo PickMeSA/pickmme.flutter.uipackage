@@ -166,6 +166,9 @@ class AppTheme{
         borderRadius: BorderRadius.circular(8),
       )
     ),
+    typography: Typography.material2021(
+
+    ),
     colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3EB62B)),
     useMaterial3: true,
   );
