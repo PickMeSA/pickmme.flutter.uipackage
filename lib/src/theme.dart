@@ -169,7 +169,7 @@ class AppTheme{
     typography: Typography.material2021(
 
     ),
-    colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3EB62B)),
+    colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
     useMaterial3: true,
   );
 }

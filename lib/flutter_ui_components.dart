@@ -10,6 +10,8 @@ export 'src/toggle/checkbox.dart' show CheckboxList;
 export 'src/toggle/checkbox.dart' show CheckboxOption;
 export 'src/view_toggles/profile_toggle.dart' show ProfileToggle;
 export 'src/view_toggles/tabs.dart';
+export 'src/cards/booking/job_card.dart';
+export 'src/cards/booking/employee_job_card.dart';
 export 'src/cards/subscription/subscription_plan.dart';
 export 'src/steppers/number_stepper.dart' show NumberStepper;
 export 'src/chips/chip.dart' show ChipGroup, ChipOption;

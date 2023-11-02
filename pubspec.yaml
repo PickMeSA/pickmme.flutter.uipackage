@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   equatable: ^2.0.5
+  iconsax: ^0.0.8
 
 dev_dependencies:
   flutter_test:
@@ -25,8 +26,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  assets:
-    - assets/
+#  assets:
+#    - assets/
 
   # For details regarding assets in packages, see
   # https://flutter.dev/assets-and-images/#from-packages
