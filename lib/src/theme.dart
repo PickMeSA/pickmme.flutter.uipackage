@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppTheme{
+  final BuildContext context;
   final Color primaryColor = const Color(0xFF3EB62B);
   final Color secondaryColor = const Color(0xFF111828);
+
+  AppTheme({required this.context});
+
   TextStyle textStyle(Set<MaterialState> states){
     return const TextStyle( color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500);
   }
@@ -105,13 +109,52 @@ class AppTheme{
           foregroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
         )
     ),
-    textTheme: const TextTheme(
-        bodyMedium: TextStyle(
-            color: Colors.black
+    textTheme: TextTheme(
+      headlineLarge: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        fontFamily: "Montserrat",
+        fontWeight: FontWeight.w600,
+        fontSize: 32,
+      ),
+      headlineMedium: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        fontFamily: "Montserrat",
+        fontWeight: FontWeight.w500,
+        fontSize: 28,
+      ),
+      headlineSmall: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        fontFamily: "Montserrat",
+        fontWeight: FontWeight.w500,
+        fontSize: 24,
+      ),
+        titleLarge: Theme.of(context).textTheme.headlineLarge!.copyWith(
+          fontFamily: "Montserrat",
+          fontWeight: FontWeight.w700,
+          fontSize: 18,
+          letterSpacing: 0.4,
+      ),
+        titleMedium: Theme.of(context).textTheme.headlineLarge!.copyWith(
+          fontFamily: "Montserrat",
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          letterSpacing: 0.4,
+        ),
+        titleSmall: Theme.of(context).textTheme.headlineLarge!.copyWith(
+          fontFamily: "Montserrat",
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          letterSpacing: 0.4,
+        ),
+        bodyLarge: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          fontFamily: "Montserrat",
+          fontSize: 18,
+        ),
+        bodyMedium: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          fontFamily: "Montserrat",
+          fontSize: 16,
         ),
         bodySmall: TextStyle(
-            color: Colors.black
-        )
+          fontFamily: "Montserrat",
+          fontSize: 14,
+        ),
     ),
     switchTheme: SwitchThemeData(
       thumbColor: MaterialStateProperty.resolveWith(primarySwitchThumbColor),

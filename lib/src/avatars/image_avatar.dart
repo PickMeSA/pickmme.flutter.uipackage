@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 
 class AppImageAvatar extends StatelessWidget{
   final String defaultImage = "packages/flutter_ui_components/assets/profile.png";

@@ -11,8 +11,8 @@ extension BooleanExtensions on DateTime {
     String d = _twoDigits(day);
     String h = _twoDigits(hour);
     String min = _twoDigits(minute);
-    String sec = _twoDigits(second);
-    String ms = _threeDigits(millisecond);
+    // String sec = _twoDigits(second);
+    // String ms = _threeDigits(millisecond);
 
     return "$d.$m.$y @ $h:$min";
 

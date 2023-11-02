@@ -15,7 +15,7 @@ class AppJobCard extends StatelessWidget{
   final bool selected;
   final VoidCallback onNext;
   final JobStatus status;
-  final Color grey = const Color(0xFF9CA2AE);
+  final Color color = const Color(0xFF9CA2AE);
 
   const AppJobCard({
     super.key,
@@ -57,17 +57,17 @@ class AppJobCard extends StatelessWidget{
                           children: [
                             Row(
                               children: [
-                                Icon(Iconsax.location, size: 18, color: grey,),
+                                Icon(Iconsax.location, size: 18, color: color,),
                                 8.width,
-                                Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: grey,),)),
+                                Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,),)),
                               ],
                             ),
                             8.height,
                             Row(
                               children: [
-                                Icon(Iconsax.calendar, size: 18, color: grey,),
+                                Icon(Iconsax.calendar, size: 18, color: color,),
                                 8.width,
-                                Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: grey,))),
+                                Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
                           ],
