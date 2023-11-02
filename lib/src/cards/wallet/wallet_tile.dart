@@ -36,23 +36,21 @@ class AppWalletTile extends StatelessWidget{
   }
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onClick,
-      child: Card(
-        elevation: 0,
-        color: color??const Color(0xFFF9F9F9),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: SizedBox(
-          height: height,
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Card(
+      elevation: 0,
+      color: color??const Color(0xFFF9F9F9),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: SizedBox(
+        height: height,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(title,
@@ -66,11 +64,12 @@ class AppWalletTile extends StatelessWidget{
                       ),
                     ),
                   ],
-          ),
                 ),
-                Icon(Iconsax.arrow_right_1)
-              ],
-            ),
+              ),
+              TextButton(
+                onPressed: onClick,
+                  child: const Icon(Iconsax.arrow_right_1))
+            ],
           ),
         ),
       ),
