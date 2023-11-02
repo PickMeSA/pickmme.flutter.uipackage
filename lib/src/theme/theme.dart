@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'primary_color_pallete.dart';
 class AppTheme{
   final BuildContext context;
   final Color primaryColor = const Color(0xFF3EB62B);
@@ -68,8 +68,22 @@ class AppTheme{
   }
 
   get defaultTheme => ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme(
+      brightness: Brightness.light,
+      primary: primaryColor,
+      onPrimary: Colors.white,
+      secondary: secondaryColor,
+      onSecondary: Colors.white,
+      error: const Color(0xFFF44F4E),
+      onError: Colors.white,
+      background: Colors.white,
+      onBackground: secondaryColor,
+      surface: Colors.white,
+      onSurface: secondaryColor,
+    ),
     fontFamily: "Montserrat",
-    primaryColor: const Color(0xFF3EB62B),
+    typography: Typography.material2021(),
     chipTheme: ChipThemeData(
       backgroundColor: const Color(0xFFF9F9F9),
       side: const BorderSide(color: Colors.transparent, width: 0),
@@ -151,8 +165,9 @@ class AppTheme{
           fontFamily: "Montserrat",
           fontSize: 16,
         ),
-        bodySmall: TextStyle(
+        bodySmall: Theme.of(context).textTheme.bodyMedium!.copyWith(
           fontFamily: "Montserrat",
+          fontWeight: FontWeight.w300,
           fontSize: 14,
         ),
     ),
@@ -209,10 +224,6 @@ class AppTheme{
         borderRadius: BorderRadius.circular(8),
       )
     ),
-    typography: Typography.material2021(
 
-    ),
-    colorScheme: ColorScheme.fromSeed(seedColor: Colors.green),
-    useMaterial3: true,
   );
 }

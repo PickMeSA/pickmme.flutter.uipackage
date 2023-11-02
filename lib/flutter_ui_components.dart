@@ -11,6 +11,7 @@ export 'src/toggle/checkbox.dart' show CheckboxOption;
 export 'src/view_toggles/profile_toggle.dart' show ProfileToggle;
 export 'src/view_toggles/tabs.dart';
 export 'src/cards/booking/job_card.dart';
+export 'src/cards/job_adverts/job_advert.dart';
 export 'src/cards/booking/employee_job_card.dart';
 export 'src/cards/subscription/subscription_plan.dart';
 export 'src/cards/section_cards/section_card.dart';

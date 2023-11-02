@@ -44,9 +44,14 @@ class AppEmployeeJobCard extends StatelessWidget{
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(employeeName, style: Theme.of(context).textTheme.headlineSmall,),
-                      Text(jobName, style: Theme.of(context).textTheme.bodyLarge,),
-                      8.height,
+                      Text(employeeName,
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.w600
+                        ),
+                      ),
+                      2.height,
+                      Text(jobName, style: Theme.of(context).textTheme.bodySmall,),
+                      4.height,
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Column(
@@ -69,7 +74,7 @@ class AppEmployeeJobCard extends StatelessWidget{
                           ],
                         ),
                       ),
-                      16.height,
+                      8.height,
                       Builder(
                         builder: (context) {
                           if(status == JobStatus.newJob){

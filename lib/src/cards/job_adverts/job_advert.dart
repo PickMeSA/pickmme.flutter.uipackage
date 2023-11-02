@@ -2,31 +2,76 @@ import 'package:flutter/material.dart';
 import '../../extensions/numbers.dart';
 import '../../extensions/date.dart';
 import '../../constants/enums.dart';
-import '../../badges/status_badge.dart';
 import '../../avatars/image_avatar.dart';
-import '../../constants/strings.dart';
 import 'package:iconsax/iconsax.dart';
 
-class AppJobCard extends StatelessWidget{
+class AppJobAdvertCard extends StatelessWidget{
   final String jobName;
   final String employerName;
   final String locationName;
+  final String? matchingText;
   final DateTime dateTime;
-  final bool selected;
   final VoidCallback onNext;
   final JobStatus status;
   final Color color = const Color(0xFF9CA2AE);
-
-  const AppJobCard({
+  final int? totalApplications;
+  final String? applicationsString;
+  final int? totalMatches;
+  final String? matchesString;
+  const AppJobAdvertCard({
     super.key,
     required this.jobName,
     required this.employerName,
     required this.locationName,
     required this.dateTime,
     required this.onNext,
-    this.selected = false,
-    this.status = JobStatus.newJob
+    this.matchingText,
+    this.status = JobStatus.newJob,
+    this.totalApplications,
+    this.applicationsString,
+    this.totalMatches,
+    this.matchesString,
   });
+
+  factory AppJobAdvertCard.matching({
+    required String jobName,
+    required String employerName,
+    required String locationName,
+    required DateTime dateTime,
+    required VoidCallback onNext,
+    String matchingText = "Your profile matches this job",
+  }){
+    return AppJobAdvertCard(
+      jobName: jobName,
+      employerName: employerName,
+      locationName: locationName,
+      dateTime: dateTime,
+      onNext: onNext,
+      matchingText: matchingText,
+    );
+  }
+
+  factory AppJobAdvertCard.applicationsAndMatches({
+    required String jobName,
+    required String employerName,
+    required String locationName,
+    required DateTime dateTime,
+    required VoidCallback onNext,
+    String? matchingText,
+    int totalApplications = 0,
+    String applicationsString = "applications",
+    int totalMatches = 0,
+    String matchesString = "possible matches",
+  }){
+    return AppJobAdvertCard(
+      jobName: jobName,
+      employerName: employerName,
+      locationName: locationName,
+      dateTime: dateTime,
+      onNext: onNext,
+      matchingText: matchingText,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,10 +94,9 @@ class AppJobCard extends StatelessWidget{
                     children: [
                       Text(jobName,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontWeight: FontWeight.w600
+                            fontWeight: FontWeight.w600
                         ),
                       ),
-                      2.height,
                       Text(employerName, style: Theme.of(context).textTheme.bodySmall,),
                       4.height,
                       Padding(
@@ -74,24 +118,26 @@ class AppJobCard extends StatelessWidget{
                                 Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
+                            if(matchingText!=null)16.height,
+                            if(matchingText!=null)Row(
+                              children: [
+                                Icon(Icons.account_circle, color: color, size: 16,),
+                                12.width,
+                                Expanded(
+                                    child: Text(
+                                        matchingText!,
+                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                      color: const Color(0xFF23A8B3),
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 12,
+                                    )
+                                    )
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
-                      8.height,
-                      Builder(
-                        builder: (context) {
-                          if(status == JobStatus.newJob){
-                            return const SizedBox();
-                          }else if(status == JobStatus.applied){
-                            return StatusBadge.info(appliedForJobStatus);
-                          }else if(status == JobStatus.requestedReschedule){
-                            return StatusBadge.warning(rescheduleRequestedStatus);
-                          }else if(status == JobStatus.rescheduled){
-                            return StatusBadge.success(rescheduledStatus);
-                          }
-                          return StatusBadge.danger(cancelledStatus);
-                        }
-                      )
                     ],
                   ),
                 ),

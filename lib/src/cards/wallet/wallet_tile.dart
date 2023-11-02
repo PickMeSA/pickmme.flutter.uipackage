@@ -36,6 +36,7 @@ class AppWalletTile extends StatelessWidget{
   }
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
     return Card(
       elevation: 0,
       color: color??const Color(0xFFF9F9F9),
@@ -68,7 +69,7 @@ class AppWalletTile extends StatelessWidget{
               ),
               TextButton(
                 onPressed: onClick,
-                  child: const Icon(Iconsax.arrow_right_1))
+                  child: Icon(Iconsax.arrow_right_1, color: theme.colorScheme.secondary,))
             ],
           ),
         ),
