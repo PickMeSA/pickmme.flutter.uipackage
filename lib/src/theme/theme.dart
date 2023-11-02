@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
-
+import 'primary_color_pallete.dart';
 class AppTheme{
+  final BuildContext context;
   final Color primaryColor = const Color(0xFF3EB62B);
   final Color secondaryColor = const Color(0xFF111828);
+
+  AppTheme({required this.context});
+
   TextStyle textStyle(Set<MaterialState> states){
     return const TextStyle( color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500);
   }
@@ -64,8 +68,22 @@ class AppTheme{
   }
 
   get defaultTheme => ThemeData(
+    useMaterial3: true,
+    colorScheme: ColorScheme(
+      brightness: Brightness.light,
+      primary: primaryColor,
+      onPrimary: Colors.white,
+      secondary: secondaryColor,
+      onSecondary: Colors.white,
+      error: const Color(0xFFF44F4E),
+      onError: Colors.white,
+      background: Colors.white,
+      onBackground: secondaryColor,
+      surface: Colors.white,
+      onSurface: secondaryColor,
+    ),
     fontFamily: "Montserrat",
-    primaryColor: const Color(0xFF3EB62B),
+    typography: Typography.material2021(),
     chipTheme: ChipThemeData(
       backgroundColor: const Color(0xFFF9F9F9),
       side: const BorderSide(color: Colors.transparent, width: 0),
@@ -105,13 +123,53 @@ class AppTheme{
           foregroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
         )
     ),
-    textTheme: const TextTheme(
-        bodyMedium: TextStyle(
-            color: Colors.black
+    textTheme: TextTheme(
+      headlineLarge: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        fontFamily: "Montserrat",
+        fontWeight: FontWeight.w600,
+        fontSize: 32,
+      ),
+      headlineMedium: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        fontFamily: "Montserrat",
+        fontWeight: FontWeight.w500,
+        fontSize: 28,
+      ),
+      headlineSmall: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        fontFamily: "Montserrat",
+        fontWeight: FontWeight.w500,
+        fontSize: 24,
+      ),
+        titleLarge: Theme.of(context).textTheme.headlineLarge!.copyWith(
+          fontFamily: "Montserrat",
+          fontWeight: FontWeight.w700,
+          fontSize: 18,
+          letterSpacing: 0.4,
+      ),
+        titleMedium: Theme.of(context).textTheme.headlineLarge!.copyWith(
+          fontFamily: "Montserrat",
+          fontWeight: FontWeight.w500,
+          fontSize: 18,
+          letterSpacing: 0.4,
         ),
-        bodySmall: TextStyle(
-            color: Colors.black
-        )
+        titleSmall: Theme.of(context).textTheme.headlineLarge!.copyWith(
+          fontFamily: "Montserrat",
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+          letterSpacing: 0.4,
+        ),
+        bodyLarge: Theme.of(context).textTheme.bodyLarge!.copyWith(
+          fontFamily: "Montserrat",
+          fontSize: 18,
+        ),
+        bodyMedium: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          fontFamily: "Montserrat",
+          fontSize: 16,
+        ),
+        bodySmall: Theme.of(context).textTheme.bodyMedium!.copyWith(
+          fontFamily: "Montserrat",
+          fontWeight: FontWeight.w300,
+          fontSize: 14,
+        ),
     ),
     switchTheme: SwitchThemeData(
       thumbColor: MaterialStateProperty.resolveWith(primarySwitchThumbColor),
@@ -166,10 +224,6 @@ class AppTheme{
         borderRadius: BorderRadius.circular(8),
       )
     ),
-    typography: Typography.material2021(
 
-    ),
-    colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3EB62B)),
-    useMaterial3: true,
   );
 }

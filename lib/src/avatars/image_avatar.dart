@@ -12,7 +12,7 @@ class AppImageAvatar extends StatelessWidget{
     this.assetName,
     this.width = 64,
     this.height = 64,
-    this.assetHeight = 36,
+    this.assetHeight = 64,
   });
 
   factory AppImageAvatar.medium({required String assetName}){
@@ -32,8 +32,8 @@ class AppImageAvatar extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 64,
-      height: 64,
+      width: width,
+      height: height,
       decoration: BoxDecoration(
         color: const Color(0xFFF9F9F9),
         shape: BoxShape.circle,
@@ -41,16 +41,26 @@ class AppImageAvatar extends StatelessWidget{
           color: const Color(0xFFD1D4DB),
         ),
       ),
-      child: Center(
-        child: Container(
-          height: assetHeight,
-          width: assetHeight,
-          decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage(assetName??defaultImage),fit: BoxFit.fill),
-            color: Colors.white,
-            shape: BoxShape.circle,
-          ),
-        ),
+      child: Builder(
+        builder: (context) {
+          if(assetName==null){
+            return const Center(
+              //Iconsax profile is broken so using material design here
+              child: Icon(Icons.account_circle, color: Color(0xFFD1D4DB,)),
+            );
+          }
+          return Center(
+            child: Container(
+              height: assetHeight,
+              width: assetHeight,
+              decoration: BoxDecoration(
+                image: DecorationImage(image: AssetImage(assetName!),fit: BoxFit.fill),
+                color: Colors.white,
+                shape: BoxShape.circle,
+              ),
+            ),
+          );
+        }
       ),
     );
 

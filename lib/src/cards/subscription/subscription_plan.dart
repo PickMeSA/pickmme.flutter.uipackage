@@ -1,6 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_components/flutter_ui_components.dart';
+import 'package:iconsax/iconsax.dart';
+import '../../extensions/string.dart';
 import '../../divider/divider.dart';
 enum EntityType{ business, individual}
 class AppSubscriptionPlan extends StatelessWidget{
@@ -64,10 +64,10 @@ class AppSubscriptionPlan extends StatelessWidget{
                   child: Column(
                     children: includedItems.map((e) => ListTile(
                         dense:true,
-                        contentPadding: EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
-                        visualDensity: VisualDensity(horizontal: 0, vertical: -4),
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 0.0, vertical: 0.0),
+                        visualDensity: const VisualDensity(horizontal: 0, vertical: -4),
                         titleAlignment: ListTileTitleAlignment.titleHeight,
-                        leading: const Icon(Icons.check_box_outlined),
+                        leading: const Icon(Iconsax.tick_square),
                         title: Text (e)
                     )).toList(),
                   ),
