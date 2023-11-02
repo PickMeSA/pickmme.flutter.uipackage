@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class SecondaryButton extends StatelessWidget{
+class TertiaryButton extends StatelessWidget{
   /// Called when the button is tapped or otherwise activated.
   ///
   /// If this callback and [onLongPress] are null, then the button will be disabled.
@@ -77,7 +77,7 @@ class SecondaryButton extends StatelessWidget{
   EdgeInsetsGeometry? getPadding(Set<MaterialState> states) => padding;
   double? getElevation(Set<MaterialState> states) => elevation;
 
-  const SecondaryButton({
+  const TertiaryButton({
     super.key,
     required this.onPressed,
     this.onLongPress,
@@ -97,7 +97,7 @@ class SecondaryButton extends StatelessWidget{
     this.isSemanticButton,
   });
 
-  factory SecondaryButton.halfWidth({
+  factory TertiaryButton.halfWidth({
     required VoidCallback? onPressed,
     required Widget child,
     VoidCallback? onLongPress,
@@ -106,7 +106,7 @@ class SecondaryButton extends StatelessWidget{
     padding = EdgeInsets.zero,
     double elevation = 0,
   }){
-    return SecondaryButton(
+    return TertiaryButton(
       onPressed: onPressed,
       onLongPress: onLongPress,
       width: width,
@@ -117,7 +117,7 @@ class SecondaryButton extends StatelessWidget{
     );
   }
 
-  factory SecondaryButton.small ({
+  factory TertiaryButton.small ({
     required VoidCallback? onPressed,
     required Widget child,
     VoidCallback? onLongPress,
@@ -126,7 +126,7 @@ class SecondaryButton extends StatelessWidget{
     padding = EdgeInsets.zero,
     double elevation = 0,
   }){
-    return SecondaryButton(
+    return TertiaryButton(
       onPressed: onPressed,
       onLongPress: onLongPress,
       width: width,
@@ -137,7 +137,7 @@ class SecondaryButton extends StatelessWidget{
     );
   }
 
-  factory SecondaryButton.icon({
+  factory TertiaryButton.icon({
     required VoidCallback? onPressed,
     required Icon child,
     VoidCallback? onLongPress,
@@ -146,7 +146,7 @@ class SecondaryButton extends StatelessWidget{
     padding = EdgeInsets.zero,
     double elevation = 0,
   }){
-    return SecondaryButton(
+    return TertiaryButton(
       onPressed: onPressed,
       onLongPress: onLongPress,
       width: width,
@@ -157,7 +157,7 @@ class SecondaryButton extends StatelessWidget{
     );
   }
 
-  factory SecondaryButton.smallIcon({
+  factory TertiaryButton.smallIcon({
     required VoidCallback? onPressed,
     required Icon child,
     VoidCallback? onLongPress,
@@ -166,7 +166,7 @@ class SecondaryButton extends StatelessWidget{
     padding = EdgeInsets.zero,
     double elevation = 0,
   }){
-    return SecondaryButton(
+    return TertiaryButton(
       onPressed: onPressed,
       onLongPress: onLongPress,
       width: width,
@@ -182,7 +182,7 @@ class SecondaryButton extends StatelessWidget{
     return SizedBox(
       width: inheritParentWidth?null:width,
       height: height,
-      child: OutlinedButton(
+      child: TextButton(
           onPressed: onPressed,
           onLongPress: onLongPress,
           style: ButtonStyle(

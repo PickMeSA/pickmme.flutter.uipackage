@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class AppTheme{
-  final Color primaryColor = Color(0xFF3EB62B);
+  final Color primaryColor = const Color(0xFF3EB62B);
+  final Color secondaryColor = const Color(0xFF111828);
   TextStyle textStyle(Set<MaterialState> states){
     return const TextStyle( color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500);
   }
@@ -51,13 +52,24 @@ class AppTheme{
   Color primarySwitchThumbColor(Set<MaterialState> states){
     return const Color(0xFFFFFFFF);
   }
+
+  Color tabOverlayColor(Set<MaterialState> states){
+    // if(states.contains(MaterialState.focused)){
+    //   return  Colors.blue;
+    // }
+    // if(states.contains(MaterialState.hovered)){
+    //   return  Colors.white;
+    // }
+    return  Colors.blue;
+  }
+
   get defaultTheme => ThemeData(
     fontFamily: "Montserrat",
-    primaryColor: Color(0xFF3EB62B),
+    primaryColor: const Color(0xFF3EB62B),
     chipTheme: ChipThemeData(
-      backgroundColor: Color(0xFFF9F9F9),
-      side: BorderSide(color: Colors.transparent, width: 0),
-      labelStyle: TextStyle(fontSize: 16, color: Color(0xFF111828))
+      backgroundColor: const Color(0xFFF9F9F9),
+      side: const BorderSide(color: Colors.transparent, width: 0),
+      labelStyle: TextStyle(fontSize: 16, color: secondaryColor)
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
@@ -84,6 +96,12 @@ class AppTheme{
                     color: Color(0xFF3EB62B),
                     width: 1), // <-- this doesn't work at all in shape.
               )),
+          foregroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
+        )
+    ),
+    textButtonTheme: TextButtonThemeData(
+        style: ButtonStyle(
+          textStyle: MaterialStateProperty.resolveWith(textStyle),
           foregroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
         )
     ),
@@ -121,6 +139,37 @@ class AppTheme{
       inactiveTrackColor: Color(0xFFE6E7EB),
       thumbColor: Color(0xFF3EB62B),
     ),
+    inputDecorationTheme: const InputDecorationTheme(
+
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(8))
+      ),
+    ),
+    tabBarTheme: TabBarTheme(
+      indicator: BoxDecoration(
+        color: Colors.white,
+
+        boxShadow: const [
+          BoxShadow(
+              color: Color(0xFFC8C8C8),
+              offset: Offset.zero,
+              blurRadius: 8.0,
+             spreadRadius: 0.0
+          ),
+          BoxShadow(
+              color: Color(0xFFFFFFFF),
+              offset: Offset.zero,
+              blurRadius: 8.0,
+             spreadRadius: 0.0
+          ),
+        ],
+        borderRadius: BorderRadius.circular(8),
+      )
+    ),
+    typography: Typography.material2021(
+
+    ),
+    colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF3EB62B)),
     useMaterial3: true,
   );
 }
