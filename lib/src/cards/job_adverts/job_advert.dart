@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_components/flutter_ui_components.dart';
 import '../../extensions/numbers.dart';
 import '../../extensions/date.dart';
 import '../../constants/enums.dart';
@@ -70,6 +71,10 @@ class AppJobAdvertCard extends StatelessWidget{
       dateTime: dateTime,
       onNext: onNext,
       matchingText: matchingText,
+      totalApplications: totalApplications,
+      totalMatches: totalMatches,
+      applicationsString: applicationsString,
+      matchesString: matchesString,
     );
   }
 
@@ -135,6 +140,44 @@ class AppJobAdvertCard extends StatelessWidget{
                                 ),
                               ],
                             ),
+                            if(totalApplications!=null)Container(
+                              child: Column(
+                                children: [
+                                  AppDivider(),
+                                  Row(
+                                    children: [
+                                      Icon(Iconsax.profile_2user),
+                                      if(totalApplications! > 0)Padding(
+                                          padding: EdgeInsets.symmetric(horizontal: 8),
+                                        child: Center(
+                                          child: NotificationBadge.small(),
+                                        ),
+                                      ),
+                                      Text("$totalApplications $applicationsString")
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            if(totalMatches !=null)Container(
+                              child: Column(
+                                children: [
+                                  AppDivider(),
+                                  Row(
+                                    children: [
+                                      Icon(Iconsax.verify),
+                                      if(totalMatches! > 0)Padding(
+                                          padding: EdgeInsets.symmetric(horizontal: 8),
+                                        child: Center(
+                                          child: NotificationBadge.small(),
+                                        ),
+                                      ),
+                                      Text("$totalMatches $matchesString")
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),

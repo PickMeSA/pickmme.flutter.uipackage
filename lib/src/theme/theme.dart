@@ -99,21 +99,21 @@ class AppTheme{
           ),
           backgroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
           foregroundColor: MaterialStateProperty.resolveWith(primaryButtonForegroundColor),
-
+          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 16),),
+          // shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          //   borderRadius: BorderRadius.circular(5),
+          // )),
+          elevation: MaterialStateProperty.all(0),
         )
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
+          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 16)),
+          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          )),
           textStyle: MaterialStateProperty.resolveWith(textStyle),
           side: MaterialStateProperty.resolveWith(secondaryButtonOutlineColor),
-          shape: MaterialStateProperty.all<OutlinedBorder>(
-              const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(Radius.circular(12)),
-                side: BorderSide(
-                    style: BorderStyle.solid,
-                    color: Color(0xFF3EB62B),
-                    width: 1), // <-- this doesn't work at all in shape.
-              )),
           foregroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
         )
     ),

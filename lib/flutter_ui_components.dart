@@ -16,6 +16,7 @@ export 'src/cards/booking/employee_job_card.dart';
 export 'src/cards/subscription/subscription_plan.dart';
 export 'src/cards/section_cards/section_card.dart';
 export 'src/cards/wallet/wallet_tile.dart';
+export 'src/cards/dialog/dialog.dart';
 export 'src/steppers/number_stepper.dart' show NumberStepper;
 export 'src/chips/chip.dart' show ChipGroup, ChipOption;
 export 'src/theme/theme.dart' show AppTheme;

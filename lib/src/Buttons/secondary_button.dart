@@ -14,10 +14,10 @@ class SecondaryButton extends StatelessWidget{
   /// {@macro flutter.widgets.ProxyWidget.child}
   final Widget child;
   final double? width;
-  final double? height;
+  final double height;
   final double? elevation;
-  final EdgeInsetsGeometry? padding;
-  final bool inheritParentWidth;
+
+  final Color? color;
 
   /// Called when the button is long-pressed.
   ///
@@ -73,8 +73,8 @@ class SecondaryButton extends StatelessWidget{
   ///
   /// Defaults to true.
   final bool? isSemanticButton;
+  final bool fullWidth;
 
-  EdgeInsetsGeometry? getPadding(Set<MaterialState> states) => padding;
   double? getElevation(Set<MaterialState> states) => elevation;
 
   const SecondaryButton({
@@ -84,9 +84,7 @@ class SecondaryButton extends StatelessWidget{
     required this.child,
     this.width,
     this.height = 56,
-    this.padding = EdgeInsets.zero,
     this.elevation = 0,
-    this.inheritParentWidth = false,
     this.onHover,
     this.onFocusChange,
     this.style,
@@ -95,15 +93,17 @@ class SecondaryButton extends StatelessWidget{
     this.clipBehavior = Clip.none,
     this.statesController,
     this.isSemanticButton,
+    this.fullWidth = true,
+    this.color,
   });
 
   factory SecondaryButton.halfWidth({
     required VoidCallback? onPressed,
     required Widget child,
     VoidCallback? onLongPress,
-    double width = 155,
+    double? width,
     double height = 56,
-    padding = EdgeInsets.zero,
+    ButtonStyle? style,
     double elevation = 0,
   }){
     return SecondaryButton(
@@ -111,8 +111,9 @@ class SecondaryButton extends StatelessWidget{
       onLongPress: onLongPress,
       width: width,
       height: height,
-      padding: padding,
+      style: style,
       elevation: elevation,
+      fullWidth: false,
       child: child,
     );
   }
@@ -123,7 +124,7 @@ class SecondaryButton extends StatelessWidget{
     VoidCallback? onLongPress,
     double width = 155,
     double height = 32,
-    padding = EdgeInsets.zero,
+    ButtonStyle? style,
     double elevation = 0,
   }){
     return SecondaryButton(
@@ -131,8 +132,9 @@ class SecondaryButton extends StatelessWidget{
       onLongPress: onLongPress,
       width: width,
       height: height,
-      padding: padding,
+      style: style,
       elevation: elevation,
+      fullWidth: false,
       child: child,
     );
   }
@@ -143,7 +145,7 @@ class SecondaryButton extends StatelessWidget{
     VoidCallback? onLongPress,
     double width = 56,
     double height = 56,
-    padding = EdgeInsets.zero,
+    ButtonStyle? style,
     double elevation = 0,
   }){
     return SecondaryButton(
@@ -151,8 +153,9 @@ class SecondaryButton extends StatelessWidget{
       onLongPress: onLongPress,
       width: width,
       height: height,
-      padding: padding,
+      style: style,
       elevation: elevation,
+      fullWidth: false,
       child: child,
     );
   }
@@ -163,7 +166,7 @@ class SecondaryButton extends StatelessWidget{
     VoidCallback? onLongPress,
     double width = 40,
     double height = 40,
-    padding = EdgeInsets.zero,
+    ButtonStyle? style,
     double elevation = 0,
   }){
     return SecondaryButton(
@@ -171,29 +174,40 @@ class SecondaryButton extends StatelessWidget{
       onLongPress: onLongPress,
       width: width,
       height: height,
-      padding: padding,
+      style: style,
       elevation: elevation,
+      fullWidth: false,
       child: child,
     );
   }
 
+  ButtonStyle defaultStyle(){
+    if(fullWidth){
+      return ButtonStyle(
+        minimumSize: MaterialStateProperty.all(const Size.fromHeight(56)),
+      );
+    }
+    return const ButtonStyle();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: inheritParentWidth?null:width,
-      height: height,
-      child: OutlinedButton(
-          onPressed: onPressed,
-          onLongPress: onLongPress,
-          style: ButtonStyle(
-              padding: MaterialStateProperty.resolveWith(getPadding,),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
-              )),
-              elevation: MaterialStateProperty.resolveWith(getElevation)
-          ),
-          child: child
-      ),
+    if(!fullWidth) {
+      return SizedBox(
+        height: height,
+        child: OutlinedButton(
+            onPressed: onPressed,
+            onLongPress: onLongPress,
+            style: style??defaultStyle(),
+            child: child
+        ),
+      );
+    }
+      return OutlinedButton(
+        onPressed: onPressed,
+        onLongPress: onLongPress,
+        style: style??defaultStyle(),
+        child: child
     );
   }
 }
