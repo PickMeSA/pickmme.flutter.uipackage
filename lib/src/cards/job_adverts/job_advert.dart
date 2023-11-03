@@ -141,19 +141,24 @@ class AppJobAdvertCard extends StatelessWidget{
                               ],
                             ),
                             if(totalApplications!=null)Container(
+                              padding: const EdgeInsets.only(top:8),
                               child: Column(
                                 children: [
-                                  AppDivider(),
+                                  const AppDivider(),
                                   Row(
                                     children: [
-                                      Icon(Iconsax.profile_2user),
+                                      const Icon(Iconsax.profile_2user),
                                       if(totalApplications! > 0)Padding(
-                                          padding: EdgeInsets.symmetric(horizontal: 8),
+                                          padding: const EdgeInsets.symmetric(horizontal: 8),
                                         child: Center(
                                           child: NotificationBadge.small(),
                                         ),
                                       ),
-                                      Text("$totalApplications $applicationsString")
+                                      if(totalApplications == 0) 8.width,
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                        child: Text("$totalApplications $applicationsString"),
+                                      )
                                     ],
                                   )
                                 ],
@@ -162,17 +167,21 @@ class AppJobAdvertCard extends StatelessWidget{
                             if(totalMatches !=null)Container(
                               child: Column(
                                 children: [
-                                  AppDivider(),
+                                  const AppDivider(),
                                   Row(
                                     children: [
-                                      Icon(Iconsax.verify),
+                                      const Icon(Iconsax.verify),
                                       if(totalMatches! > 0)Padding(
-                                          padding: EdgeInsets.symmetric(horizontal: 8),
+                                          padding: const EdgeInsets.symmetric(horizontal: 8),
                                         child: Center(
                                           child: NotificationBadge.small(),
                                         ),
                                       ),
-                                      Text("$totalMatches $matchesString")
+                                      if(totalMatches == 0) 8.width,
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                        child: Text("$totalMatches $matchesString"),
+                                      )
                                     ],
                                   )
                                 ],
