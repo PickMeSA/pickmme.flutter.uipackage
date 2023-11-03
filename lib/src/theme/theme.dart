@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'primary_color_pallete.dart';
+
 class AppTheme{
   final BuildContext context;
   final Color primaryColor = const Color(0xFF3EB62B);
