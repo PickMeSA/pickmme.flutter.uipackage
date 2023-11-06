@@ -4,18 +4,20 @@ class AppTabBar extends StatelessWidget {
   final List<Widget> tabs;
   final List<Widget> views;
   final double? viewHeight;
+  final int? initialIndex;
   const AppTabBar({
     super.key,
     required this.tabs,
     required this.views,
-    this.viewHeight
+    this.viewHeight,
+    this.initialIndex
   }): assert(tabs.length!=0 && tabs.length==views.length);
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      initialIndex: 1,
-      length: 3,
+      initialIndex: initialIndex??1,
+      length: tabs.length,
       child: Column(
         children: [
           Material(
