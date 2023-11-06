@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../badges/notification_badge.dart';
-import '../../extensions/numbers.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../../badges/notification_badge.dart';
+import '../../constants/widgets.dart';
 
 class AppExplorationTile extends StatelessWidget{
   final String title;
@@ -35,7 +36,7 @@ class AppExplorationTile extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             icon ?? const Icon(Iconsax.briefcase),
-            10.width,
+            rowSpacing,
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -43,12 +44,12 @@ class AppExplorationTile extends StatelessWidget{
                   Text(title + countText,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  if(count!=null && count!>0)10.width,
+                  if(count!=null && count!>0)rowSpacing,
                   if(count!=null && count!>0)NotificationBadge.small(),
                 ],
               ),
             ),
-            10.width,
+            rowSpacing,
             if(onClick!=null)const Icon(Iconsax.arrow_right_1)
           ],
         ),

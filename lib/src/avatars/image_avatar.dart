@@ -2,29 +2,29 @@ import 'package:flutter/material.dart';
 
 class AppImageAvatar extends StatelessWidget{
   final String defaultImage = "packages/flutter_ui_components/assets/profile.png";
-  final String? assetName;
+  final Widget? image;
   final double width;
   final double height;
   final double assetHeight;
 
   const AppImageAvatar({
     super.key,
-    this.assetName,
+    this.image,
     this.width = 64,
     this.height = 64,
     this.assetHeight = 64,
   });
 
-  factory AppImageAvatar.medium({required String assetName}){
+  factory AppImageAvatar.medium({Widget? image}){
     return AppImageAvatar(
-      assetName: assetName,
+      image: image,
       width: 56,
       height: 56,
     );
   }
-  factory AppImageAvatar.small({required String assetName}){
+  factory AppImageAvatar.small({Widget? image}){
     return AppImageAvatar(
-      assetName: assetName,
+      image: image,
       width: 48,
       height: 48,
     );
@@ -43,7 +43,7 @@ class AppImageAvatar extends StatelessWidget{
       ),
       child: Builder(
         builder: (context) {
-          if(assetName==null){
+          if(image==null){
             return const Center(
               //Iconsax profile is broken so using material design here
               child: Icon(Icons.account_circle, color: Color(0xFFD1D4DB,)),
@@ -53,11 +53,11 @@ class AppImageAvatar extends StatelessWidget{
             child: Container(
               height: assetHeight,
               width: assetHeight,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: AssetImage(assetName!),fit: BoxFit.fill),
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 shape: BoxShape.circle,
               ),
+              child: image!,
             ),
           );
         }

@@ -1,8 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_components/flutter_ui_components.dart';
-import 'package:flutter_ui_components/src/constants/strings.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../avatars/image_avatar.dart';
+import '../../constants/widgets.dart';
+import '../../constants/strings.dart';
+import '../../extensions/date.dart';
+import '../../badges/status_badge.dart';
+import '../../constants/enums.dart';
+import '../../extensions/numbers.dart';
 
 class AppEmployeeJobCard extends StatelessWidget{
   final String jobName;
@@ -59,7 +63,7 @@ class AppEmployeeJobCard extends StatelessWidget{
                             Row(
                               children: [
                                 Icon(Iconsax.location, size: 18, color: color,),
-                                8.width,
+                                rowSpacing,
                                 Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,),)),
                               ],
                             ),
@@ -67,7 +71,7 @@ class AppEmployeeJobCard extends StatelessWidget{
                             Row(
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
-                                8.width,
+                                rowSpacing,
                                 Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),

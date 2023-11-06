@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 import '../../extensions/numbers.dart';
 import '../../extensions/date.dart';
 import '../../constants/enums.dart';
 import '../../badges/status_badge.dart';
 import '../../avatars/image_avatar.dart';
 import '../../constants/strings.dart';
-import 'package:iconsax/iconsax.dart';
+import '../../constants/widgets.dart';
 
 class AppJobCard extends StatelessWidget{
   final String jobName;
@@ -62,7 +63,7 @@ class AppJobCard extends StatelessWidget{
                             Row(
                               children: [
                                 Icon(Iconsax.location, size: 18, color: color,),
-                                8.width,
+                                rowSpacing,
                                 Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,),)),
                               ],
                             ),
@@ -70,7 +71,7 @@ class AppJobCard extends StatelessWidget{
                             Row(
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
-                                8.width,
+                                rowSpacing,
                                 Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_components/flutter_ui_components.dart';
-import '../../extensions/numbers.dart';
-import '../../extensions/date.dart';
-import '../../constants/enums.dart';
 import '../../avatars/image_avatar.dart';
+import '../../badges/notification_badge.dart';
+import '../../divider/divider.dart';
+import '../../extensions/date.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../constants/enums.dart';
+import '../../constants/widgets.dart';
 
 class AppJobAdvertCard extends StatelessWidget{
   final String jobName;
@@ -103,7 +104,7 @@ class AppJobAdvertCard extends StatelessWidget{
                         ),
                       ),
                       Text(employerName, style: Theme.of(context).textTheme.bodySmall,),
-                      4.height,
+                      columnSmallSpacing,
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Column(
@@ -111,23 +112,23 @@ class AppJobAdvertCard extends StatelessWidget{
                             Row(
                               children: [
                                 Icon(Iconsax.location, size: 18, color: color,),
-                                8.width,
+                                rowSpacing,
                                 Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,),)),
                               ],
                             ),
-                            8.height,
+                            columnSpacing,
                             Row(
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
-                                8.width,
+                                rowSpacing,
                                 Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
-                            if(matchingText!=null)16.height,
+                            if(matchingText!=null)columnLargeSpacing,
                             if(matchingText!=null)Row(
                               children: [
                                 Icon(Icons.account_circle, color: color, size: 16,),
-                                12.width,
+                                rowSpacing,
                                 Expanded(
                                     child: Text(
                                         matchingText!,
@@ -154,7 +155,7 @@ class AppJobAdvertCard extends StatelessWidget{
                                           child: NotificationBadge.small(),
                                         ),
                                       ),
-                                      if(totalApplications == 0) 8.width,
+                                      if(totalApplications == 0) rowSpacing,
                                       Padding(
                                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                                         child: Text("$totalApplications $applicationsString"),
@@ -177,7 +178,7 @@ class AppJobAdvertCard extends StatelessWidget{
                                           child: NotificationBadge.small(),
                                         ),
                                       ),
-                                      if(totalMatches == 0) 8.width,
+                                      if(totalMatches == 0) rowSpacing,
                                       Padding(
                                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                                         child: Text("$totalMatches $matchesString"),

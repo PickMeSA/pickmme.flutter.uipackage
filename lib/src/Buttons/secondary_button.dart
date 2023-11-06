@@ -93,15 +93,14 @@ class SecondaryButton extends StatelessWidget{
     this.clipBehavior = Clip.none,
     this.statesController,
     this.isSemanticButton,
-    this.fullWidth = true,
+    this.fullWidth = false,
     this.color,
   });
 
-  factory SecondaryButton.halfWidth({
+  factory SecondaryButton.fullWidth({
     required VoidCallback? onPressed,
     required Widget child,
     VoidCallback? onLongPress,
-    double? width,
     double height = 56,
     ButtonStyle? style,
     double elevation = 0,
@@ -109,11 +108,11 @@ class SecondaryButton extends StatelessWidget{
     return SecondaryButton(
       onPressed: onPressed,
       onLongPress: onLongPress,
-      width: width,
+      width: null,
       height: height,
       style: style,
       elevation: elevation,
-      fullWidth: false,
+      fullWidth: true,
       child: child,
     );
   }
@@ -181,10 +180,26 @@ class SecondaryButton extends StatelessWidget{
     );
   }
 
+
   ButtonStyle defaultStyle(){
     if(fullWidth){
       return ButtonStyle(
         minimumSize: MaterialStateProperty.all(const Size.fromHeight(56)),
+        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 14, horizontal: 18)),
+      );
+    }
+    if(height == 56){
+      return ButtonStyle(
+        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 16)),
+      );
+
+    }else if(height == 40){
+      return ButtonStyle(
+        padding: MaterialStateProperty.all(const EdgeInsets.all(8)),
+      );
+    }else if(height == 32){
+      return ButtonStyle(
+        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 8, horizontal: 24)),
       );
     }
     return const ButtonStyle();
@@ -195,6 +210,7 @@ class SecondaryButton extends StatelessWidget{
     if(!fullWidth) {
       return SizedBox(
         height: height,
+        width: width,
         child: OutlinedButton(
             onPressed: onPressed,
             onLongPress: onLongPress,

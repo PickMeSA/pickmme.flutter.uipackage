@@ -94,12 +94,12 @@ class AppTheme{
           textStyle: MaterialStateProperty.resolveWith(textStyle),
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
-            side: const BorderSide(color: Color(0xFF3EB62B), width: 1),
+            // side: const BorderSide(color: Color(0xFF3EB62B), width: 1),
           )
           ),
           backgroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
           foregroundColor: MaterialStateProperty.resolveWith(primaryButtonForegroundColor),
-          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 16),),
+          // padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 16),),
           // shape: MaterialStateProperty.all(RoundedRectangleBorder(
           //   borderRadius: BorderRadius.circular(5),
           // )),
@@ -108,7 +108,7 @@ class AppTheme{
     ),
     outlinedButtonTheme: OutlinedButtonThemeData(
         style: ButtonStyle(
-          padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 16)),
+          // padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 16)),
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(5),
           )),
