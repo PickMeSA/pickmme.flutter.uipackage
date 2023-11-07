@@ -36,7 +36,7 @@ class AppExplorationTile extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             icon ?? const Icon(Iconsax.briefcase),
-            rowSpacing,
+            rowRegularSpacing,
             Expanded(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -44,12 +44,12 @@ class AppExplorationTile extends StatelessWidget{
                   Text(title + countText,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
-                  if(count!=null && count!>0)rowSpacing,
+                  if(count!=null && count!>0)rowRegularSpacing,
                   if(count!=null && count!>0)NotificationBadge.small(),
                 ],
               ),
             ),
-            rowSpacing,
+            rowRegularSpacing,
             if(onClick!=null)const Icon(Iconsax.arrow_right_1)
           ],
         ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../divider/divider.dart';
 import '../../constants/widgets.dart';
 import '../../avatars/image_avatar.dart';
 import '../../rating/rating.dart';
@@ -10,6 +11,7 @@ class AppCandidateProfile extends StatelessWidget{
   final String hourlyRate;
   final Widget? image;
   final Widget? nextButton;
+  final ValueChanged<int>? onRatingChanged;
 
   const AppCandidateProfile({
     super.key,
@@ -19,18 +21,19 @@ class AppCandidateProfile extends StatelessWidget{
     required this.hourlyRate,
     this.image,
     this.nextButton,
+    this.onRatingChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    return Container(
+    return SizedBox(
       height: 130,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           AppImageAvatar(image: image,),
-          rowSpacing,
+          rowLargeSpacing,
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,9 +41,17 @@ class AppCandidateProfile extends StatelessWidget{
                 Text(fullName, style: theme.textTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w600
                 ),),
+                columnSmallSpacing,
                 Text(jobTitle, style: theme.textTheme.bodySmall,),
-                AppStarRating(onChanged: (int val){}, rating: rating??0),
-                columnLargeSpacing,
+                // columnSmallSpacing,
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    AppStarRating(onChanged: onRatingChanged, rating: rating),
+                    Expanded(child: Text(rating.toDouble().toString()))
+                  ],
+                ),
+                columnRegularSpacing,
                 Row(
                   children: [
                     Expanded(
@@ -51,6 +62,8 @@ class AppCandidateProfile extends StatelessWidget{
                     if(nextButton!=null)nextButton!,
                   ],
                 ),
+                columnRegularSpacing,
+                const AppDivider(),
               ],
             ),
           )

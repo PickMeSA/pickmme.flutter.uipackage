@@ -112,15 +112,15 @@ class AppJobAdvertCard extends StatelessWidget{
                             Row(
                               children: [
                                 Icon(Iconsax.location, size: 18, color: color,),
-                                rowSpacing,
+                                rowRegularSpacing,
                                 Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,),)),
                               ],
                             ),
-                            columnSpacing,
+                            columnRegularSpacing,
                             Row(
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
-                                rowSpacing,
+                                rowRegularSpacing,
                                 Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
@@ -128,7 +128,7 @@ class AppJobAdvertCard extends StatelessWidget{
                             if(matchingText!=null)Row(
                               children: [
                                 Icon(Icons.account_circle, color: color, size: 16,),
-                                rowSpacing,
+                                rowRegularSpacing,
                                 Expanded(
                                     child: Text(
                                         matchingText!,
@@ -155,7 +155,7 @@ class AppJobAdvertCard extends StatelessWidget{
                                           child: NotificationBadge.small(),
                                         ),
                                       ),
-                                      if(totalApplications == 0) rowSpacing,
+                                      if(totalApplications == 0) rowRegularSpacing,
                                       Padding(
                                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                                         child: Text("$totalApplications $applicationsString"),
@@ -178,7 +178,7 @@ class AppJobAdvertCard extends StatelessWidget{
                                           child: NotificationBadge.small(),
                                         ),
                                       ),
-                                      if(totalMatches == 0) rowSpacing,
+                                      if(totalMatches == 0) rowRegularSpacing,
                                       Padding(
                                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                                         child: Text("$totalMatches $matchesString"),
