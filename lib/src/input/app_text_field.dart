@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../constants/colors.dart';
 import '../constants/enums.dart';
 import '../extensions/widget.dart';
 import '../extensions/bool.dart';
@@ -9,7 +10,7 @@ import '../extensions/numbers.dart';
 import '../theme/decorations.dart';
 
 /// Default Text Form Field
-class AppTextField extends StatelessWidget {
+class AppTextField extends StatefulWidget {
   final TextEditingController? controller;
   final TextFieldType textFieldType;
 
@@ -70,10 +71,7 @@ class AppTextField extends StatelessWidget {
   final Color? bgColor;
   final Color? borderColor;
   final EdgeInsets? padding;
-  bool isPasswordVisible = false;
-  final Color secondaryColor = const Color(0xFF111828);
-  final Color errorColor = const Color(0xFFF44F4E);
-  
+
   AppTextField({
     this.controller,
     required this.textFieldType,
@@ -134,35 +132,43 @@ class AppTextField extends StatelessWidget {
     this.labelText,
     Key? key,
   }) : super(key: key);
+
+  @override
+  State<AppTextField> createState() => _AppTextFieldState();
+}
+
+class _AppTextFieldState extends State<AppTextField> {
+  bool isPasswordVisible = false;
+
   Widget? suffixIcon(BuildContext context) {
-    if (textFieldType == TextFieldType.PASSWORD) {
-      if (suffix != null) {
-        return suffix;
+    if (widget.textFieldType == TextFieldType.PASSWORD) {
+      if (widget.suffix != null) {
+        return widget.suffix;
       } else {
         if (isPasswordVisible) {
-          if (suffixPasswordVisibleWidget != null) {
-            return suffixPasswordVisibleWidget!.onTap(() {
+          if (widget.suffixPasswordVisibleWidget != null) {
+            return widget.suffixPasswordVisibleWidget!.onTap(() {
               onPasswordVisibilityChange(false);
             });
           } else {
             return Icon(
               Icons.visibility,
               color:
-              suffixIconColor ?? Theme.of(context).iconTheme.color,
+              widget.suffixIconColor ?? Theme.of(context).iconTheme.color,
             ).onTap(() {
               onPasswordVisibilityChange(false);
             });
           }
         } else {
-          if (suffixPasswordInvisibleWidget != null) {
-            return suffixPasswordInvisibleWidget!.onTap(() {
+          if (widget.suffixPasswordInvisibleWidget != null) {
+            return widget.suffixPasswordInvisibleWidget!.onTap(() {
               onPasswordVisibilityChange(true);
             });
           } else {
             return Icon(
               Icons.visibility_off,
               color:
-              suffixIconColor ?? Theme.of(context).iconTheme.color,
+              widget.suffixIconColor ?? Theme.of(context).iconTheme.color,
             ).onTap(() {
               onPasswordVisibilityChange(true);
             });
@@ -170,24 +176,24 @@ class AppTextField extends StatelessWidget {
         }
       }
     } else {
-      return suffix;
+      return widget.suffix;
     }
   }
 
   TextInputType? applyTextInputType() {
-    if (keyboardType != null) {
-      return keyboardType;
-    } else if (textFieldType == TextFieldType.EMAIL ||
-        textFieldType == TextFieldType.EMAIL_ENHANCED) {
+    if (widget.keyboardType != null) {
+      return widget.keyboardType;
+    } else if (widget.textFieldType == TextFieldType.EMAIL ||
+        widget.textFieldType == TextFieldType.EMAIL_ENHANCED) {
       return TextInputType.emailAddress;
-    } else if (textFieldType == TextFieldType.MULTILINE) {
+    } else if (widget.textFieldType == TextFieldType.MULTILINE) {
       return TextInputType.multiline;
-    } else if (textFieldType == TextFieldType.PASSWORD) {
+    } else if (widget.textFieldType == TextFieldType.PASSWORD) {
       return TextInputType.visiblePassword;
-    } else if (textFieldType == TextFieldType.PHONE ||
-        textFieldType == TextFieldType.NUMBER) {
+    } else if (widget.textFieldType == TextFieldType.PHONE ||
+        widget.textFieldType == TextFieldType.NUMBER) {
       return TextInputType.number;
-    } else if (textFieldType == TextFieldType.URL) {
+    } else if (widget.textFieldType == TextFieldType.URL) {
       return TextInputType.url;
     } else {
       return TextInputType.text;
@@ -195,24 +201,25 @@ class AppTextField extends StatelessWidget {
   }
 
   Iterable<String>? applyAutofillHints() {
-    if (textFieldType == TextFieldType.EMAIL ||
-        textFieldType == TextFieldType.EMAIL_ENHANCED) {
+    if (widget.textFieldType == TextFieldType.EMAIL ||
+        widget.textFieldType == TextFieldType.EMAIL_ENHANCED) {
       return [AutofillHints.email];
-    } else if (textFieldType == TextFieldType.PASSWORD) {
+    } else if (widget.textFieldType == TextFieldType.PASSWORD) {
       return [AutofillHints.password];
     }
     return null;
   }
+
   void onPasswordVisibilityChange(bool val) {
     isPasswordVisible = val;
   }
 
   TextCapitalization applyTextCapitalization() {
-    if (textCapitalization != null) {
-      return textCapitalization!;
-    } else if (textFieldType == TextFieldType.NAME) {
+    if (widget.textCapitalization != null) {
+      return widget.textCapitalization!;
+    } else if (widget.textFieldType == TextFieldType.NAME) {
       return TextCapitalization.words;
-    } else if (textFieldType == TextFieldType.MULTILINE) {
+    } else if (widget.textFieldType == TextFieldType.MULTILINE) {
       return TextCapitalization.sentences;
     } else {
       return TextCapitalization.none;
@@ -226,7 +233,7 @@ class AppTextField extends StatelessWidget {
       focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
       enabledBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(Radius.circular(8)), borderSide: BorderSide(color: secondaryColor),),
       errorBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(Radius.circular(8)), borderSide: BorderSide(color: errorColor),),
-      fillColor: Colors.white,
+      fillColor: whiteColor,
       // hintText: hint,
       labelText: labelText,
       prefixIcon: prefixIcon,
@@ -234,64 +241,66 @@ class AppTextField extends StatelessWidget {
       suffixIcon: suffixIcon(context),
     );
   }
+
   Widget textFormFieldWidget(BuildContext context) {
     return TextField(
-      controller: controller,
+      controller: widget.controller,
       obscureText:
-      textFieldType == TextFieldType.PASSWORD && !isPasswordVisible,
+      widget.textFieldType == TextFieldType.PASSWORD && !isPasswordVisible,
       textCapitalization: applyTextCapitalization(),
       textInputAction: applyTextInputAction(),
       keyboardType: applyTextInputType(),
       decoration: appInputDecoration(context,
-          prefixIcon: prefixIcon,
-          hint: hint,
-          bgColor: bgColor??Colors.white,
-          borderColor: borderColor??secondaryColor,
-          padding: padding,
-          labelText: labelText
+          prefixIcon: widget.prefixIcon,
+          hint: widget.hint,
+          bgColor: widget.bgColor??whiteColor,
+          borderColor: widget.borderColor??secondaryColor,
+          padding: widget.padding,
+          labelText: widget.labelText
       ),
-      focusNode: focus,
-      style: textStyle,
-      textAlign: textAlign ?? TextAlign.start,
-      maxLines: maxLines.validate(
-          value: textFieldType == TextFieldType.MULTILINE ? 10 : 1),
-      minLines: minLines.validate(
-          value: textFieldType == TextFieldType.MULTILINE ? 2 : 1),
-      autofocus: autoFocus ?? false,
-      enabled: enabled,
-      onChanged: onChanged,
-      cursorColor: cursorColor ??
+      focusNode: widget.focus,
+      style: widget.textStyle,
+      textAlign: widget.textAlign ?? TextAlign.start,
+      maxLines: widget.maxLines.validate(
+          value: widget.textFieldType == TextFieldType.MULTILINE ? 10 : 1),
+      minLines: widget.minLines.validate(
+          value: widget.textFieldType == TextFieldType.MULTILINE ? 2 : 1),
+      autofocus: widget.autoFocus ?? false,
+      enabled: widget.enabled,
+      onChanged: widget.onChanged,
+      cursorColor: widget.cursorColor ??
           Theme.of(context).textSelectionTheme.cursorColor,
-      readOnly: readOnly.validate(),
-      maxLength: maxLength,
-      enableSuggestions: enableSuggestions.validate(value: true),
-      autofillHints: autoFillHints ?? applyAutofillHints(),
-      scrollPadding: scrollPadding ?? const EdgeInsets.all(20),
-      cursorWidth: cursorWidth.validate(value: 2.0),
-      cursorHeight: cursorHeight,
+      readOnly: widget.readOnly.validate(),
+      maxLength: widget.maxLength,
+      enableSuggestions: widget.enableSuggestions.validate(value: true),
+      autofillHints: widget.autoFillHints ?? applyAutofillHints(),
+      scrollPadding: widget.scrollPadding ?? const EdgeInsets.all(20),
+      cursorWidth: widget.cursorWidth.validate(value: 2.0),
+      cursorHeight: widget.cursorHeight,
       cursorRadius: radiusCircular(4),
-      onTap: onTap,
-      buildCounter: buildCounter,
+      onTap: widget.onTap,
+      buildCounter: widget.buildCounter,
       scrollPhysics: const BouncingScrollPhysics(),
       enableInteractiveSelection: true,
-      inputFormatters: inputFormatters,
-      textAlignVertical: textAlignVertical,
-      expands: expands.validate(),
-      showCursor: showCursor,
+      inputFormatters: widget.inputFormatters,
+      textAlignVertical: widget.textAlignVertical,
+      expands: widget.expands.validate(),
+      showCursor: widget.showCursor,
       selectionControls:
-      selectionControls ?? MaterialTextSelectionControls(),
-      strutStyle: strutStyle,
-      obscuringCharacter: obscuringCharacter.validate(value: '•'),
-      keyboardAppearance: keyboardAppearance,
-      contextMenuBuilder: contextMenuBuilder,
+      widget.selectionControls ?? MaterialTextSelectionControls(),
+      strutStyle: widget.strutStyle,
+      obscuringCharacter: widget.obscuringCharacter.validate(value: '•'),
+      keyboardAppearance: widget.keyboardAppearance,
+      contextMenuBuilder: widget.contextMenuBuilder,
     );
   }
+
   TextInputAction? applyTextInputAction() {
-    if (textInputAction != null) {
-      return textInputAction;
-    } else if (textFieldType == TextFieldType.MULTILINE) {
+    if (widget.textInputAction != null) {
+      return widget.textInputAction;
+    } else if (widget.textFieldType == TextFieldType.MULTILINE) {
       return TextInputAction.newline;
-    } else if (nextFocus != null) {
+    } else if (widget.nextFocus != null) {
       return TextInputAction.next;
     } else {
       return TextInputAction.done;
@@ -300,15 +309,15 @@ class AppTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (title.validate().isNotEmpty) {
+    if (widget.title.validate().isNotEmpty) {
       return Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            title!,
-            style: textStyle,
+            widget.title!,
+            style: widget.textStyle,
           ),
-          spacingBetweenTitleAndTextFormField.height,
+          widget.spacingBetweenTitleAndTextFormField.height,
           textFormFieldWidget(context),
         ],
       );

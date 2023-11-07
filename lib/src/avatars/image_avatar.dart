@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/colors.dart';
+
 class AppImageAvatar extends StatelessWidget{
   final Widget? image;
   final double width;
@@ -53,7 +55,7 @@ class AppImageAvatar extends StatelessWidget{
               height: assetHeight,
               width: assetHeight,
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: whiteColor,
                 shape: BoxShape.circle,
               ),
               child: image!,

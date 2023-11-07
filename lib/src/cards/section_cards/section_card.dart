@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../constants/colors.dart';
+
 class AppSectionCard extends StatelessWidget{
   final Icon? icon;
   final String title;
@@ -55,7 +57,7 @@ class AppSectionCard extends StatelessWidget{
                   width: 32,
                   height: 32,
                   decoration: BoxDecoration(
-                    color: Colors.white.withOpacity(0.5),
+                    color: whiteColor.withOpacity(0.5),
                     shape: BoxShape.circle,
                   ),
                   child: Center(
@@ -63,7 +65,7 @@ class AppSectionCard extends StatelessWidget{
                   )
               ),
               Text(title, style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                color: color==null?null:Colors.white,
+                color: color==null?null:whiteColor,
                 fontWeight: FontWeight.w400,
               ),),
             ],

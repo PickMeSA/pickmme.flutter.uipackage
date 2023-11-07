@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/colors.dart';
 
 class AppTabBar extends StatelessWidget {
   final List<Widget> tabs;
@@ -21,10 +22,10 @@ class AppTabBar extends StatelessWidget {
       child: Column(
         children: [
           Material(
-            color: const Color(0xFFF9F9F9),
+            color: neutrals100Color,
             child: TabBar(
               padding: const EdgeInsets.all(4),
-              dividerColor: const Color(0xFFF9F9F9),
+              dividerColor: neutrals100Color,
               indicatorSize: TabBarIndicatorSize.tab,
               tabs: tabs.map((e) => Padding(padding: EdgeInsets.all(8),child: e)
               ).toList(),

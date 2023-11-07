@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_components/src/constants/colors.dart';
 import 'package:flutter_ui_components/src/extensions/date.dart';
 
 /// Flutter code sample for [showDatePicker].
@@ -86,7 +87,7 @@ class _AppDatePickerState extends State<AppDatePicker>
   Widget build(BuildContext context) {
     return TextButton(
       style: ButtonStyle(
-          foregroundColor: MaterialStateProperty.all(const Color(0xFF111828)),
+          foregroundColor: MaterialStateProperty.all(secondaryColor),
           padding: MaterialStateProperty.all(EdgeInsets.zero),
           // minimumSize: MaterialStateProperty.all(const Size(50, 30)),
           tapTargetSize: MaterialTapTargetSize.padded,

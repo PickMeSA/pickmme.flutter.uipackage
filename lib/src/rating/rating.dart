@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../constants/colors.dart';
 import '../constants/numbers.dart';
 
 class AppStarRating extends StatefulWidget {
@@ -12,7 +13,7 @@ class AppStarRating extends StatefulWidget {
 
   const AppStarRating({super.key,
     this.rating = 0,
-    this.color = Colors.amber,
+    this.color = yellowColor,
     this.size = ratingIconSize,
     this.filledStar = Icons.star_rounded,
     this.unfilledStar = Icons.star_border_rounded,
@@ -59,13 +60,13 @@ class _AppStarRatingState extends State<AppStarRating> {
                 if(index < rating){
                   return Icon(
                     widget.filledStar,
-                    color: Colors.amber,
+                    color: yellowColor,
                     size: widget.size,
                   );
                 }
                 return Icon(
                   widget.unfilledStar,
-                  color: const Color(0xFF9CA2AE),
+                  color: neutrals300Color,
                   size: widget.size,
 
                 );

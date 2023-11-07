@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../constants/colors.dart';
 
 class NumberStepper extends StatelessWidget{
   final int number;
@@ -14,7 +15,7 @@ class NumberStepper extends StatelessWidget{
     required this.incrementFunction,
     required this.subtractFunction,
     this.width = 155,
-    this.subtractColor = const Color(0xFF111828),
+    this.subtractColor = secondaryColor,
   });
 
   @override
@@ -24,7 +25,7 @@ class NumberStepper extends StatelessWidget{
       width: width,
       decoration: BoxDecoration(
           border: Border.all(
-            color: const Color(0xFFD1D4DB),
+            color: neutrals200Color,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(60))
       ),
@@ -61,14 +62,14 @@ class NumberStepper extends StatelessWidget{
                     padding: MaterialStateProperty.all(const EdgeInsets.all(2)),
                       side: MaterialStateProperty.all(const BorderSide(
                           style: BorderStyle.solid,
-                          color: Color(0xFF3EB62B),
+                          color: primaryColor,
                           width: 1.2)),
                       shape: MaterialStateProperty.all<OutlinedBorder>(
                         const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(3)),
                         )),
                   ),
-                  child: const Icon(Icons.add, size: 16, color: Color(0xFF3EB62B),),
+                  child: const Icon(Icons.add, size: 16, color: primaryColor,),
 
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_components/src/constants/colors.dart';
 
 class ToggleOptions{
   final String title;
@@ -31,14 +32,11 @@ class ProfileToggle extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: const Color(0xFFF9F9F9),
+      color: neutrals100Color,
       child: ToggleButtons(
         direction: vertical ? Axis.vertical : Axis.horizontal,
         onPressed: onPressed,
         borderWidth: borderWidth,
-        // borderRadius: const BorderRadius.all(Radius.circular(8)),
-        // borderColor: const Color(0xFFF9F9F9),
-        // selectedBorderColor: const Color(0xFFF9F9F9),
         constraints: const BoxConstraints(
           minHeight: 56.0,
           minWidth: 100,

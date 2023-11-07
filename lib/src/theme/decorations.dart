@@ -61,7 +61,7 @@ Radius radiusCircular([double? radius]) {
 //         ? null
 //         : (borderRadius ?? radius()),
 //     boxShadow: boxShadow ?? defaultBoxShadow(),
-//     color: color ?? Colors.white,
+//     color: color ?? whiteColor,
 //     gradient: gradient,
 //     border: border,
 //     shape: shape ?? BoxShape.rectangle,

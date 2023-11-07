@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import '../constants/colors.dart';
 
 class AppTheme{
   final BuildContext context;
-  final Color primaryColor = const Color(0xFF3EB62B);
-  final Color secondaryColor = const Color(0xFF111828);
 
   AppTheme({required this.context});
 
@@ -12,18 +11,18 @@ class AppTheme{
   }
   Color primaryButtonBackgroundColor(Set<MaterialState> states){
     if(states.contains(MaterialState.disabled)){
-      return const Color(0xFFC5E9BF);
+      return primaryDisabledColor;
     }
     return primaryColor;
   }
   BorderSide secondaryButtonOutlineColor(Set<MaterialState> states){
     if(states.contains(MaterialState.disabled)){
-      return const BorderSide(color: Color(0xFFC5E9BF, ), width: 2);
+      return const BorderSide(color: primaryDisabledColor, width: 2);
     }
-    return BorderSide(color: primaryColor, width: 2);
+    return const BorderSide(color: primaryColor, width: 2);
   }
   Color primaryButtonForegroundColor(Set<MaterialState> states){
-    return Colors.white;
+    return whiteColor;
   }
 
   Color primarySwitchBackgroundColor(Set<MaterialState> states){
@@ -31,7 +30,7 @@ class AppTheme{
       return primaryColor;
     }
     if(states.contains(MaterialState.disabled)){
-      return const Color(0xFFE6E7EB);
+      return neutrals50Color;
     }
     return const Color(0xFFD1D4DB);
   }
@@ -40,7 +39,7 @@ class AppTheme{
       return const Color(0xFFFFFFFF);
     }
     if(states.contains(MaterialState.disabled)){
-      return const Color(0xFFE6E7EB);
+      return neutrals50Color;
     }
     return const Color(0xFFD1D4DB);
   }
@@ -49,7 +48,7 @@ class AppTheme{
       return primaryColor;
     }
     if(states.contains(MaterialState.disabled)){
-      return const Color(0xFFE6E7EB);
+      return neutrals50Color;
     }
     return const Color(0xFFD1D4DB);
   }
@@ -62,31 +61,31 @@ class AppTheme{
     //   return  Colors.blue;
     // }
     // if(states.contains(MaterialState.hovered)){
-    //   return  Colors.white;
+    //   return  whiteColor;
     // }
     return  Colors.blue;
   }
 
   get defaultTheme => ThemeData(
     useMaterial3: true,
-    colorScheme: ColorScheme(
+    colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: primaryColor,
-      onPrimary: Colors.white,
+      onPrimary: whiteColor,
       secondary: secondaryColor,
-      onSecondary: Colors.white,
-      error: const Color(0xFFF44F4E),
-      onError: Colors.white,
-      background: Colors.white,
+      onSecondary: whiteColor,
+      error: errorColor,
+      onError: whiteColor,
+      background: whiteColor,
       onBackground: secondaryColor,
-      surface: Colors.white,
+      surface: whiteColor,
       onSurface: secondaryColor,
     ),
     fontFamily: "Montserrat",
     typography: Typography.material2021(),
-    chipTheme: ChipThemeData(
-      backgroundColor: const Color(0xFFF9F9F9),
-      side: const BorderSide(color: Colors.transparent, width: 0),
+    chipTheme: const ChipThemeData(
+      backgroundColor: neutrals100Color,
+      side: BorderSide(color: Colors.transparent, width: 0),
       labelStyle: TextStyle(fontSize: 16, color: secondaryColor)
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
@@ -94,7 +93,7 @@ class AppTheme{
           textStyle: MaterialStateProperty.resolveWith(textStyle),
           shape: MaterialStateProperty.all(RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
-            // side: const BorderSide(color: Color(0xFF3EB62B), width: 1),
+            // side: const BorderSide(color: primaryColor, width: 1),
           )
           ),
           backgroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
@@ -186,16 +185,16 @@ class AppTheme{
     ),
     toggleButtonsTheme: const ToggleButtonsThemeData(
       fillColor: Color(0xFFFFFFFF),
-      color: Color(0xFF6B7380),
-      selectedColor: Color(0xFF3EB62B),
-      borderColor: const Color(0xFFF9F9F9),
+      color: neutrals500Color,
+      selectedColor: primaryColor,
+      borderColor: neutrals100Color,
       selectedBorderColor: const Color(0xFFF5F5F5),
 
     ),
     sliderTheme: const SliderThemeData(
-      activeTrackColor: Color(0xFF3EB62B),
-      inactiveTrackColor: Color(0xFFE6E7EB),
-      thumbColor: Color(0xFF3EB62B),
+      activeTrackColor: primaryColor,
+      inactiveTrackColor: neutrals50Color,
+      thumbColor: primaryColor,
     ),
     inputDecorationTheme: const InputDecorationTheme(
 
@@ -205,7 +204,7 @@ class AppTheme{
     ),
     tabBarTheme: TabBarTheme(
       indicator: BoxDecoration(
-        color: Colors.white,
+        color: whiteColor,
 
         boxShadow: const [
           BoxShadow(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_components/src/constants/colors.dart';
 
 enum BadgeStatuses {Success, Alert, Warning, Info}
 class StatusBadge extends StatelessWidget{
@@ -13,16 +14,16 @@ class StatusBadge extends StatelessWidget{
     required this.color,
   });
   factory StatusBadge.success(String message){
-    return StatusBadge(status: BadgeStatuses.Success, message: message, color: const Color(0xFF3EB62B));
+    return StatusBadge(status: BadgeStatuses.Success, message: message, color: primaryColor);
   }
   factory StatusBadge.warning(String message){
-    return StatusBadge(status: BadgeStatuses.Warning, message: message, color: const Color(0xFFF17E2C));
+    return StatusBadge(status: BadgeStatuses.Warning, message: message, color: warningColor);
   }
   factory StatusBadge.danger(String message){
-    return StatusBadge(status: BadgeStatuses.Alert, message: message, color: const Color(0xFFF44F4E));
+    return StatusBadge(status: BadgeStatuses.Alert, message: message, color: dangerColor);
   }
   factory StatusBadge.info(String message){
-    return StatusBadge(status: BadgeStatuses.Info, message: message, color: const Color(0xFF23A8B3));
+    return StatusBadge(status: BadgeStatuses.Info, message: message, color: infoColor);
   }
   @override
   Widget build(BuildContext context) {
