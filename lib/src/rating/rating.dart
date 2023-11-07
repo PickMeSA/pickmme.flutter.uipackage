@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/numbers.dart';
+
 class AppStarRating extends StatefulWidget {
   final int rating;
   final double size;
@@ -11,7 +13,7 @@ class AppStarRating extends StatefulWidget {
   const AppStarRating({super.key,
     this.rating = 0,
     this.color = Colors.amber,
-    this.size = 23,
+    this.size = ratingIconSize,
     this.filledStar = Icons.star_rounded,
     this.unfilledStar = Icons.star_border_rounded,
     this.onChanged,

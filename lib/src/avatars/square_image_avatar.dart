@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
 
-class AppImageAvatar extends StatelessWidget{
+class AppSquareImageAvatar extends StatelessWidget{
   final Widget? image;
   final double width;
   final double height;
   final double assetHeight;
 
-  const AppImageAvatar({
+  const AppSquareImageAvatar({
     super.key,
     this.image,
-    this.width = 64,
-    this.height = 64,
-    this.assetHeight = 64,
+    this.width = 115,
+    this.height = 115,
+    this.assetHeight = 115,
   });
 
-  factory AppImageAvatar.medium({Widget? image}){
-    return AppImageAvatar(
+  factory AppSquareImageAvatar.medium({Widget? image}){
+    return AppSquareImageAvatar(
       image: image,
       width: 56,
       height: 56,
     );
   }
-  factory AppImageAvatar.small({Widget? image}){
-    return AppImageAvatar(
+  factory AppSquareImageAvatar.small({Widget? image}){
+    return AppSquareImageAvatar(
       image: image,
       width: 48,
       height: 48,
@@ -33,12 +33,9 @@ class AppImageAvatar extends StatelessWidget{
     return Container(
       width: width,
       height: height,
-      decoration: BoxDecoration(
-        color: const Color(0xFFF9F9F9),
-        shape: BoxShape.circle,
-        border: Border.all(
-          color: const Color(0xFFD1D4DB),
-        ),
+      decoration: const BoxDecoration(
+        color: Color(0xFFF9F9F9),
+        borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
       child: Builder(
         builder: (context) {
