@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import '../badges/notification_badge.dart';
 import '../constants/colors.dart';
 
 class AppImageAvatar extends StatelessWidget{
-  final Widget? image;
+  final ImageProvider? image;
   final double width;
   final double height;
   final double assetHeight;
+  final bool active;
 
   const AppImageAvatar({
     super.key,
@@ -14,20 +16,23 @@ class AppImageAvatar extends StatelessWidget{
     this.width = 64,
     this.height = 64,
     this.assetHeight = 64,
+    this.active = false,
   });
 
-  factory AppImageAvatar.medium({Widget? image}){
+  factory AppImageAvatar.medium({ImageProvider? image, bool active=false}){
     return AppImageAvatar(
       image: image,
       width: 56,
       height: 56,
+      active: active,
     );
   }
-  factory AppImageAvatar.small({Widget? image}){
+  factory AppImageAvatar.small({ImageProvider? image, bool active=false}){
     return AppImageAvatar(
       image: image,
       width: 48,
       height: 48,
+      active: active,
     );
   }
   @override
@@ -50,16 +55,30 @@ class AppImageAvatar extends StatelessWidget{
               child: Icon(Icons.account_circle, color: Color(0xFFD1D4DB,)),
             );
           }
-          return Center(
-            child: Container(
-              height: assetHeight,
-              width: assetHeight,
-              decoration: const BoxDecoration(
-                color: whiteColor,
-                shape: BoxShape.circle,
+          return Stack(
+            children: [
+              Center(
+                child: Container(
+                  height: assetHeight,
+                  width: assetHeight,
+                  decoration: BoxDecoration(
+                    color: whiteColor,
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image: image!,
+                        fit: BoxFit.cover,
+                    )
+                  ),
+                ),
               ),
-              child: image!,
-            ),
+              if(active)Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 3.0),
+                    child: NotificationBadge.small(),
+                  )
+              )
+            ],
           );
         }
       ),

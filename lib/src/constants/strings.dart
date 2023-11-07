@@ -7,3 +7,4 @@ const appliedForJobStatus = 'Applied for job';
 const rescheduleRequestedStatus = 'Reschedule Requested';
 const rescheduledStatus = 'Rescheduled';
 const cancelledStatus = 'Cancelled';
+const newChatStarted = "A new chat started!";

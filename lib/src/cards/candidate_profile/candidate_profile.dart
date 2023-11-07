@@ -9,7 +9,7 @@ class AppCandidateProfile extends StatelessWidget{
   final String jobTitle;
   final int rating;
   final String hourlyRate;
-  final Widget? image;
+  final ImageProvider? image;
   final Widget? nextButton;
   final ValueChanged<int>? onRatingChanged;
 
