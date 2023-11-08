@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../avatars/image_avatar.dart';
-import '../../badges/notification_badge.dart';
-import '../../divider/divider.dart';
 import '../../extensions/date.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../constants/enums.dart';
