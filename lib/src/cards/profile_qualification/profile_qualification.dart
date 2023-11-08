@@ -1,13 +1,10 @@
-import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_components/flutter_ui_components.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../constants/colors.dart';
-import '../../constants/strings.dart';
 import '../../divider/divider.dart';
 import '../../constants/widgets.dart';
-import '../../avatars/image_avatar.dart';
 
 enum AppQualificationType{ award, education, experience}
 

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_components/flutter_ui_components.dart';
 import '../../constants/colors.dart';
-import '../../divider/divider.dart';
 import '../../constants/widgets.dart';
 import '../../avatars/image_avatar.dart';
-import '../../rating/rating.dart';
 
 class AppProfileReview extends StatelessWidget{
   final String fullName;
