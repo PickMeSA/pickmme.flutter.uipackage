@@ -23,6 +23,7 @@ export 'src/cards/candidate_profile/candidate_profile_tile.dart';
 export 'src/cards/profile_qualification/profile_qualification.dart';
 export 'src/cards/reviews/profile_review.dart';
 export 'src/cards/job_details/job_details.dart';
+export 'src/timepicker/timepicker.dart';
 export 'src/cards/chat/chat_tile.dart';
 export 'src/steppers/number_stepper.dart' show NumberStepper;
 export 'src/chips/chip.dart' show ChipGroup, ChipOption;
