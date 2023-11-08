@@ -20,6 +20,8 @@ export 'src/cards/dialog/dialog.dart';
 export 'src/cards/exploration_cards/exploration_tile.dart';
 export 'src/cards/candidate_profile/candidate_profile.dart';
 export 'src/cards/candidate_profile/candidate_profile_tile.dart';
+export 'src/cards/profile_qualification/profile_qualification.dart';
+export 'src/cards/reviews/profile_review.dart';
 export 'src/cards/chat/chat_tile.dart';
 export 'src/steppers/number_stepper.dart' show NumberStepper;
 export 'src/chips/chip.dart' show ChipGroup, ChipOption;

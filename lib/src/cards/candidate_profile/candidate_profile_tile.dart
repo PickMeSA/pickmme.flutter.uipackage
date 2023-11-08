@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_components/src/constants/colors.dart';
 import '../../avatars/square_image_avatar.dart';
 import '../../constants/numbers.dart';
 import '../../constants/widgets.dart';
@@ -29,14 +30,12 @@ class AppCandidateProfileTile extends StatelessWidget{
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        AppSquareImageAvatar(image: image,),
-        columnRegularSpacing,
+        AppSquareImageAvatar(image: image, color: neutrals200Color,),
+        columnSmallSpacing,
         Text(fullName, style: theme.textTheme.bodyMedium!.copyWith(
             fontWeight: FontWeight.w600
         ),),
-        columnSmallSpacing,
         Text(jobTitle, style: theme.textTheme.bodySmall,),
-        // columnSmallSpacing,
         Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [

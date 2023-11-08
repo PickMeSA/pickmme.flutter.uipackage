@@ -1,3 +1,34 @@
+
+List<String> fullMonths = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December'
+];
+
+List<String> months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec'
+];
+
 extension BooleanExtensions on DateTime {
   /// add years
   DateTime addYears({required int numberOfYears}) {
@@ -16,6 +47,17 @@ extension BooleanExtensions on DateTime {
 
     return "$d.$m.$y @ $h:$min";
 
+  }
+
+  String toMonthYearString() {
+    String y = (year >= -9999 && year <= 9999) ? _fourDigits(year)
+        : _sixDigits(year);
+    return "${months[month-1]} - $y";
+  }
+  String toDateMonthYearString() {
+    String y = (year >= -9999 && year <= 9999) ? _fourDigits(year)
+        : _sixDigits(year);
+    return "${_twoDigits(day)} ${fullMonths[month-1]} $y";
   }
 }
 String _twoDigits(int n) {

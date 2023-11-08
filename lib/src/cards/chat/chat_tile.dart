@@ -64,7 +64,6 @@ class AppChatTile extends StatelessWidget{
                         if(notificationCount>0)NotificationBadge(count: notificationCount,)
                       ],
                     ),
-                    columnSmallSpacing,
                     Text(jobTitle, style: theme.textTheme.bodySmall!.copyWith(
                       color: neutrals500Color
                     ),),

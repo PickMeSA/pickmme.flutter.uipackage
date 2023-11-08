@@ -41,9 +41,7 @@ class AppCandidateProfile extends StatelessWidget{
                 Text(fullName, style: theme.textTheme.bodyMedium!.copyWith(
                     fontWeight: FontWeight.w600
                 ),),
-                columnSmallSpacing,
                 Text(jobTitle, style: theme.textTheme.bodySmall,),
-                // columnSmallSpacing,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [

@@ -104,7 +104,6 @@ class AppJobAdvertCard extends StatelessWidget{
                         ),
                       ),
                       Text(employerName, style: Theme.of(context).textTheme.bodySmall,),
-                      columnSmallSpacing,
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Column(

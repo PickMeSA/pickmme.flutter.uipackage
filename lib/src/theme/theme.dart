@@ -118,6 +118,9 @@ class AppTheme{
     ),
     textButtonTheme: TextButtonThemeData(
         style: ButtonStyle(
+          shape: MaterialStateProperty.all(RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          )),
           textStyle: MaterialStateProperty.resolveWith(textStyle),
           foregroundColor: MaterialStateProperty.resolveWith(primaryButtonBackgroundColor),
         )
@@ -126,48 +129,57 @@ class AppTheme{
       headlineLarge: Theme.of(context).textTheme.headlineLarge!.copyWith(
         fontFamily: "Montserrat",
         fontWeight: FontWeight.w600,
+        color: secondaryColor,
         fontSize: 32,
       ),
       headlineMedium: Theme.of(context).textTheme.headlineLarge!.copyWith(
         fontFamily: "Montserrat",
         fontWeight: FontWeight.w500,
+        color: secondaryColor,
         fontSize: 28,
       ),
       headlineSmall: Theme.of(context).textTheme.headlineLarge!.copyWith(
         fontFamily: "Montserrat",
         fontWeight: FontWeight.w500,
+        color: secondaryColor,
         fontSize: 24,
       ),
         titleLarge: Theme.of(context).textTheme.headlineLarge!.copyWith(
           fontFamily: "Montserrat",
           fontWeight: FontWeight.w700,
           fontSize: 18,
+          color: secondaryColor,
           letterSpacing: 0.4,
       ),
         titleMedium: Theme.of(context).textTheme.headlineLarge!.copyWith(
           fontFamily: "Montserrat",
           fontWeight: FontWeight.w500,
           fontSize: 18,
+          color: secondaryColor,
           letterSpacing: 0.4,
         ),
         titleSmall: Theme.of(context).textTheme.headlineLarge!.copyWith(
           fontFamily: "Montserrat",
           fontWeight: FontWeight.w500,
           fontSize: 14,
+          color: secondaryColor,
           letterSpacing: 0.4,
         ),
         bodyLarge: Theme.of(context).textTheme.bodyLarge!.copyWith(
           fontFamily: "Montserrat",
+          color: secondaryColor,
           fontSize: 18,
         ),
         bodyMedium: Theme.of(context).textTheme.bodyMedium!.copyWith(
           fontFamily: "Montserrat",
+          color: secondaryColor,
           fontSize: 16,
         ),
         bodySmall: Theme.of(context).textTheme.bodyMedium!.copyWith(
           fontFamily: "Montserrat",
-          fontWeight: FontWeight.w300,
+          color: secondaryColor,
           fontSize: 14,
+          height: 1.3,
         ),
     ),
     switchTheme: SwitchThemeData(
@@ -197,7 +209,6 @@ class AppTheme{
       thumbColor: primaryColor,
     ),
     inputDecorationTheme: const InputDecorationTheme(
-
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(8))
       ),
