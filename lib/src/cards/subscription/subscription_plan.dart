@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_components/src/constants/colors.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../extensions/string.dart';
 import '../../divider/divider.dart';
@@ -26,6 +27,7 @@ class AppSubscriptionPlan extends StatelessWidget{
     return SizedBox(
       height: 200,
       child: Card(
+        color: whiteColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
           side: BorderSide(

@@ -231,7 +231,7 @@ class AppTheme{
         borderRadius: BorderRadius.circular(8),
       )
     ),
-    cardTheme: CardTheme(
+    cardTheme: const CardTheme(
       color: whiteColor,
     ),
   );
