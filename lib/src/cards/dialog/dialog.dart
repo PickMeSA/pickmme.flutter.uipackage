@@ -23,7 +23,7 @@ class AppDialog extends StatelessWidget{
       backgroundColor: backgroundColor,
       title: Text(title, style: theme.textTheme.titleMedium,),
       content: Text(content, style: theme.textTheme.bodyMedium),
-      actionsAlignment: MainAxisAlignment.spaceBetween,
+      actionsAlignment: MainAxisAlignment.spaceEvenly,
       actions: actions,
     );
   }

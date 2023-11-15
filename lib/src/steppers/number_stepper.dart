@@ -2,27 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 
-class NumberStepper extends StatelessWidget{
-  final int number;
+class NumberStepper extends StatefulWidget{
   final double? width;
-  final VoidCallback? incrementFunction;
-  final VoidCallback? subtractFunction;
+  final ValueChanged<int> onChange;
   final Color subtractColor;
   // final MaterialStateProperty<OutlinedBorder?>? shape
   const NumberStepper({
     super.key,
-    required this.number,
-    required this.incrementFunction,
-    required this.subtractFunction,
+    required this.onChange,
     this.width = 155,
     this.subtractColor = secondaryColor,
   });
 
   @override
+  State<NumberStepper> createState() => _NumberStepperState();
+}
+
+class _NumberStepperState extends State<NumberStepper> {
+  int number = 1;
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: 48,
-      width: width,
+      width: widget.width,
       decoration: BoxDecoration(
           border: Border.all(
             color: neutrals200Color,
@@ -37,7 +40,10 @@ class NumberStepper extends StatelessWidget{
               width: 20,
               height: 20,
               child: OutlinedButton(
-                  onPressed: subtractFunction,
+                  onPressed: () => setState(() {
+                    number = number - 1;
+                    widget.onChange.call(number);
+                  }),
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(const EdgeInsets.all(2)),
                     side: MaterialStateProperty.all(const BorderSide(
@@ -57,7 +63,10 @@ class NumberStepper extends StatelessWidget{
               width: 20,
               height: 20,
               child: OutlinedButton(
-                  onPressed: subtractFunction,
+                  onPressed: () => setState(() {
+                    number = number + 1;
+                    widget.onChange.call(number);
+                  }),
                   style: ButtonStyle(
                     padding: MaterialStateProperty.all(const EdgeInsets.all(2)),
                       side: MaterialStateProperty.all(const BorderSide(
@@ -78,5 +87,4 @@ class NumberStepper extends StatelessWidget{
       ),
     );
   }
-
 }

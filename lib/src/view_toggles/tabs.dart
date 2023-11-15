@@ -27,7 +27,7 @@ class AppTabBar extends StatelessWidget {
               padding: const EdgeInsets.all(4),
               dividerColor: neutrals100Color,
               indicatorSize: TabBarIndicatorSize.tab,
-              tabs: tabs.map((e) => Padding(padding: EdgeInsets.all(8),child: e)
+              tabs: tabs.map((e) => Padding(padding: const EdgeInsets.all(8),child: e)
               ).toList(),
             ),
           ),

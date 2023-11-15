@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 
 class AppTheme{
-  final BuildContext context;
-
-  AppTheme({required this.context});
 
   TextStyle textStyle(Set<MaterialState> states){
     return const TextStyle( color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500);
@@ -126,56 +123,56 @@ class AppTheme{
         )
     ),
     textTheme: TextTheme(
-      headlineLarge: Theme.of(context).textTheme.headlineLarge!.copyWith(
+      headlineLarge: const TextStyle(
         fontFamily: "Montserrat",
         fontWeight: FontWeight.w600,
         color: secondaryColor,
         fontSize: 32,
       ),
-      headlineMedium: Theme.of(context).textTheme.headlineLarge!.copyWith(
+      headlineMedium: const TextStyle(
         fontFamily: "Montserrat",
         fontWeight: FontWeight.w500,
         color: secondaryColor,
         fontSize: 28,
       ),
-      headlineSmall: Theme.of(context).textTheme.headlineLarge!.copyWith(
+      headlineSmall: const TextStyle(
         fontFamily: "Montserrat",
         fontWeight: FontWeight.w500,
         color: secondaryColor,
         fontSize: 24,
       ),
-        titleLarge: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        titleLarge: const TextStyle(
           fontFamily: "Montserrat",
           fontWeight: FontWeight.w700,
           fontSize: 18,
           color: secondaryColor,
           letterSpacing: 0.4,
       ),
-        titleMedium: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        titleMedium: const TextStyle(
           fontFamily: "Montserrat",
           fontWeight: FontWeight.w500,
           fontSize: 18,
           color: secondaryColor,
           letterSpacing: 0.4,
         ),
-        titleSmall: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        titleSmall: const TextStyle(
           fontFamily: "Montserrat",
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: secondaryColor,
           letterSpacing: 0.4,
         ),
-        bodyLarge: Theme.of(context).textTheme.bodyLarge!.copyWith(
+        bodyLarge: const TextStyle(
           fontFamily: "Montserrat",
           color: secondaryColor,
           fontSize: 18,
         ),
-        bodyMedium: Theme.of(context).textTheme.bodyMedium!.copyWith(
+        bodyMedium: const TextStyle(
           fontFamily: "Montserrat",
           color: secondaryColor,
           fontSize: 16,
         ),
-        bodySmall: Theme.of(context).textTheme.bodyMedium!.copyWith(
+        bodySmall: const TextStyle(
           fontFamily: "Montserrat",
           color: secondaryColor,
           fontSize: 14,
@@ -234,6 +231,8 @@ class AppTheme{
         borderRadius: BorderRadius.circular(8),
       )
     ),
-
+    cardTheme: CardTheme(
+      color: whiteColor,
+    ),
   );
 }
