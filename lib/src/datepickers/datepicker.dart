@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ui_components/src/extensions/date.dart';
 
-/// Flutter code sample for [showDatePicker].
-
-
 class AppDatePicker extends StatefulWidget {
   const AppDatePicker({
     super.key,

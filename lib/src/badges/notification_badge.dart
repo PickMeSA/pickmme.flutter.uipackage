@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/colors.dart';
+
 class NotificationBadge extends StatelessWidget{
 
   final int? count;
@@ -25,10 +27,10 @@ class NotificationBadge extends StatelessWidget{
       height: width,
       width: height,
       child: Badge(
-        backgroundColor: const Color(0xFF3EB62B),
+        backgroundColor: primaryColor,
         label: count==null?null:Text(
           count.toString(),
-          style: const TextStyle(color: Colors.white),
+          style: const TextStyle(color: whiteColor),
         ),
 
       ),

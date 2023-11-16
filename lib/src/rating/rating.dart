@@ -1,33 +1,77 @@
 import 'package:flutter/material.dart';
 
-class StarRating extends StatelessWidget {
-  final int value;
+import '../constants/colors.dart';
+import '../constants/numbers.dart';
+
+class AppStarRating extends StatefulWidget {
+  final int rating;
   final double size;
   final Color color;
   final IconData filledStar;
   final IconData unfilledStar;
   final ValueChanged<int>? onChanged;
 
-  const StarRating({super.key,
-    this.value = 0,
-    this.color = Colors.amber,
-    this.size = 35,
+  const AppStarRating({super.key,
+    this.rating = 0,
+    this.color = yellowColor,
+    this.size = ratingIconSize,
     this.filledStar = Icons.star_rounded,
     this.unfilledStar = Icons.star_border_rounded,
-    required this.onChanged,
+    this.onChanged,
   });
 
   @override
+  State<AppStarRating> createState() => _AppStarRatingState();
+}
+
+class _AppStarRatingState extends State<AppStarRating> {
+  late int rating;
+  @override
+  void initState() {
+    rating = widget.rating;
+    super.initState();
+  }
+  updateRating(int newRating){
+    if(widget.onChanged != null){
+      setState(() {
+        rating = newRating+1;
+      });
+      widget.onChanged!.call(newRating+1);
+    }
+  }
+  @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: List.generate(5, (index) {
-        return IconButton(
-          onPressed: () => onChanged?.call(index),
-          icon: Icon(
-            index < value ? filledStar : unfilledStar,
-            color: color,
-            size: size,
+        return SizedBox(
+          height: widget.size,
+          width: widget.size,
+          child: IconButton(
+            constraints: const BoxConstraints(),
+            padding: EdgeInsets.zero,
+            style: ButtonStyle(
+              padding: MaterialStateProperty.all(EdgeInsets.zero),
+            ),
+            onPressed: () => updateRating(index),
+            icon: Builder(
+              builder: (context) {
+                if(index < rating){
+                  return Icon(
+                    widget.filledStar,
+                    color: yellowColor,
+                    size: widget.size,
+                  );
+                }
+                return Icon(
+                  widget.unfilledStar,
+                  color: neutrals300Color,
+                  size: widget.size,
+
+                );
+              }
+            ),
           ),
         );
       }),

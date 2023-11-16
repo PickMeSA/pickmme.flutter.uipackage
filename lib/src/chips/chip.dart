@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_components/src/constants/colors.dart';
 
 class ChipOption{
   final String label;
@@ -33,8 +34,8 @@ class ChipGroup extends StatelessWidget{
   const ChipGroup({
     super.key,
     required this.inputs,
-    required this.onDeleted,
-    required this.onSelected,
+    this.onSelected,
+    this.onDeleted,
   });
   @override
   Widget build(BuildContext context) {
@@ -47,12 +48,23 @@ class ChipGroup extends StatelessWidget{
           spacing: 5.0,
           children: inputs.map((e) => SizedBox(
             height: 46,
-            child: InputChip(
-            label: Text(e.label),
-      // selected: selectedIndex == index,
-      onSelected: onSelected,
-      onDeleted: onDeleted,
-    ),
+            child: Builder(
+              builder: (context) {
+                if(onDeleted != null) {
+                  return InputChip(
+                    deleteIconColor: secondaryColor,
+                    label: Text(e.label),
+                    // selected: selectedIndex == index,
+                    onSelected: onSelected,
+                    onDeleted: onDeleted,
+                  );
+                }
+                return ActionChip(
+                  label: Text(e.label),
+                  onPressed: (){},
+                );
+              }
+            ),
           )).toList(),
         ),
 

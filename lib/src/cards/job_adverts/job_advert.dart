@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import '../../extensions/numbers.dart';
-import '../../extensions/date.dart';
-import '../../constants/enums.dart';
 import '../../avatars/image_avatar.dart';
+import '../../badges/notification_badge.dart';
+import '../../divider/divider.dart';
+import '../../extensions/date.dart';
 import 'package:iconsax/iconsax.dart';
+import '../../constants/enums.dart';
+import '../../constants/widgets.dart';
 
 class AppJobAdvertCard extends StatelessWidget{
   final String jobName;
@@ -70,6 +72,10 @@ class AppJobAdvertCard extends StatelessWidget{
       dateTime: dateTime,
       onNext: onNext,
       matchingText: matchingText,
+      totalApplications: totalApplications,
+      totalMatches: totalMatches,
+      applicationsString: applicationsString,
+      matchesString: matchesString,
     );
   }
 
@@ -98,7 +104,6 @@ class AppJobAdvertCard extends StatelessWidget{
                         ),
                       ),
                       Text(employerName, style: Theme.of(context).textTheme.bodySmall,),
-                      4.height,
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Column(
@@ -106,23 +111,23 @@ class AppJobAdvertCard extends StatelessWidget{
                             Row(
                               children: [
                                 Icon(Iconsax.location, size: 18, color: color,),
-                                8.width,
+                                rowRegularSpacing,
                                 Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,),)),
                               ],
                             ),
-                            8.height,
+                            columnRegularSpacing,
                             Row(
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
-                                8.width,
+                                rowRegularSpacing,
                                 Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
-                            if(matchingText!=null)16.height,
+                            if(matchingText!=null)columnLargeSpacing,
                             if(matchingText!=null)Row(
                               children: [
                                 Icon(Icons.account_circle, color: color, size: 16,),
-                                12.width,
+                                rowRegularSpacing,
                                 Expanded(
                                     child: Text(
                                         matchingText!,
@@ -135,6 +140,53 @@ class AppJobAdvertCard extends StatelessWidget{
                                 ),
                               ],
                             ),
+                            if(totalApplications!=null)Container(
+                              padding: const EdgeInsets.only(top:8),
+                              child: Column(
+                                children: [
+                                  const AppDivider(),
+                                  Row(
+                                    children: [
+                                      const Icon(Iconsax.profile_2user),
+                                      if(totalApplications! > 0)Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                                        child: Center(
+                                          child: NotificationBadge.small(),
+                                        ),
+                                      ),
+                                      if(totalApplications == 0) rowRegularSpacing,
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                        child: Text("$totalApplications $applicationsString"),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            ),
+                            if(totalMatches !=null)Container(
+                              child: Column(
+                                children: [
+                                  const AppDivider(),
+                                  Row(
+                                    children: [
+                                      const Icon(Iconsax.verify),
+                                      if(totalMatches! > 0)Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                                        child: Center(
+                                          child: NotificationBadge.small(),
+                                        ),
+                                      ),
+                                      if(totalMatches == 0) rowRegularSpacing,
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                        child: Text("$totalMatches $matchesString"),
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
+                            )
                           ],
                         ),
                       ),

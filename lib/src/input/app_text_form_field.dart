@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../constants/colors.dart';
 import '../constants/enums.dart';
 import '../extensions/widget.dart';
 import '../extensions/bool.dart';
@@ -142,9 +143,6 @@ class AppTextFormField<T> extends StatefulWidget {
 
 class _AppTextFormFieldState extends State<AppTextFormField> {
   bool isPasswordVisible = false;
-  final Color secondaryColor = const Color(0xFF111828);
-  final Color errorColor = const Color(0xFFF44F4E);
-
 
   FormFieldValidator<String>? applyValidation() {
     if (widget.isValidationRequired.validate(value: true)) {
@@ -339,7 +337,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide(color: Theme.of(context).colorScheme.primary)),
       enabledBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(Radius.circular(8)), borderSide: BorderSide(color: secondaryColor),),
       errorBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(Radius.circular(8)), borderSide: BorderSide(color: errorColor),),
-      fillColor: Colors.white,
+      fillColor: whiteColor,
       hintText: hint,
       labelText: labelText,
       prefixIcon: prefixIcon,
@@ -367,7 +365,7 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       decoration: appInputDecoration(
           prefix: widget.prefixIcon,
           hint: widget.hint,
-          bgColor: widget.bgColor??Colors.white,
+          bgColor: widget.bgColor??whiteColor,
           borderColor: widget.borderColor??secondaryColor,
           padding: widget.padding,
           labelText: widget.labelText

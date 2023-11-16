@@ -5,13 +5,13 @@ class PrimaryButton extends StatelessWidget{
   final VoidCallback? onLongPress;
   final Widget child;
   final double? width;
-  final double? height;
+  final double height;
   final double? elevation;
   final EdgeInsetsGeometry? padding;
-  final double? widthDivisionFactor;
-
+  final bool fullWidth;
   EdgeInsetsGeometry? getPadding(Set<MaterialState> states) => padding;
   double? getElevation(Set<MaterialState> states) => elevation;
+  final ButtonStyle? style;
 
   const PrimaryButton({
     super.key,
@@ -19,29 +19,31 @@ class PrimaryButton extends StatelessWidget{
     this.onLongPress,
     required this.child,
     this.height = 56,
-    this.padding = EdgeInsets.zero,
+    this.padding,
     this.elevation = 0,
     this.width,
-    this.widthDivisionFactor = 1,
+    this.fullWidth = false,
+    this.style,
   });
 
-  factory PrimaryButton.halfWidth({
+  factory PrimaryButton.fullWidth({
     required VoidCallback? onPressed,
     required Widget child,
     VoidCallback? onLongPress,
-    double? width,
     double height = 56,
     padding = EdgeInsets.zero,
     double elevation = 0,
-    double widthDivisionFactor = 2,
+    ButtonStyle? style,
   }){
     return PrimaryButton(
       onPressed: onPressed,
       onLongPress: onLongPress,
-      width: width,
+      width: null,
       height: height,
       padding: padding,
       elevation: elevation,
+      fullWidth: true,
+      style: style,
       child: child,
     );
   }
@@ -53,8 +55,8 @@ class PrimaryButton extends StatelessWidget{
     double width = 155,
     double height = 32,
     padding = EdgeInsets.zero,
+    ButtonStyle? style,
     double elevation = 0,
-    double? widthDivisionFactor,
   }){
     return PrimaryButton(
       onPressed: onPressed,
@@ -63,6 +65,8 @@ class PrimaryButton extends StatelessWidget{
       height: height,
       padding: padding,
       elevation: elevation,
+      fullWidth: false,
+      style: style,
       child: child,
     );
   }
@@ -74,8 +78,8 @@ class PrimaryButton extends StatelessWidget{
     double width = 56,
     double height = 56,
     padding = EdgeInsets.zero,
+    ButtonStyle? style,
     double elevation = 0,
-    double? widthDivisionFactor,
   }){
     return PrimaryButton(
       onPressed: onPressed,
@@ -84,6 +88,8 @@ class PrimaryButton extends StatelessWidget{
       height: height,
       padding: padding,
       elevation: elevation,
+      fullWidth: false,
+      style: style,
       child: child,
     );
   }
@@ -95,8 +101,8 @@ class PrimaryButton extends StatelessWidget{
     double width = 40,
     double height = 40,
     padding = EdgeInsets.zero,
+    ButtonStyle? style,
     double elevation = 0,
-    double? widthDivisionFactor,
   }){
     return PrimaryButton(
       onPressed: onPressed,
@@ -105,36 +111,55 @@ class PrimaryButton extends StatelessWidget{
       height: height,
       padding: padding,
       elevation: elevation,
+      fullWidth: false,
+      style: style,
       child: child,
     );
   }
-  Widget button(BuildContext context){
-    double _width;
-    if(width!=null){
-      _width = width!;
-    }else{
-      _width = MediaQuery.of(context).size.width / widthDivisionFactor!;
-    }
 
-    return SizedBox(
-      width: _width,
-      height: height,
-      child: ElevatedButton(
-          onPressed: onPressed,
-          onLongPress: onLongPress,
-          style: ButtonStyle(
-              padding: MaterialStateProperty.resolveWith(getPadding,),
-              shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
-              )),
-              elevation: MaterialStateProperty.resolveWith(getElevation)
-          ),
-          child: Center(child: child)
-      ),
-    );
+  ButtonStyle defaultStyle(){
+    if(fullWidth){
+      return ButtonStyle(
+        minimumSize: MaterialStateProperty.all(const Size.fromHeight(56)),
+        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 14, horizontal: 18)),
+      );
+    }
+    if(height == 56){
+      return ButtonStyle(
+        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 12, horizontal: 16)),
+      );
+
+    }else if(height == 40){
+      return ButtonStyle(
+        padding: MaterialStateProperty.all(const EdgeInsets.all(8)),
+      );
+    }else if(height == 32){
+      return ButtonStyle(
+        padding: MaterialStateProperty.all(const EdgeInsets.symmetric(vertical: 8, horizontal: 24)),
+      );
+    }
+    return const ButtonStyle();
   }
+
   @override
   Widget build(BuildContext context) {
-    return button(context);
+    if(!fullWidth) {
+      return SizedBox(
+        height: height,
+        width: width,
+        child: ElevatedButton(
+            onPressed: onPressed,
+            onLongPress: onLongPress,
+            style: style??defaultStyle(),
+            child: child
+        ),
+      );
+    }
+    return ElevatedButton(
+        onPressed: onPressed,
+        onLongPress: onLongPress,
+        style: style??defaultStyle(),
+        child: child
+    );
   }
 }

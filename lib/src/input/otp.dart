@@ -6,11 +6,12 @@ import 'package:flutter/services.dart';
 import '../extensions/string.dart';
 
 class OTPInput extends StatefulWidget{
-  const OTPInput({super.key, this.onSubmitted});
+  const OTPInput({super.key, this.onSubmitted, this.length=6});
 
   @override
   State<StatefulWidget> createState() => OTPInputState();
   final ValueChanged<int>? onSubmitted;
+  final int length;
 
 }
 class OTPInputState extends State<OTPInput>{

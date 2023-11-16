@@ -1,33 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:iconsax/iconsax.dart';
 import '../../avatars/image_avatar.dart';
-import '../../constants/widgets.dart';
-import '../../constants/strings.dart';
 import '../../extensions/date.dart';
-import '../../badges/status_badge.dart';
+import 'package:iconsax/iconsax.dart';
 import '../../constants/enums.dart';
-import '../../extensions/numbers.dart';
+import '../../constants/widgets.dart';
 
-class AppEmployeeJobCard extends StatelessWidget{
+class AppJobDetailCard extends StatelessWidget{
   final String jobName;
-  final String employeeName;
+  final String employerName;
   final String locationName;
+  final String estimatedTime;
+  final String rate;
+  final String? matchingText;
   final DateTime dateTime;
-  final bool selected;
   final VoidCallback onNext;
   final JobStatus status;
   final Color color = const Color(0xFF9CA2AE);
-
-  const AppEmployeeJobCard({
+  const AppJobDetailCard({
     super.key,
     required this.jobName,
-    required this.employeeName,
+    required this.employerName,
     required this.locationName,
     required this.dateTime,
     required this.onNext,
-    this.selected = false,
-    this.status = JobStatus.newJob
+    this.matchingText,
+    this.status = JobStatus.newJob,
+    required this.estimatedTime, required this.rate,
   });
+
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +40,7 @@ class AppEmployeeJobCard extends StatelessWidget{
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const AppImageAvatar(),
+            AppImageAvatar.small(),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -48,18 +48,17 @@ class AppEmployeeJobCard extends StatelessWidget{
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(employeeName,
+                      Text(jobName,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             fontWeight: FontWeight.w600
                         ),
                       ),
-                      2.height,
-                      Text(jobName, style: Theme.of(context).textTheme.bodySmall,),
-                      4.height,
+                      Text(employerName, style: Theme.of(context).textTheme.bodySmall,),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8.0),
                         child: Column(
                           children: [
+                            columnSmallSpacing,
                             Row(
                               children: [
                                 Icon(Iconsax.location, size: 18, color: color,),
@@ -67,7 +66,7 @@ class AppEmployeeJobCard extends StatelessWidget{
                                 Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,),)),
                               ],
                             ),
-                            8.height,
+                            columnSmallSpacing,
                             Row(
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
@@ -75,30 +74,30 @@ class AppEmployeeJobCard extends StatelessWidget{
                                 Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
+                            columnSmallSpacing,
+                            Row(
+                              children: [
+                                Icon(Iconsax.clock, size: 18, color: color,),
+                                rowRegularSpacing,
+                                Expanded(child: Text(estimatedTime, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
+                              ],
+                            ),
+                            columnSmallSpacing,
+                            Row(
+                              children: [
+                                Icon(Iconsax.wallet_money, size: 18, color: color,),
+                                rowRegularSpacing,
+                                Expanded(child: Text(rate, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
+                              ],
+                            ),
                           ],
                         ),
                       ),
-                      8.height,
-                      Builder(
-                        builder: (context) {
-                          if(status == JobStatus.newJob){
-                            return const SizedBox();
-                          }else if(status == JobStatus.applied){
-                            return StatusBadge.info(appliedForJobStatus);
-                          }else if(status == JobStatus.requestedReschedule){
-                            return StatusBadge.warning(rescheduleRequestedStatus);
-                          }else if(status == JobStatus.rescheduled){
-                            return StatusBadge.success(rescheduledStatus);
-                          }
-                          return StatusBadge.danger(cancelledStatus);
-                        }
-                      )
                     ],
                   ),
                 ),
               ),
             ),
-            const Icon(Iconsax.arrow_right_1)
           ],
         ),
       ),

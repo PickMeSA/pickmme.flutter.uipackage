@@ -4,3 +4,7 @@ const double defaultRadius = 8.0;
 const double defaultBlurRadius = 4.0;
 const double defaultSpreadRadius = 1.0;
 const double defaultAppBarElevation = 4.0;
+const int rowWidgetSpacing = 10;
+const int columnWidgetSpacing = 10;
+const double ratingIconSize = 23;
+const double iconSize = 23;
