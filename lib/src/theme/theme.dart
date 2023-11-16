@@ -1,8 +1,13 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 
 class AppTheme{
 
+  List<FontVariation> fontVariations = [
+    FontVariation('wght', 400),
+  ];
   TextStyle textStyle(Set<MaterialState> states){
     return const TextStyle( color: Colors.black, fontSize: 18, fontWeight: FontWeight.w500);
   }
@@ -123,60 +128,72 @@ class AppTheme{
         )
     ),
     textTheme: TextTheme(
-      headlineLarge: const TextStyle(
+      headlineLarge: TextStyle(
         fontFamily: "Montserrat",
+        fontVariations: fontVariations,
         fontWeight: FontWeight.w600,
         color: secondaryColor,
         fontSize: 32,
       ),
-      headlineMedium: const TextStyle(
+      headlineMedium: TextStyle(
         fontFamily: "Montserrat",
+        fontVariations: fontVariations,
         fontWeight: FontWeight.w500,
         color: secondaryColor,
         fontSize: 28,
       ),
-      headlineSmall: const TextStyle(
+      headlineSmall: TextStyle(
         fontFamily: "Montserrat",
+        fontVariations: fontVariations,
         fontWeight: FontWeight.w500,
         color: secondaryColor,
         fontSize: 24,
       ),
-        titleLarge: const TextStyle(
+        titleLarge: TextStyle(
           fontFamily: "Montserrat",
+          fontVariations: fontVariations,
           fontWeight: FontWeight.w700,
           fontSize: 18,
           color: secondaryColor,
           letterSpacing: 0.4,
       ),
-        titleMedium: const TextStyle(
+        titleMedium: TextStyle(
           fontFamily: "Montserrat",
+          fontVariations: fontVariations,
           fontWeight: FontWeight.w500,
           fontSize: 18,
           color: secondaryColor,
           letterSpacing: 0.4,
         ),
-        titleSmall: const TextStyle(
+        titleSmall: TextStyle(
           fontFamily: "Montserrat",
+          fontVariations: fontVariations,
           fontWeight: FontWeight.w500,
           fontSize: 14,
           color: secondaryColor,
           letterSpacing: 0.4,
         ),
-        bodyLarge: const TextStyle(
+        bodyLarge: TextStyle(
           fontFamily: "Montserrat",
           color: secondaryColor,
+          fontVariations: fontVariations,
+          fontWeight: FontWeight.w400,
           fontSize: 18,
         ),
-        bodyMedium: const TextStyle(
+        bodyMedium: TextStyle(
           fontFamily: "Montserrat",
+          fontVariations: fontVariations,
+          fontWeight: FontWeight.w400,
           color: secondaryColor,
           fontSize: 16,
         ),
-        bodySmall: const TextStyle(
+        bodySmall: TextStyle(
           fontFamily: "Montserrat",
           color: secondaryColor,
           fontSize: 14,
           height: 1.3,
+          fontWeight: FontWeight.w400,
+          fontVariations: fontVariations,
         ),
     ),
     switchTheme: SwitchThemeData(
@@ -197,7 +214,7 @@ class AppTheme{
       color: neutrals500Color,
       selectedColor: primaryColor,
       borderColor: neutrals100Color,
-      selectedBorderColor: const Color(0xFFF5F5F5),
+      selectedBorderColor: Color(0xFFF5F5F5),
 
     ),
     sliderTheme: const SliderThemeData(
@@ -233,6 +250,7 @@ class AppTheme{
     ),
     cardTheme: const CardTheme(
       color: whiteColor,
+      surfaceTintColor: whiteColor
     ),
   );
 }
