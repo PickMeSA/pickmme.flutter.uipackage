@@ -10,14 +10,14 @@ class OTPInput extends StatefulWidget{
 
   @override
   State<StatefulWidget> createState() => OTPInputState();
-  final Function? onchange ;
+  final Function(String)? onchange ;
   final int length;
 
 }
 class OTPInputState extends State<OTPInput>{
 
   bool deleted = false;
-  TextSelectionControls? _selectionControls;
+  late final TextSelectionControls selectionControls;
 
   Map<String, TextEditingController> controllers = {
     "controller1": TextEditingController(),
@@ -61,11 +61,11 @@ class OTPInputState extends State<OTPInput>{
   @override
   void initState() {
     if (Platform.isIOS) {
-      _selectionControls = AppCupertinoTextSelectionControls(
+      selectionControls = AppCupertinoTextSelectionControls(
         onPaste: paste,
       );
     } else {
-      _selectionControls = AppMaterialTextSelectionControls(
+      selectionControls = AppMaterialTextSelectionControls(
         onPaste: paste,
       );
     }
@@ -73,27 +73,34 @@ class OTPInputState extends State<OTPInput>{
   }
   Widget digitInput({required Function onChange ,required FocusNode focusNode,required TextEditingController controller,}){
     return SizedBox(
-      width: 72,
-      height: 73,
+      width: 52,
+      height: 53,
       child: TextFormField(
         focusNode: focusNode,
         textAlign: TextAlign.center,
         keyboardType: TextInputType.number,
         maxLength: 1,
         textInputAction: TextInputAction.next,
-        selectionControls: _selectionControls,
+        selectionControls: selectionControls,
         textAlignVertical: TextAlignVertical.center,
           style: const TextStyle( fontSize: 28),
         onChanged: (String s) {
           if(s.isNumeric()){
-            onChange();
+            onChange(
+                  "${controllers["controller1"]?.text}"
+                  "${controllers["controller2"]?.text}"
+                  "${controllers["controller3"]?.text}"
+                  "${controllers["controller4"]?.text}"
+                  "${controllers["controller5"]?.text}"
+                  "${controllers["controller6"]?.text}"
+            );
             FocusScope.of(context).nextFocus();
           }
           if(s.isEmpty){
             FocusScope.of(context).previousFocus();
           }
         },
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             counterText: '',
           contentPadding: EdgeInsets.all(15)
         ),
