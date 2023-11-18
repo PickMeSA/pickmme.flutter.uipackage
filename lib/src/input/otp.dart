@@ -6,15 +6,16 @@ import 'package:flutter/services.dart';
 import '../extensions/string.dart';
 
 class OTPInput extends StatefulWidget{
-  const OTPInput({super.key, this.onSubmitted, this.length=6});
+  const OTPInput({super.key, this.onchange, this.length=6});
 
   @override
   State<StatefulWidget> createState() => OTPInputState();
-  final ValueChanged<int>? onSubmitted;
+  final Function? onchange ;
   final int length;
 
 }
 class OTPInputState extends State<OTPInput>{
+
   bool deleted = false;
   TextSelectionControls? _selectionControls;
 
@@ -23,12 +24,16 @@ class OTPInputState extends State<OTPInput>{
     "controller2": TextEditingController(),
     "controller3": TextEditingController(),
     "controller4": TextEditingController(),
+    "controller5": TextEditingController(),
+    "controller6": TextEditingController()
   };
   Map<String, FocusNode> focusNodes = {
     "digitNode1": FocusNode(),
     "digitNode2": FocusNode(),
     "digitNode3": FocusNode(),
     "digitNode4": FocusNode(),
+    "digitNode5": FocusNode(),
+    "digitNode6": FocusNode()
   };
 
   Future<void> paste(final TextSelectionDelegate? delegate) async {
@@ -66,7 +71,7 @@ class OTPInputState extends State<OTPInput>{
     }
     super.initState();
   }
-  Widget digitInput({required FocusNode focusNode,required TextEditingController controller,}){
+  Widget digitInput({required Function onChange ,required FocusNode focusNode,required TextEditingController controller,}){
     return SizedBox(
       width: 72,
       height: 73,
@@ -78,10 +83,14 @@ class OTPInputState extends State<OTPInput>{
         textInputAction: TextInputAction.next,
         selectionControls: _selectionControls,
         textAlignVertical: TextAlignVertical.center,
-          style: TextStyle( fontSize: 28),
+          style: const TextStyle( fontSize: 28),
         onChanged: (String s) {
           if(s.isNumeric()){
+            onChange();
             FocusScope.of(context).nextFocus();
+          }
+          if(s.isEmpty){
+            FocusScope.of(context).previousFocus();
           }
         },
         decoration: InputDecoration(
@@ -98,20 +107,34 @@ class OTPInputState extends State<OTPInput>{
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           digitInput(
+            onChange: widget.onchange!,
             focusNode: focusNodes["digitNode1"]!,
             controller: controllers["controller1"]!,
           ),
           digitInput(
+            onChange: widget.onchange!,
             focusNode: focusNodes["digitNode2"]!,
             controller: controllers["controller2"]!,
           ),
           digitInput(
+            onChange: widget.onchange!,
             focusNode: focusNodes["digitNode3"]!,
             controller: controllers["controller3"]!,
           ),
           digitInput(
+            onChange: widget.onchange!,
             focusNode: focusNodes["digitNode4"]!,
             controller: controllers["controller4"]!,
+          ),
+          digitInput(
+            onChange: widget.onchange!,
+            focusNode: focusNodes["digitNode5"]!,
+            controller: controllers["controller5"]!,
+          ),
+          digitInput(
+            onChange: widget.onchange!,
+            focusNode: focusNodes["digitNode6"]!,
+            controller: controllers["controller6"]!,
           ),
         ],
       ),
