@@ -83,7 +83,7 @@ class OTPInputState extends State<OTPInput>{
         textInputAction: TextInputAction.next,
         selectionControls: selectionControls,
         textAlignVertical: TextAlignVertical.center,
-          style: const TextStyle( fontSize: 20),
+          style: const TextStyle( fontSize: 18),
         onChanged: (String s) {
           if(s.isNumeric()){
             onChange(
