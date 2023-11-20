@@ -9,8 +9,16 @@ class AppCheckbox extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Transform.scale(
-      scale: 1.8,
+      scale: 2,
       child: Checkbox(
+        side: MaterialStateBorderSide.resolveWith(
+            (Set<MaterialState> states) => BorderSide(
+              color: states.contains(MaterialState.selected)?
+              Theme.of(context).colorScheme.primary:
+              Theme.of(context).colorScheme.secondary,
+              width: 0.7,
+            ),
+        ),
         value: value,
         onChanged: onChanged,
       ),
