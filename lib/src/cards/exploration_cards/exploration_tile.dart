@@ -29,6 +29,9 @@ class AppExplorationTile extends StatelessWidget{
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
+      elevation: 5,
+      shadowColor: Colors.black26,
+      color: Theme.of(context).colorScheme.surface,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../constants/colors.dart';
 
@@ -51,8 +52,7 @@ class AppSquareImageAvatar extends StatelessWidget{
         builder: (context) {
           if(image==null){
             return Center(
-              //Iconsax profile is broken so using material design here
-              child: Icon(icon??Icons.account_circle, color: color),
+              child: Icon(icon??Iconsax.frame_1, color: color),
             );
           }
           return Center(

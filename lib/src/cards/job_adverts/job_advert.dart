@@ -126,7 +126,7 @@ class AppJobAdvertCard extends StatelessWidget{
                             if(matchingText!=null)columnLargeSpacing,
                             if(matchingText!=null)Row(
                               children: [
-                                Icon(Icons.account_circle, color: color, size: 16,),
+                                Icon(Iconsax.frame_1, color: color, size: 16,),
                                 rowRegularSpacing,
                                 Expanded(
                                     child: Text(

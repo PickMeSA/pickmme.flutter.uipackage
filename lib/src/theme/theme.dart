@@ -80,7 +80,7 @@ class AppTheme{
       onError: whiteColor,
       background: whiteColor,
       onBackground: secondaryColor,
-      surface: whiteColor,
+      surface: neutrals100Color,
       onSurface: secondaryColor,
     ),
     fontFamily: "Montserrat",
@@ -194,6 +194,21 @@ class AppTheme{
           height: 1.3,
           fontWeight: FontWeight.w400,
           fontVariations: fontVariations,
+        ),
+        labelLarge: const TextStyle(
+          fontFamily: "Montserrat",
+          color: neutrals500Color,
+        ),
+        labelMedium: TextStyle(
+          fontFamily: "Montserrat",
+          color: neutrals500Color,
+          fontSize: 12,
+          fontWeight: FontWeight.w400,
+          fontVariations: fontVariations,
+        ),
+        labelSmall: const TextStyle(
+          fontFamily: "Montserrat",
+          color: neutrals500Color,
         ),
     ),
     switchTheme: SwitchThemeData(

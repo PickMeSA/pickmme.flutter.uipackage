@@ -48,3 +48,4 @@ export 'src/extensions/numbers.dart';
 export 'src/extensions/string.dart';
 export 'src/extensions/date.dart';
 export 'src/constants/enums.dart';
+export 'src/constants/colors.dart';

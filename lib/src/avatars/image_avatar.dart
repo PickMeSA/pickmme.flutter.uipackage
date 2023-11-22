@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconsax/iconsax.dart';
 
 import '../badges/notification_badge.dart';
 import '../constants/colors.dart';
@@ -51,8 +52,7 @@ class AppImageAvatar extends StatelessWidget{
         builder: (context) {
           if(image==null){
             return const Center(
-              //Iconsax profile is broken so using material design here
-              child: Icon(Icons.account_circle, color: Color(0xFFD1D4DB,)),
+              child: Icon(Iconsax.frame_1, color: Color(0xFFD1D4DB,)),
             );
           }
           return Stack(
