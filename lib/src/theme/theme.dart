@@ -90,6 +90,15 @@ class AppTheme{
       side: BorderSide(color: Colors.transparent, width: 0),
       labelStyle: TextStyle(fontSize: 16, color: secondaryColor)
     ),
+    appBarTheme: AppBarTheme(
+      titleTextStyle: TextStyle(
+        fontFamily: "Montserrat",
+        fontVariations: fontVariations,
+        fontWeight: FontWeight.w500,
+        color: secondaryColor,
+        fontSize: 24,
+      ),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
           textStyle: MaterialStateProperty.resolveWith(textStyle),

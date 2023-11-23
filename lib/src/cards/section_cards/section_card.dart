@@ -7,7 +7,7 @@ class AppSectionCard extends StatelessWidget{
   final String title;
   final VoidCallback? onClick;
   final Color? color;
-  final double width;
+  final double? width;
   final double height;
 
   const AppSectionCard({
@@ -16,7 +16,7 @@ class AppSectionCard extends StatelessWidget{
     this.icon,
     this.onClick,
     this.color,
-    this.width = 155,
+    this.width,
     this.height = 192,
   });
 
@@ -31,7 +31,6 @@ class AppSectionCard extends StatelessWidget{
       icon: icon,
       onClick: onClick,
       color: color,
-      width: 155,
       height: 155,);
   }
   @override
@@ -45,7 +44,7 @@ class AppSectionCard extends StatelessWidget{
         ),
         child: SizedBox(
           height: height,
-          width: width,
+          width: double.infinity,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
