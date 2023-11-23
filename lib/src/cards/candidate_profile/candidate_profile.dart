@@ -29,42 +29,46 @@ class AppCandidateProfile extends StatelessWidget{
     var theme = Theme.of(context);
     return SizedBox(
       height: 130,
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Column(
         children: [
-          AppImageAvatar(image: image,),
-          rowLargeSpacing,
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(fullName, style: theme.textTheme.bodyMedium!.copyWith(
-                    fontWeight: FontWeight.w600
-                ),),
-                Text(jobTitle, style: theme.textTheme.bodySmall,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              AppImageAvatar(image: image,),
+              rowLargeSpacing,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    AppStarRating(onChanged: onRatingChanged, rating: rating),
-                    Expanded(child: Text(rating.toDouble().toString()))
-                  ],
-                ),
-                columnRegularSpacing,
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(hourlyRate, style: theme.textTheme.bodySmall!.copyWith(
+                    Text(fullName, style: theme.textTheme.bodyMedium!.copyWith(
                         fontWeight: FontWeight.w600
-                      ),),
+                    ),),
+                    Text(jobTitle, style: theme.textTheme.bodySmall,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        AppStarRating(onChanged: onRatingChanged, rating: rating),
+                        Expanded(child: Text(rating.toDouble().toString()))
+                      ],
                     ),
-                    if(nextButton!=null)nextButton!,
+                    columnRegularSpacing,
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(hourlyRate, style: theme.textTheme.bodySmall!.copyWith(
+                            fontWeight: FontWeight.w600
+                          ),),
+                        ),
+                        if(nextButton!=null)nextButton!,
+                      ],
+                    ),
                   ],
                 ),
-                columnRegularSpacing,
-                const AppDivider(),
-              ],
-            ),
-          )
+              )
+            ],
+          ),
+          columnRegularSpacing,
+          const AppDivider(),
         ],
       ),
     );

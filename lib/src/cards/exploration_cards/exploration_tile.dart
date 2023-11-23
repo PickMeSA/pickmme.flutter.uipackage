@@ -25,36 +25,39 @@ class AppExplorationTile extends StatelessWidget{
     if(count!=null){
       countText = " ($count)";
     }
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
-      ),
-      elevation: 5,
-      shadowColor: Colors.black26,
-      color: Theme.of(context).colorScheme.surface,
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            icon ?? const Icon(Iconsax.briefcase),
-            rowRegularSpacing,
-            Expanded(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(title + countText,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                  ),
-                  if(count!=null && count!>0)rowRegularSpacing,
-                  if(count!=null && count!>0)NotificationBadge.small(),
-                ],
+    return GestureDetector(
+      onTap: onClick,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        elevation: 5,
+        shadowColor: Colors.black26,
+        color: Theme.of(context).colorScheme.surface,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              icon ?? const Icon(Iconsax.briefcase),
+              rowRegularSpacing,
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(title + countText,
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    if(count!=null && count!>0)rowRegularSpacing,
+                    if(count!=null && count!>0)NotificationBadge.small(),
+                  ],
+                ),
               ),
-            ),
-            rowRegularSpacing,
-            if(onClick!=null)const Icon(Iconsax.arrow_right_1)
-          ],
+              rowRegularSpacing,
+              if(onClick!=null)const Icon(Iconsax.arrow_right_1)
+            ],
+          ),
         ),
       ),
     );
