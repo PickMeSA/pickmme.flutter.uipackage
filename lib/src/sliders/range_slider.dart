@@ -1,28 +1,32 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CustomSlider extends StatelessWidget {
+class AppRangeSlider extends StatelessWidget {
   final double currentSliderValue;
   final double minimumSliderValue;
   final double maximumSliderValue;
-  final ValueChanged<double>? onChanged;
+  final ValueChanged<RangeValues> onChanged;
+  final RangeValues rangeValues;
 
-  const CustomSlider({
+  const AppRangeSlider({
     super.key,
     this.currentSliderValue = 0,
     this.minimumSliderValue = 0,
     this.maximumSliderValue = 100,
-    this.onChanged
+    required this.onChanged,
+    required this.rangeValues
   });
 
   @override
   Widget build(BuildContext context) {
-    return Slider(
-      value: currentSliderValue,
+    return RangeSlider(
+      values: rangeValues,
       max: maximumSliderValue,
-      // divisions: 5,
-      label: currentSliderValue.round().toString(),
-      onChanged: onChanged,
+      labels: RangeLabels(
+        rangeValues.start.round().toString(),
+        rangeValues.end.round().toString(),
+      ),
+      onChanged: (RangeValues values)=> onChanged(values),
     );
   }
 }

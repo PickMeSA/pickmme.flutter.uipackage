@@ -9,6 +9,7 @@ class AppExplorationTile extends StatelessWidget{
   final Icon? icon;
   final int? count;
   final bool active;
+  final bool showNextIcon;
   final VoidCallback? onClick;
   const AppExplorationTile({
     super.key,
@@ -16,6 +17,7 @@ class AppExplorationTile extends StatelessWidget{
     this.icon,
     this.count,
     this.active = false,
+    this.showNextIcon = true,
     this.onClick,
   });
 
@@ -55,7 +57,7 @@ class AppExplorationTile extends StatelessWidget{
                 ),
               ),
               rowRegularSpacing,
-              if(onClick!=null)const Icon(Iconsax.arrow_right_1)
+              if(onClick!=null && showNextIcon)const Icon(Iconsax.arrow_right_1)
             ],
           ),
         ),

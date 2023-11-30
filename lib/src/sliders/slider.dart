@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CustomSlider extends StatelessWidget {
+class AppSlider extends StatelessWidget {
   final double currentSliderValue;
   final double minimumSliderValue;
   final double maximumSliderValue;
   final ValueChanged<double>? onChanged;
 
-  const CustomSlider({
+  const AppSlider({
     super.key,
     this.currentSliderValue = 0,
     this.minimumSliderValue = 0,

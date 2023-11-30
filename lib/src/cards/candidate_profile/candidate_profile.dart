@@ -1,4 +1,9 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_components/flutter_ui_components.dart';
+import 'package:flutter_ui_components/src/extensions/numbers.dart';
+import 'package:iconsax/iconsax.dart';
 import '../../divider/divider.dart';
 import '../../constants/widgets.dart';
 import '../../avatars/image_avatar.dart';
@@ -10,7 +15,7 @@ class AppCandidateProfile extends StatelessWidget{
   final int rating;
   final String hourlyRate;
   final ImageProvider? image;
-  final Widget? nextButton;
+  final VoidCallback? viewProfileFunction;
   final ValueChanged<int>? onRatingChanged;
 
   const AppCandidateProfile({
@@ -20,7 +25,7 @@ class AppCandidateProfile extends StatelessWidget{
     required this.rating,
     required this.hourlyRate,
     this.image,
-    this.nextButton,
+    this.viewProfileFunction,
     this.onRatingChanged,
   });
 
@@ -28,7 +33,7 @@ class AppCandidateProfile extends StatelessWidget{
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return SizedBox(
-      height: 130,
+      height: 150,
       child: Column(
         children: [
           Row(
@@ -52,14 +57,23 @@ class AppCandidateProfile extends StatelessWidget{
                       ],
                     ),
                     columnRegularSpacing,
-                    Row(
+                    if(viewProfileFunction!=null)Row(
                       children: [
                         Expanded(
                           child: Text(hourlyRate, style: theme.textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.w600
                           ),),
                         ),
-                        if(nextButton!=null)nextButton!,
+                        TextButton(onPressed: viewProfileFunction, child: Row(children: [
+                          Text("View profile", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                            color: neutrals500Color,
+                            fontVariations: [
+                              const FontVariation('wght', 500),
+                            ]
+                          ),),
+                          10.width,
+                          const Icon(Iconsax.arrow_right_1, color: neutrals500Color,)
+                        ],)),
                       ],
                     ),
                   ],

@@ -339,6 +339,8 @@ class _AppTextFormFieldState extends State<AppTextFormField> {
       errorBorder: OutlineInputBorder(borderRadius: const BorderRadius.all(Radius.circular(8)), borderSide: BorderSide(color: errorColor),),
       fillColor: whiteColor,
       hintText: hint,
+      floatingLabelBehavior: (widget.textFieldType == TextFieldType.MULTILINE)?
+      FloatingLabelBehavior.always:null,
       labelText: labelText,
       prefixIcon: prefixIcon,
       prefix: prefix,
