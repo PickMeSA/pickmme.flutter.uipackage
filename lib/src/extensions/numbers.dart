@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 import '../config/size.dart';
@@ -10,6 +11,10 @@ extension IntExtensions on int? {
   int validate({int value = 0}) {
     return this ?? value;
   }
+
+  List<FontVariation> get fontWeight => [
+    FontVariation("wght", this!.toDouble())
+  ];
 
   /// Leaves given height of space
   Widget get height => SizedBox(height: this?.toDouble());

@@ -50,3 +50,4 @@ export 'src/extensions/string.dart';
 export 'src/extensions/date.dart';
 export 'src/constants/enums.dart';
 export 'src/constants/colors.dart';
+export 'src/images/images.dart';
