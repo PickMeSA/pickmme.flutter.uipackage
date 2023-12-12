@@ -35,7 +35,7 @@ export 'src/badges/notification_badge.dart';
 export 'src/rating/rating.dart' show AppStarRating;
 export 'src/sliders/slider.dart';
 export 'src/sliders/range_slider.dart';
-export 'src/divider/divider.dart';
+export 'src/divider/dividers.dart';
 export 'src/input/otp.dart';
 export 'src/input/app_text_field.dart';
 export 'src/input/app_text_form_field.dart';
