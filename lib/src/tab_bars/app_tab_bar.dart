@@ -16,21 +16,13 @@ List<Widget> tabBarViews;
       length: tabs.length,
       child: Scaffold(
         appBar: AppBar(
-          bottom: const TabBar(
-            tabs: [
-              Tab(icon: Icon(Icons.directions_car)),
-              Tab(icon: Icon(Icons.directions_transit)),
-              Tab(icon: Icon(Icons.directions_bike)),
-            ],
+          bottom:  TabBar(
+            tabs: tabs,
           ),
-          title: const Text('Tabs Demo'),
+          title:  Text(title??""),
         ),
-        body: const TabBarView(
-          children: [
-            Icon(Icons.directions_car),
-            Icon(Icons.directions_transit),
-            Icon(Icons.directions_bike),
-          ],
+        body:  TabBarView(
+          children: tabBarViews
         ),
       ),
     );
