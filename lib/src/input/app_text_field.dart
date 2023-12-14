@@ -226,7 +226,7 @@ class _AppTextFieldState extends State<AppTextField> {
     }
   }
 
-  InputDecoration appInputDecoration(BuildContext context, {Icon? prefixIcon, String? hint, String? labelText, Color? bgColor, Color? borderColor, EdgeInsets? padding}) {
+  InputDecoration appInputDecoration(BuildContext context, {Icon? prefixIcon, String? hint, String? labelText, TextStyle? hintStyle, Color? bgColor, Color? borderColor, EdgeInsets? padding}) {
     return InputDecoration(
       contentPadding: padding ?? const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
       counter: const Offstage(),
@@ -239,6 +239,7 @@ class _AppTextFieldState extends State<AppTextField> {
       prefixIcon: prefixIcon,
       filled: true,
       suffixIcon: suffixIcon(context),
+      labelStyle: Theme.of(context).textTheme.bodySmall
     );
   }
 
@@ -256,10 +257,11 @@ class _AppTextFieldState extends State<AppTextField> {
           bgColor: widget.bgColor??whiteColor,
           borderColor: widget.borderColor??secondaryColor,
           padding: widget.padding,
-          labelText: widget.labelText
+          labelText: widget.labelText,
+        hintStyle: Theme.of(context).textTheme.bodySmall,
       ),
       focusNode: widget.focus,
-      style: widget.textStyle,
+      style: widget.textStyle??Theme.of(context).textTheme.bodyMedium,
       textAlign: widget.textAlign ?? TextAlign.start,
       maxLines: widget.maxLines.validate(
           value: widget.textFieldType == TextFieldType.MULTILINE ? 10 : 1),
