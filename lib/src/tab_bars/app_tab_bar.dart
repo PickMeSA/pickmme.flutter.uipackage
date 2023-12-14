@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class AppTabBar extends StatelessWidget {
-   AppTabBar({super.key,
+class AppTabBar2 extends StatelessWidget {
+   AppTabBar2({super.key,
     required this.tabs,
     required this.tabBarViews,
     this.title,});
