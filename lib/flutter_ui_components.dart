@@ -51,3 +51,4 @@ export 'src/extensions/date.dart';
 export 'src/constants/enums.dart';
 export 'src/constants/colors.dart';
 export 'src/images/images.dart';
+export 'src/tab_bars/app_tab_bar.dart';
