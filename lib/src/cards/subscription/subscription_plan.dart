@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ui_components/src/constants/colors.dart';
 import 'package:flutter_ui_components/src/constants/widgets.dart';
 import 'package:iconsax/iconsax.dart';
 import '../../extensions/string.dart';

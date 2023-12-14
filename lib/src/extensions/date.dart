@@ -48,6 +48,15 @@ extension BooleanExtensions on DateTime {
     return "$d.$m.$y @ $h:$min";
 
   }
+  String toDDMMYYYY() {
+    String y = (year >= -9999 && year <= 9999) ? _fourDigits(year)
+        : _sixDigits(year);
+    String m = _twoDigits(month);
+    String d = _twoDigits(day);
+
+    return "$y-$m-$d";
+
+  }
 
   String toMonthYearString() {
     String y = (year >= -9999 && year <= 9999) ? _fourDigits(year)
@@ -81,8 +90,8 @@ if (absN >= 100000) return "$sign$absN";
 return "${sign}0$absN";
 }
 
-String _threeDigits(int n) {
-if (n >= 100) return "${n}";
-if (n >= 10) return "0${n}";
-return "00${n}";
-}
+// String _threeDigits(int n) {
+// if (n >= 100) return "${n}";
+// if (n >= 10) return "0${n}";
+// return "00${n}";
+// }

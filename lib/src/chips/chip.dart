@@ -44,7 +44,7 @@ class ChipGroup extends StatelessWidget{
                           deleteIconColor: secondaryColor,
                           label: Text(inputs[i].label),
                           // selected: selectedIndex == index,
-                          onDeleted: onDeleted!.call(i),
+                          onDeleted: () => onDeleted!.call(i),
                         );
                       }
                       return ActionChip(
