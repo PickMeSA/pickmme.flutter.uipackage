@@ -13,7 +13,7 @@ class AppJobAdvertCard extends StatelessWidget{
   final String locationName;
   final String? matchingText;
   final DateTime dateTime;
-  final VoidCallback onNext;
+  final VoidCallback? onNext;
   final JobStatus status;
   final Color color = const Color(0xFF9CA2AE);
   final int? totalApplications;
@@ -85,118 +85,121 @@ class AppJobAdvertCard extends StatelessWidget{
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const AppImageAvatar(),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(jobName,
-                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                            fontWeight: FontWeight.w600
+      child: GestureDetector(
+        onTap: onNext,
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const AppImageAvatar(),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(jobName,
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              fontWeight: FontWeight.w600
+                          ),
                         ),
-                      ),
-                      Text(employerName, style: Theme.of(context).textTheme.bodySmall,),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                        child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                Icon(Iconsax.location, size: 18, color: color,),
-                                rowRegularSpacing,
-                                Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,),)),
-                              ],
-                            ),
-                            columnRegularSpacing,
-                            Row(
-                              children: [
-                                Icon(Iconsax.calendar, size: 18, color: color,),
-                                rowRegularSpacing,
-                                Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
-                              ],
-                            ),
-                            if(matchingText!=null)columnLargeSpacing,
-                            if(matchingText!=null)Row(
-                              children: [
-                                Icon(Iconsax.frame_1, color: color, size: 16,),
-                                rowRegularSpacing,
-                                Expanded(
-                                    child: Text(
-                                        matchingText!,
-                                    style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                      color: const Color(0xFF23A8B3),
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 12,
+                        Text(employerName, style: Theme.of(context).textTheme.bodySmall,),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(Iconsax.location, size: 18, color: color,),
+                                  rowRegularSpacing,
+                                  Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,),)),
+                                ],
+                              ),
+                              columnRegularSpacing,
+                              Row(
+                                children: [
+                                  Icon(Iconsax.calendar, size: 18, color: color,),
+                                  rowRegularSpacing,
+                                  Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
+                                ],
+                              ),
+                              if(matchingText!=null)columnLargeSpacing,
+                              if(matchingText!=null)Row(
+                                children: [
+                                  Icon(Iconsax.frame_1, color: color, size: 16,),
+                                  rowRegularSpacing,
+                                  Expanded(
+                                      child: Text(
+                                          matchingText!,
+                                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                            color: const Color(0xFF23A8B3),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: 12,
+                                          )
+                                      )
+                                  ),
+                                ],
+                              ),
+                              if(totalApplications!=null)Container(
+                                padding: const EdgeInsets.only(top:8),
+                                child: Column(
+                                  children: [
+                                    const AppDivider(),
+                                    Row(
+                                      children: [
+                                        const Icon(Iconsax.profile_2user),
+                                        if(totalApplications! > 0)Padding(
+                                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                                          child: Center(
+                                            child: NotificationBadge.small(),
+                                          ),
+                                        ),
+                                        if(totalApplications == 0) rowRegularSpacing,
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                          child: Text("$totalApplications $applicationsString"),
+                                        )
+                                      ],
                                     )
-                                    )
+                                  ],
                                 ),
-                              ],
-                            ),
-                            if(totalApplications!=null)Container(
-                              padding: const EdgeInsets.only(top:8),
-                              child: Column(
-                                children: [
-                                  const AppDivider(),
-                                  Row(
-                                    children: [
-                                      const Icon(Iconsax.profile_2user),
-                                      if(totalApplications! > 0)Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 8),
-                                        child: Center(
-                                          child: NotificationBadge.small(),
-                                        ),
-                                      ),
-                                      if(totalApplications == 0) rowRegularSpacing,
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                        child: Text("$totalApplications $applicationsString"),
-                                      )
-                                    ],
-                                  )
-                                ],
                               ),
-                            ),
-                            if(totalMatches !=null)Container(
-                              child: Column(
-                                children: [
-                                  const AppDivider(),
-                                  Row(
-                                    children: [
-                                      const Icon(Iconsax.verify),
-                                      if(totalMatches! > 0)Padding(
+                              if(totalMatches !=null)Container(
+                                child: Column(
+                                  children: [
+                                    const AppDivider(),
+                                    Row(
+                                      children: [
+                                        const Icon(Iconsax.verify),
+                                        if(totalMatches! > 0)Padding(
                                           padding: const EdgeInsets.symmetric(horizontal: 8),
-                                        child: Center(
-                                          child: NotificationBadge.small(),
+                                          child: Center(
+                                            child: NotificationBadge.small(),
+                                          ),
                                         ),
-                                      ),
-                                      if(totalMatches == 0) rowRegularSpacing,
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(vertical: 8.0),
-                                        child: Text("$totalMatches $matchesString"),
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
-                            )
-                          ],
+                                        if(totalMatches == 0) rowRegularSpacing,
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                                          child: Text("$totalMatches $matchesString"),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            const Icon(Iconsax.arrow_right_1)
-          ],
+              const Icon(Iconsax.arrow_right_1)
+            ],
+          ),
         ),
       ),
     );

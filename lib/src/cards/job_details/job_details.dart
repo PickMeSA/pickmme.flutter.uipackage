@@ -16,6 +16,8 @@ class AppJobDetailCard extends StatelessWidget{
   final VoidCallback onNext;
   final JobStatus status;
   final Color color = const Color(0xFF9CA2AE);
+  final double? elevation;
+  final EdgeInsets? padding;
   const AppJobDetailCard({
     super.key,
     required this.jobName,
@@ -25,6 +27,8 @@ class AppJobDetailCard extends StatelessWidget{
     required this.onNext,
     this.matchingText,
     this.status = JobStatus.newJob,
+    this.elevation,
+    this.padding,
     required this.estimatedTime, required this.rate,
   });
 
@@ -32,11 +36,12 @@ class AppJobDetailCard extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: elevation,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: padding??const EdgeInsets.all(16.0),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

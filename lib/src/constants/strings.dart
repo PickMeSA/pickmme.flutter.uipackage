@@ -6,5 +6,7 @@ const errorInternetNotAvailable = 'Your internet is not working';
 const appliedForJobStatus = 'Applied for job';
 const rescheduleRequestedStatus = 'Reschedule Requested';
 const rescheduledStatus = 'Rescheduled';
+const inactiveStatus = 'Inactive';
+const activeStatus = 'Active';
 const cancelledStatus = 'Cancelled';
 const newChatStarted = "A new chat started!";
