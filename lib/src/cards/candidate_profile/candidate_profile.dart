@@ -16,6 +16,7 @@ class AppCandidateProfile extends StatelessWidget{
   final String hourlyRate;
   final ImageProvider? image;
   final VoidCallback? viewProfileFunction;
+  final VoidCallback? seeReviewsFunction;
   final ValueChanged<int>? onRatingChanged;
 
   const AppCandidateProfile({
@@ -26,6 +27,7 @@ class AppCandidateProfile extends StatelessWidget{
     required this.hourlyRate,
     this.image,
     this.viewProfileFunction,
+    this.seeReviewsFunction,
     this.onRatingChanged,
   });
 
@@ -52,19 +54,33 @@ class AppCandidateProfile extends StatelessWidget{
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        AppStarRating(onChanged: onRatingChanged, rating: rating),
-                        Expanded(child: Text(rating.toDouble().toString()))
+                        AppStarRating(onChanged: onRatingChanged, rating: rating, size: 18,),
+                        Text(rating.toDouble().toString()),
+                        if(seeReviewsFunction!=null)
+                          Expanded(child:
+                          TextButton(onPressed: viewProfileFunction,
+                              child: Text("See reviews",
+                                style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: neutrals500Color,
+                                    decoration: TextDecoration.underline,
+                                    fontVariations: [
+                                      const FontVariation('wght', 500),
+                                    ]
+                                ),
+                              )
+                          )
+                          ),
                       ],
                     ),
                     columnRegularSpacing,
-                    if(viewProfileFunction!=null)Row(
+                    Row(
                       children: [
                         Expanded(
                           child: Text(hourlyRate, style: theme.textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.w600
                           ),),
                         ),
-                        TextButton(onPressed: viewProfileFunction, child: Row(children: [
+                        if(viewProfileFunction!=null)TextButton(onPressed: viewProfileFunction, child: Row(children: [
                           Text("View profile", style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             color: neutrals500Color,
                             fontVariations: [

@@ -14,7 +14,8 @@ class AppJobCard extends StatelessWidget{
   final String locationName;
   final DateTime dateTime;
   final bool selected;
-  final VoidCallback onNext;
+  final VoidCallback? onNext;
+  final VoidCallback? onClick;
   final JobStatus status;
   final Color color = const Color(0xFF9CA2AE);
 
@@ -24,17 +25,35 @@ class AppJobCard extends StatelessWidget{
     required this.employerName,
     required this.locationName,
     required this.dateTime,
-    required this.onNext,
+    this.onNext,
+    this.onClick,
     this.selected = false,
     this.status = JobStatus.newJob
   });
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(8),
+    return Container(
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.background,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            blurRadius: 3.0,
+            spreadRadius: 1.0,
+            offset: Offset(0, 4),
+          ),
+        ],
+        border: selected
+            ? Border.all(
+          color: Theme.of(context).primaryColor,
+          width: 2.0,
+        )
+            : null,
+        borderRadius: BorderRadius.circular(20.0),
       ),
+      child: GestureDetector(
+      onTap: onNext??onClick,
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
@@ -50,7 +69,7 @@ class AppJobCard extends StatelessWidget{
                     children: [
                       Text(jobName,
                         style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                          fontWeight: FontWeight.w600
+                            fontWeight: FontWeight.w600
                         ),
                       ),
                       2.height,
@@ -80,32 +99,34 @@ class AppJobCard extends StatelessWidget{
                       ),
                       8.height,
                       Builder(
-                        builder: (context) {
-                          if(status == JobStatus.newJob){
-                            return const SizedBox();
-                          }else if(status == JobStatus.applied){
-                            return StatusBadge.info(appliedForJobStatus);
-                          }else if(status == JobStatus.requestedReschedule){
-                            return StatusBadge.warning(rescheduleRequestedStatus);
-                          }else if(status == JobStatus.rescheduled){
-                            return StatusBadge.success(rescheduledStatus);
-                          }else if(status == JobStatus.inactive){
-                            return StatusBadge.danger(inactiveStatus);
-                          }else if(status == JobStatus.active){
-                            return StatusBadge.info(activeStatus);
+                          builder: (context) {
+                            if(status == JobStatus.newJob){
+                              return const SizedBox();
+                            }else if(status == JobStatus.applied){
+                              return StatusBadge.info(appliedForJobStatus);
+                            }else if(status == JobStatus.requestedReschedule){
+                              return StatusBadge.warning(rescheduleRequestedStatus);
+                            }else if(status == JobStatus.rescheduled){
+                              return StatusBadge.success(rescheduledStatus);
+                            }else if(status == JobStatus.inactive){
+                              return StatusBadge.danger(inactiveStatus);
+                            }else if(status == JobStatus.active){
+                              return StatusBadge.info(activeStatus);
+                            }
+                            return StatusBadge.danger(cancelledStatus);
                           }
-                          return StatusBadge.danger(cancelledStatus);
-                        }
                       )
                     ],
                   ),
                 ),
               ),
             ),
-            const Icon(Iconsax.arrow_right_1)
+            if(onNext!=null)const Icon(Iconsax.arrow_right_1)
           ],
         ),
       ),
+    ),
+
     );
   }
 

@@ -13,6 +13,7 @@ abstract class QualificationContract{
   final String name;
   final String institutionName;
   final String? educationType;
+  final String? period;
   final DateTime? issuedOn;
   final DateTime? dateStarted;
   final DateTime? dateEnded;
@@ -22,13 +23,14 @@ abstract class QualificationContract{
     required this.qualificationType,
     required this.institutionName,
     this.educationType,
+    this.period,
     this.issuedOn,
     this.dateStarted,
     this.dateEnded,
   }):assert(
   (qualificationType == AppQualificationType.award && issuedOn != null) ||
   (qualificationType == AppQualificationType.education && educationType != null && issuedOn != null) ||
-  (qualificationType == AppQualificationType.experience && dateStarted != null)
+  (qualificationType == AppQualificationType.experience && (dateStarted != null || period!=null))
   );
 }
 class AppProfileQualification extends StatelessWidget{
@@ -67,6 +69,9 @@ class AppProfileQualification extends StatelessWidget{
                     Text(qualification.institutionName, style: theme.textTheme.bodySmall,),
                     if(qualification.issuedOn!=null) Text(
                       qualification.issuedOn!.toMonthYearString(),
+                      style: theme.textTheme.bodySmall!.copyWith(color: neutrals500Color),
+                    ),if(qualification.period!=null) Text(
+                      qualification.period!,
                       style: theme.textTheme.bodySmall!.copyWith(color: neutrals500Color),
                     ),
                   ],
