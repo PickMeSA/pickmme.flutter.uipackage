@@ -15,4 +15,4 @@ enum TextFieldType {
   DATE,
   USERNAME
 }
-enum JobStatus{ newJob, applied, active, inactive, requestedReschedule, rescheduled, cancelled}
+enum JobStatus{ newJob, applied, active, booked, inactive, Rejected, offered, requestedReschedule, rescheduled, cancelled, completed}

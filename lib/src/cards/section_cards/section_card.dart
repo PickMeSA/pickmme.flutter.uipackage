@@ -35,7 +35,7 @@ class AppSectionCard extends StatelessWidget{
   }
   @override
   Widget build(BuildContext context) {
-    String truncatedTitle = (title.length <30)? title: title.replaceRange(30, title.length, '...');
+    String truncatedTitle = (title.length <30)? title: title.replaceRange(25, title.length, '...');
     return GestureDetector(
       onTap: onClick,
       child: Card(
