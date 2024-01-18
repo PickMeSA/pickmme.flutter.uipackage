@@ -12,7 +12,7 @@ class AppJobDetailCard extends StatelessWidget{
   final String estimatedTime;
   final String rate;
   final String? matchingText;
-  final DateTime dateTime;
+  final DateTime? dateTime;
   final VoidCallback onNext;
   final JobStatus status;
   final Color color = const Color(0xFF9CA2AE);
@@ -23,7 +23,7 @@ class AppJobDetailCard extends StatelessWidget{
     required this.jobName,
     required this.employerName,
     required this.locationName,
-    required this.dateTime,
+    this.dateTime,
     required this.onNext,
     this.matchingText,
     this.status = JobStatus.newJob,
@@ -76,7 +76,7 @@ class AppJobDetailCard extends StatelessWidget{
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
                                 rowRegularSpacing,
-                                Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
+                                Expanded(child: Text(dateTime?.toAppDateString()??"Flexible times", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
                             columnSmallSpacing,

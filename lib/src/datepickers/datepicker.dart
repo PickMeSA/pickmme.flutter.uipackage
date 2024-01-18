@@ -7,10 +7,14 @@ class AppDatePicker extends StatefulWidget {
     this.restorationId,
     this.initialDate,
     this.onDateSelected,
+    this.firstDate,
+    this.lastDate
   });
 
   final String? restorationId;
   final DateTime? initialDate;
+  final DateTime? firstDate;
+  final DateTime? lastDate;
   final void Function(DateTime selectedDate)? onDateSelected;
 
   @override
@@ -30,10 +34,14 @@ class _AppDatePickerState extends State<AppDatePicker>
   RestorableRouteFuture<DateTime?>(
     onComplete: _selectDate,
     onPresent: (NavigatorState navigator, Object? arguments) {
+
       return navigator.restorablePush(
         _datePickerRoute,
-        arguments: _selectedDate.value.millisecondsSinceEpoch,
-      );
+          arguments: {
+            'firstDate': widget.firstDate?.millisecondsSinceEpoch??DateTime.now().addYears(numberOfYears: -100).millisecondsSinceEpoch,
+            'lastDate': widget.lastDate?.millisecondsSinceEpoch??DateTime.now().addYears(numberOfYears: 100).millisecondsSinceEpoch,
+            'initialDate': _selectedDate.value.millisecondsSinceEpoch,
+          });
     },
   );
   @override
@@ -47,15 +55,16 @@ class _AppDatePickerState extends State<AppDatePicker>
       BuildContext context,
       Object? arguments,
       ) {
+    Map<String, int> dates = arguments as Map<String, int>;
     return DialogRoute<DateTime>(
       context: context,
       builder: (BuildContext context) {
         return DatePickerDialog(
           restorationId: 'date_picker_dialog',
           initialEntryMode: DatePickerEntryMode.calendarOnly,
-          initialDate: DateTime.fromMillisecondsSinceEpoch(arguments! as int),
-          firstDate: DateTime.now().addYears(numberOfYears: -100),
-          lastDate: DateTime.now().addYears(numberOfYears: 100),
+          initialDate: DateTime.fromMillisecondsSinceEpoch(dates['initialDate']!),
+          firstDate: DateTime.fromMillisecondsSinceEpoch(dates['firstDate']!),
+          lastDate: DateTime.fromMillisecondsSinceEpoch(dates['lastDate']!),
         );
       },
     );

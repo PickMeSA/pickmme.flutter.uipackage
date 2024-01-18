@@ -28,7 +28,7 @@ class DateTextBox extends StatelessWidget{
       textFieldType: TextFieldType.NUMBER,
       labelText: labelText,
       hint: hint,
-      suffix: AppDatePicker(onDateSelected: onDateSelected,),
+      suffix: AppDatePicker(onDateSelected: onDateSelected, firstDate: firstDate, lastDate: lastDate,),
     );
   }
 
