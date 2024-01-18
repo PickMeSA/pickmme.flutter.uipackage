@@ -96,9 +96,7 @@ class OTPInputState extends State<OTPInput>{
             );
             FocusScope.of(context).nextFocus();
           }
-          if(s.isEmpty){
-            FocusScope.of(context).previousFocus();
-          }
+
         },
         decoration: const InputDecoration(
             counterText: '',
