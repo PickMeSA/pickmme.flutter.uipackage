@@ -94,7 +94,9 @@ class OTPInputState extends State<OTPInput>{
                   "${controllers["controller5"]?.text}"
                   "${controllers["controller6"]?.text}"
             );
-            FocusScope.of(context).nextFocus();
+            if(s.isNumeric()) {
+              FocusScope.of(context).nextFocus();
+            }
           }
 
         },
