@@ -18,6 +18,7 @@ abstract class QualificationContract{
   final DateTime? dateStarted;
   final DateTime? dateEnded;
 
+
   QualificationContract({
     required this.name,
     required this.qualificationType,
@@ -27,6 +28,7 @@ abstract class QualificationContract{
     this.issuedOn,
     this.dateStarted,
     this.dateEnded,
+
   }):assert(
   (qualificationType == AppQualificationType.award && issuedOn != null) ||
   (qualificationType == AppQualificationType.education && educationType != null && issuedOn != null) ||
@@ -35,10 +37,11 @@ abstract class QualificationContract{
 }
 class AppProfileQualification extends StatelessWidget{
   final QualificationContract qualification;
-
-  const AppProfileQualification({
+  Function? onEdit;
+   AppProfileQualification({
     super.key,
     required this.qualification,
+    this.onEdit
   });
 
   @override
@@ -62,9 +65,21 @@ class AppProfileQualification extends StatelessWidget{
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(qualification.name, style: theme.textTheme.bodyMedium!.copyWith(
-                        fontWeight: FontWeight.w600
-                    ),),
+                    Row(
+                      children: [
+                        Text(qualification.name, style: theme.textTheme.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.w600
+                        ),),
+                        if(onEdit != null)
+                        Spacer(),
+                        if(onEdit != null)
+                        InkWell(
+                          onTap: ()=> onEdit!(),
+                          child: Icon(Iconsax.edit,),
+                        )
+
+                      ],
+                    ),
                     if(qualification.educationType!=null)Text(qualification.educationType!, style: theme.textTheme.bodySmall,),
                     Text(qualification.institutionName, style: theme.textTheme.bodySmall,),
                     if(qualification.issuedOn!=null) Text(

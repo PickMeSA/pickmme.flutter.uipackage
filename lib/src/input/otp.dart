@@ -85,7 +85,7 @@ class OTPInputState extends State<OTPInput>{
         textAlignVertical: TextAlignVertical.center,
           style: const TextStyle( fontSize: 18),
         onChanged: (String s) {
-          if(s.isNumeric()){
+          if(s.isNumeric()|| s == ""){
             onChange(
                   "${controllers["controller1"]?.text}"
                   "${controllers["controller2"]?.text}"
@@ -94,11 +94,11 @@ class OTPInputState extends State<OTPInput>{
                   "${controllers["controller5"]?.text}"
                   "${controllers["controller6"]?.text}"
             );
-            FocusScope.of(context).nextFocus();
+            if(s.isNumeric()) {
+              FocusScope.of(context).nextFocus();
+            }
           }
-          if(s.isEmpty){
-            FocusScope.of(context).previousFocus();
-          }
+
         },
         decoration: const InputDecoration(
             counterText: '',
