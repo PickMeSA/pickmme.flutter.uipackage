@@ -17,7 +17,7 @@ abstract class QualificationContract{
   final DateTime? issuedOn;
   final DateTime? dateStarted;
   final DateTime? dateEnded;
-   Function? onEdit;
+
 
   QualificationContract({
     required this.name,
@@ -28,7 +28,7 @@ abstract class QualificationContract{
     this.issuedOn,
     this.dateStarted,
     this.dateEnded,
-    this.onEdit
+
   }):assert(
   (qualificationType == AppQualificationType.award && issuedOn != null) ||
   (qualificationType == AppQualificationType.education && educationType != null && issuedOn != null) ||
@@ -37,10 +37,11 @@ abstract class QualificationContract{
 }
 class AppProfileQualification extends StatelessWidget{
   final QualificationContract qualification;
-
-  const AppProfileQualification({
+  Function? onEdit;
+   AppProfileQualification({
     super.key,
     required this.qualification,
+    this.onEdit
   });
 
   @override
@@ -69,11 +70,11 @@ class AppProfileQualification extends StatelessWidget{
                         Text(qualification.name, style: theme.textTheme.bodyMedium!.copyWith(
                             fontWeight: FontWeight.w600
                         ),),
-                        if(qualification.onEdit != null)
+                        if(onEdit != null)
                         Spacer(),
-                        if(qualification.onEdit != null)
+                        if(onEdit != null)
                         InkWell(
-                          onTap: ()=> qualification.onEdit!(),
+                          onTap: ()=> onEdit!(),
                           child: Icon(Iconsax.edit,),
                         )
 
