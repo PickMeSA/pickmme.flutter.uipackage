@@ -58,7 +58,7 @@ class AppCandidateProfile extends StatelessWidget{
                         Text(rating.toDouble().toString()),
                         if(seeReviewsFunction!=null)
                           Expanded(child:
-                          TextButton(onPressed: viewProfileFunction,
+                          TextButton(onPressed: seeReviewsFunction,
                               child: Text("See reviews",
                                 style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                                     color: neutrals500Color,
