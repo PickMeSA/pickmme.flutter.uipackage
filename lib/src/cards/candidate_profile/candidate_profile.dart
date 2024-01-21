@@ -13,7 +13,7 @@ class AppCandidateProfile extends StatelessWidget{
   final String fullName;
   final String jobTitle;
   final int rating;
-  final String hourlyRate;
+  final String? hourlyRate;
   final ImageProvider? image;
   final VoidCallback? viewProfileFunction;
   final VoidCallback? seeReviewsFunction;
@@ -75,8 +75,8 @@ class AppCandidateProfile extends StatelessWidget{
                     columnRegularSpacing,
                     Row(
                       children: [
-                        Expanded(
-                          child: Text(hourlyRate, style: theme.textTheme.bodySmall!.copyWith(
+                        if(hourlyRate!=null)Expanded(
+                          child: Text(hourlyRate!, style: theme.textTheme.bodySmall!.copyWith(
                             fontWeight: FontWeight.w600
                           ),),
                         ),
