@@ -17,6 +17,7 @@ abstract class QualificationContract{
   final DateTime? issuedOn;
   final DateTime? dateStarted;
   final DateTime? dateEnded;
+   Function? onEdit;
 
   QualificationContract({
     required this.name,
@@ -27,6 +28,7 @@ abstract class QualificationContract{
     this.issuedOn,
     this.dateStarted,
     this.dateEnded,
+    this.onEdit
   }):assert(
   (qualificationType == AppQualificationType.award && issuedOn != null) ||
   (qualificationType == AppQualificationType.education && educationType != null && issuedOn != null) ||
@@ -62,9 +64,21 @@ class AppProfileQualification extends StatelessWidget{
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(qualification.name, style: theme.textTheme.bodyMedium!.copyWith(
-                        fontWeight: FontWeight.w600
-                    ),),
+                    Row(
+                      children: [
+                        Text(qualification.name, style: theme.textTheme.bodyMedium!.copyWith(
+                            fontWeight: FontWeight.w600
+                        ),),
+                        if(qualification.onEdit != null)
+                        Spacer(),
+                        if(qualification.onEdit != null)
+                        InkWell(
+                          onTap: ()=> qualification.onEdit!(),
+                          child: Icon(Iconsax.edit,),
+                        )
+
+                      ],
+                    ),
                     if(qualification.educationType!=null)Text(qualification.educationType!, style: theme.textTheme.bodySmall,),
                     Text(qualification.institutionName, style: theme.textTheme.bodySmall,),
                     if(qualification.issuedOn!=null) Text(
