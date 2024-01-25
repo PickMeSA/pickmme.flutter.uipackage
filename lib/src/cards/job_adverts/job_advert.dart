@@ -114,7 +114,7 @@ class AppJobAdvertCard extends StatelessWidget{
                                 children: [
                                   Icon(Iconsax.location, size: 18, color: color,),
                                   rowRegularSpacing,
-                                  Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,),)),
+                                  Expanded(child: Text(locationName, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,fontSize: 14),)),
                                 ],
                               ),
                               columnRegularSpacing,
@@ -122,10 +122,10 @@ class AppJobAdvertCard extends StatelessWidget{
                                 children: [
                                   Icon(Iconsax.calendar, size: 18, color: color,),
                                   rowRegularSpacing,
-                                  Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
+                                  Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,fontSize: 14))),
                                 ],
                               ),
-                              if(matchingText!=null)columnLargeSpacing,
+                              if(matchingText!=null)columnRegularSpacing,
                               if(matchingText!=null)Row(
                                 children: [
                                   Icon(Iconsax.frame_1, color: color, size: 16,),
