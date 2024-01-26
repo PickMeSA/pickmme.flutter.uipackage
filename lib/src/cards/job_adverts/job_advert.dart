@@ -12,6 +12,7 @@ class AppJobAdvertCard extends StatelessWidget{
   final String employerName;
   final String locationName;
   final String? matchingText;
+  final ImageProvider? image;
   final DateTime dateTime;
   final VoidCallback? onNext;
   final JobStatus status;
@@ -28,6 +29,7 @@ class AppJobAdvertCard extends StatelessWidget{
     required this.dateTime,
     required this.onNext,
     this.matchingText,
+    this.image,
     this.status = JobStatus.newJob,
     this.totalApplications,
     this.applicationsString,
@@ -41,12 +43,14 @@ class AppJobAdvertCard extends StatelessWidget{
     required String locationName,
     required DateTime dateTime,
     required VoidCallback onNext,
+    ImageProvider? image,
     String matchingText = "Your profile matches this job",
   }){
     return AppJobAdvertCard(
       jobName: jobName,
       employerName: employerName,
       locationName: locationName,
+      image: image,
       dateTime: dateTime,
       onNext: onNext,
       matchingText: matchingText,
@@ -59,6 +63,7 @@ class AppJobAdvertCard extends StatelessWidget{
     required String locationName,
     required DateTime dateTime,
     required VoidCallback onNext,
+    ImageProvider? image,
     String? matchingText,
     int totalApplications = 0,
     String applicationsString = "applications",
@@ -67,6 +72,7 @@ class AppJobAdvertCard extends StatelessWidget{
   }){
     return AppJobAdvertCard(
       jobName: jobName,
+      image: image,
       employerName: employerName,
       locationName: locationName,
       dateTime: dateTime,
@@ -92,7 +98,7 @@ class AppJobAdvertCard extends StatelessWidget{
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const AppImageAvatar(),
+              AppImageAvatar(image: image,),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16),
