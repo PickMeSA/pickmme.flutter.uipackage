@@ -12,6 +12,7 @@ class AppJobDetailCard extends StatelessWidget{
   final String estimatedTime;
   final String rate;
   final String? matchingText;
+  final ImageProvider? image;
   final DateTime? dateTime;
   final VoidCallback onNext;
   final JobStatus status;
@@ -26,6 +27,7 @@ class AppJobDetailCard extends StatelessWidget{
     this.dateTime,
     required this.onNext,
     this.matchingText,
+    this.image,
     this.status = JobStatus.newJob,
     this.elevation,
     this.padding,
@@ -45,7 +47,7 @@ class AppJobDetailCard extends StatelessWidget{
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppImageAvatar.small(),
+            AppImageAvatar(image: image,),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -85,14 +87,6 @@ class AppJobDetailCard extends StatelessWidget{
                                 Icon(Iconsax.clock, size: 18, color: color,),
                                 rowRegularSpacing,
                                 Expanded(child: Text(estimatedTime, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
-                              ],
-                            ),
-                            columnSmallSpacing,
-                            Row(
-                              children: [
-                                Icon(Iconsax.wallet_money, size: 18, color: color,),
-                                rowRegularSpacing,
-                                Expanded(child: Text(rate, style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
                           ],
