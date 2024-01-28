@@ -10,3 +10,5 @@ const inactiveStatus = 'Inactive';
 const activeStatus = 'Active';
 const cancelledStatus = 'Cancelled';
 const newChatStarted = "A new chat started!";
+const booked = "Booked";
+const alternativeProposed = "Alternative proposed";
