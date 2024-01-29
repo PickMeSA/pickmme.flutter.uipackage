@@ -6,12 +6,13 @@ class AppSlider extends StatelessWidget {
   final double minimumSliderValue;
   final double maximumSliderValue;
   final ValueChanged<double>? onChanged;
-
+  final int? divisions;
   const AppSlider({
     super.key,
     this.currentSliderValue = 0,
     this.minimumSliderValue = 0,
     this.maximumSliderValue = 100,
+    this.divisions,
     this.onChanged
   });
 
@@ -20,9 +21,9 @@ class AppSlider extends StatelessWidget {
     return Slider(
       value: currentSliderValue,
       max: maximumSliderValue,
-      // divisions: 5,
       label: currentSliderValue.round().toString(),
       onChanged: onChanged,
+      divisions: divisions,
     );
   }
 }

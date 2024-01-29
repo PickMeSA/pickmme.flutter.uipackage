@@ -12,21 +12,23 @@ class AppJobCard extends StatelessWidget{
   final String jobName;
   final String employerName;
   final String locationName;
-  final DateTime dateTime;
+  final DateTime? dateTime;
   final bool selected;
   final VoidCallback? onNext;
   final VoidCallback? onClick;
   final JobStatus status;
   final Color color = const Color(0xFF9CA2AE);
+  final ImageProvider? image;
 
   const AppJobCard({
     super.key,
     required this.jobName,
     required this.employerName,
     required this.locationName,
-    required this.dateTime,
+    this.dateTime,
     this.onNext,
     this.onClick,
+    this.image,
     this.selected = false,
     this.status = JobStatus.newJob
   });
@@ -59,7 +61,7 @@ class AppJobCard extends StatelessWidget{
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const AppImageAvatar(),
+            AppImageAvatar(image: image,),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -91,7 +93,7 @@ class AppJobCard extends StatelessWidget{
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
                                 rowRegularSpacing,
-                                Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
+                                Expanded(child: Text(dateTime?.toAppDateString()??"no date specified", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
                           ],
