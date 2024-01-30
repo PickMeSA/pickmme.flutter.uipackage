@@ -13,7 +13,7 @@ class AppJobAdvertCard extends StatelessWidget{
   final String locationName;
   final String? matchingText;
   final ImageProvider? image;
-  final DateTime dateTime;
+  final DateTime? dateTime;
   final VoidCallback? onNext;
   final JobStatus status;
   final Color color = const Color(0xFF9CA2AE);
@@ -26,7 +26,7 @@ class AppJobAdvertCard extends StatelessWidget{
     required this.jobName,
     required this.employerName,
     required this.locationName,
-    required this.dateTime,
+    this.dateTime,
     required this.onNext,
     this.matchingText,
     this.image,
@@ -61,7 +61,7 @@ class AppJobAdvertCard extends StatelessWidget{
     required String jobName,
     required String employerName,
     required String locationName,
-    required DateTime dateTime,
+    DateTime? dateTime,
     required VoidCallback onNext,
     ImageProvider? image,
     String? matchingText,
@@ -128,7 +128,7 @@ class AppJobAdvertCard extends StatelessWidget{
                                 children: [
                                   Icon(Iconsax.calendar, size: 18, color: color,),
                                   rowRegularSpacing,
-                                  Expanded(child: Text(dateTime.toAppDateString(), style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,fontSize: 14))),
+                                  Expanded(child: Text(dateTime?.toAppDateString()??"Date not specified", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,fontSize: 14))),
                                 ],
                               ),
                               if(matchingText!=null)columnRegularSpacing,
