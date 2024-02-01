@@ -35,11 +35,8 @@ class AppTabBar extends StatelessWidget {
             ),
           ),
           SizedBox(height: 16,),
-          SizedBox(
-            height: viewHeight??MediaQuery.of(context).size.width,
-            child: TabBarView(
-              children: views,
-            ),
+          TabBarView(
+            children: views,
           ),
         ],
       ),
