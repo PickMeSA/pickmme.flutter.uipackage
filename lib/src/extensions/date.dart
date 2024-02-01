@@ -61,8 +61,15 @@ extension BooleanExtensions on DateTime {
   String toMonthYearString() {
     String y = (year >= -9999 && year <= 9999) ? _fourDigits(year)
         : _sixDigits(year);
-    return "${months[month-1]}  $y";
+    return "${months[month-1]} - $y";
   }
+
+  String toMonthYearStringNoDash() {
+    String y = (year >= -9999 && year <= 9999) ? _fourDigits(year)
+        : _sixDigits(year);
+    return "${months[month-1]} $y";
+  }
+
   String toDateMonthYearString() {
     String y = (year >= -9999 && year <= 9999) ? _fourDigits(year)
         : _sixDigits(year);
