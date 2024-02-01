@@ -114,6 +114,10 @@ class AppJobCard extends StatelessWidget{
                               return StatusBadge.danger(inactiveStatus);
                             }else if(status == JobStatus.active){
                               return StatusBadge.info(activeStatus);
+                            }else if(status == JobStatus.booked){
+                              return StatusBadge.info(booked);
+                            }else if(status == JobStatus.alternativeProposed){
+                              return StatusBadge.info(alternativeProposed);
                             }
                             return StatusBadge.danger(cancelledStatus);
                           }

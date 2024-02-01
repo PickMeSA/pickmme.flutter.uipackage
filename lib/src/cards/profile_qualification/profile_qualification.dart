@@ -8,6 +8,8 @@ import '../../constants/widgets.dart';
 
 enum AppQualificationType{ award, education, experience}
 
+String toPresent = "To present";
+
 abstract class QualificationContract{
   final AppQualificationType qualificationType;
   final String name;
@@ -80,7 +82,8 @@ class AppProfileQualification extends StatelessWidget{
 
                       ],
                     ),
-                    if(qualification.educationType!=null)Text(qualification.educationType!, style: theme.textTheme.bodySmall,),
+                    if(qualification.educationType!=null)
+                      Text(qualification.educationType!, style: theme.textTheme.bodySmall,),
                     Text(qualification.institutionName, style: theme.textTheme.bodySmall,),
                     if(qualification.issuedOn!=null) Text(
                       qualification.issuedOn!.toMonthYearString(),
@@ -89,6 +92,12 @@ class AppProfileQualification extends StatelessWidget{
                       qualification.period!,
                       style: theme.textTheme.bodySmall!.copyWith(color: neutrals500Color),
                     ),
+                    if(qualification.dateStarted != null)
+                    Text(
+                    "${qualification.dateStarted!.toMonthYearStringNoDash()} - "
+                    "${qualification.dateEnded?.toMonthYearStringNoDash() ?? toPresent} ",
+                    style: theme.textTheme.bodySmall!.copyWith(color: neutrals500Color),
+                    )
                   ],
                 ),
               )
