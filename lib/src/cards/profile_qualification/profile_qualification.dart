@@ -95,7 +95,7 @@ class AppProfileQualification extends StatelessWidget{
                     if(qualification.dateStarted != null)
                     Text(
                     "${qualification.dateStarted!.toMonthYearString()} - "
-                    "${qualification.dateEnded ?? toPresent} ",
+                    "${qualification.dateEnded?.toMonthYearString() ?? toPresent} ",
                     style: theme.textTheme.bodySmall!.copyWith(color: neutrals500Color),
                     )
                   ],
