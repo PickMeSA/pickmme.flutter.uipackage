@@ -8,7 +8,7 @@ import '../../constants/widgets.dart';
 
 enum AppQualificationType{ award, education, experience}
 
-String toPresent = "To present";
+String toPresent = "Present";
 
 abstract class QualificationContract{
   final AppQualificationType qualificationType;
