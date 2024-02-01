@@ -37,6 +37,8 @@ class AppTabBar extends StatelessWidget {
           SizedBox(height: 16,),
           Expanded(
             child: TabBarView(
+              physics: NeverScrollableScrollPhysics(),
+
               children: views,
             ),
           ),
