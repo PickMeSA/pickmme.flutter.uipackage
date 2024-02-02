@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../constants/colors.dart';
+
 class AppDropdownMenu<T> extends StatelessWidget {
   final TextEditingController? controller;
   final bool enableFilter;
@@ -32,6 +34,10 @@ class AppDropdownMenu<T> extends StatelessWidget {
         controller: controller,
         enableFilter: enableFilter,
         leadingIcon: leadingIcon,
+        textStyle: const TextStyle(
+          color: secondaryColor,
+
+        ),
     label: label,
     width: width??MediaQuery.of(context).size.width,
     dropdownMenuEntries: dropdownMenuEntries,
