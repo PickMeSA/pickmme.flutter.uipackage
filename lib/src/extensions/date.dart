@@ -40,12 +40,12 @@ extension BooleanExtensions on DateTime {
         : _sixDigits(year);
     String m = _twoDigits(month);
     String d = _twoDigits(day);
-    String h = _twoDigits(hour);
-    String min = _twoDigits(minute);
+   // String h = _twoDigits(hour);
+   // String min = _twoDigits(minute);
     // String sec = _twoDigits(second);
     // String ms = _threeDigits(millisecond);
 
-    return "$d.$m.$y @ $h:$min";
+    return "$d.$m.$y @";
 
   }
   String toDDMMYYYY() {

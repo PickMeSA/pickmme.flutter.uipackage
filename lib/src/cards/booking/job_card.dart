@@ -13,6 +13,7 @@ class AppJobCard extends StatelessWidget{
   final String employerName;
   final String locationName;
   final DateTime? dateTime;
+  final String? time;
   final bool selected;
   final VoidCallback? onNext;
   final VoidCallback? onClick;
@@ -21,6 +22,7 @@ class AppJobCard extends StatelessWidget{
   final ImageProvider? image;
 
   const AppJobCard({
+    required this.time,
     super.key,
     required this.jobName,
     required this.employerName,
@@ -93,7 +95,7 @@ class AppJobCard extends StatelessWidget{
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
                                 rowRegularSpacing,
-                                Expanded(child: Text(dateTime?.toAppDateString()??"no date specified", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
+                                Expanded(child: Text("${dateTime?.toAppDateString() } $time"??"no date specified", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
                           ],
