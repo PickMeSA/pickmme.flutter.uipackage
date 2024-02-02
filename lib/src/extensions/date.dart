@@ -48,6 +48,20 @@ extension BooleanExtensions on DateTime {
     return "$d.$m.$y @ $h:$min";
 
   }
+
+  String toAppDateAndTimeString() {
+    String y = (year >= -9999 && year <= 9999) ? _fourDigits(year)
+        : _sixDigits(year);
+    String m = _twoDigits(month);
+    String d = _twoDigits(day);
+    String h = _twoDigits(hour);
+    String min = _twoDigits(minute);
+    // String sec = _twoDigits(second);
+    // String ms = _threeDigits(millisecond);
+
+    return "$d.$m.$y @ $h:$min";
+
+  }
   String toDDMMYYYY() {
     String y = (year >= -9999 && year <= 9999) ? _fourDigits(year)
         : _sixDigits(year);
