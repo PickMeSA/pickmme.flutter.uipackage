@@ -41,7 +41,7 @@ class AppJobAdvertCard extends StatelessWidget{
     required String jobName,
     required String employerName,
     required String locationName,
-    required DateTime dateTime,
+    DateTime? dateTime,
     required VoidCallback onNext,
     ImageProvider? image,
     String matchingText = "Your profile matches this job",
