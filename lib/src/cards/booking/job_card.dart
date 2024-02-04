@@ -95,7 +95,7 @@ class AppJobCard extends StatelessWidget{
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
                                 rowRegularSpacing,
-                                Expanded(child: Text(time != null ? "${dateTime?.toAppDateAndTimeString()} $time":dateTime?.toAppDateString() ??"no date specified", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
+                                Expanded(child: Text(time != null ? "${dateTime?.toAppDateAndTimeString()} $time":dateTime?.toAppDateString() ??"Flexible", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
                           ],
