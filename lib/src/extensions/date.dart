@@ -49,7 +49,7 @@ extension BooleanExtensions on DateTime {
 
   }
 
-  String toAppDateAndTimeString() {
+  String toAppDateAndTimeString({bool timeAvailable = true}) {
     String y = (year >= -9999 && year <= 9999) ? _fourDigits(year)
         : _sixDigits(year);
     String m = _twoDigits(month);
@@ -59,7 +59,7 @@ extension BooleanExtensions on DateTime {
     // String sec = _twoDigits(second);
     // String ms = _threeDigits(millisecond);
 
-    return "$d.$m.$y @";
+    return "$d.$m.$y" + (timeAvailable?" @":"");
 
   }
   String toDDMMYYYY() {

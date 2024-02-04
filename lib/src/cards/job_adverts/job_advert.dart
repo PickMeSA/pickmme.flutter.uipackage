@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ui_components/src/extensions/string.dart';
 import '../../avatars/image_avatar.dart';
 import '../../badges/notification_badge.dart';
 import '../../divider/divider.dart';
@@ -134,7 +135,7 @@ class AppJobAdvertCard extends StatelessWidget{
                                 children: [
                                   Icon(Iconsax.calendar, size: 18, color: color,),
                                   rowRegularSpacing,
-                                  Expanded(child: Text(dateTime!=null?"${dateTime?.toAppDateAndTimeString()} ${time}":"Flexible time", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,fontSize: 14))),
+                                  Expanded(child: Text(dateTime!=null?"${dateTime?.toAppDateAndTimeString(timeAvailable: !time.isEmptyOrNull)} ${time}":"Flexible time", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,fontSize: 14))),
                                 ],
                               ),
                               if(matchingText!=null)columnRegularSpacing,
