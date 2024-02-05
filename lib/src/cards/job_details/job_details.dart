@@ -14,6 +14,7 @@ class AppJobDetailCard extends StatelessWidget{
   final String? matchingText;
   final ImageProvider? image;
   final DateTime? dateTime;
+  final String time;
   final VoidCallback onNext;
   final JobStatus status;
   final Color color = const Color(0xFF9CA2AE);
@@ -25,6 +26,7 @@ class AppJobDetailCard extends StatelessWidget{
     required this.employerName,
     required this.locationName,
     this.dateTime,
+    required this.time,
     required this.onNext,
     this.matchingText,
     this.image,
@@ -78,7 +80,7 @@ class AppJobDetailCard extends StatelessWidget{
                               children: [
                                 Icon(Iconsax.calendar, size: 18, color: color,),
                                 rowRegularSpacing,
-                                Expanded(child: Text(dateTime?.toAppDateString()??"Flexible times", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
+                                Expanded(child: Text(time != null ? "${dateTime?.toAppDateAndTimeString()} $time":dateTime?.toAppDateString() ??"Flexible", style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: color,))),
                               ],
                             ),
                             columnSmallSpacing,
