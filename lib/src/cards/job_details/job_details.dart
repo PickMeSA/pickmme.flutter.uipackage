@@ -14,7 +14,7 @@ class AppJobDetailCard extends StatelessWidget{
   final String? matchingText;
   final ImageProvider? image;
   final DateTime? dateTime;
-  final String time;
+  final String? time;
   final VoidCallback onNext;
   final JobStatus status;
   final Color color = const Color(0xFF9CA2AE);
@@ -26,7 +26,7 @@ class AppJobDetailCard extends StatelessWidget{
     required this.employerName,
     required this.locationName,
     this.dateTime,
-    required this.time,
+    this.time,
     required this.onNext,
     this.matchingText,
     this.image,
