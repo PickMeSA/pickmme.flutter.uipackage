@@ -40,7 +40,7 @@ class AppDropdownMenu<T> extends StatelessWidget {
 
         ),
     label: label,
-    width: width??MediaQuery.of(context).size.width,
+    width: width??MediaQuery.of(context).size.width - 50,
     dropdownMenuEntries: dropdownMenuEntries,
     inputDecorationTheme: InputDecorationTheme(
     filled: filled,
