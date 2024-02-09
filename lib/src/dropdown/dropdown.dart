@@ -36,6 +36,7 @@ class AppDropdownMenu<T> extends StatelessWidget {
         leadingIcon: leadingIcon,
         textStyle: const TextStyle(
           color: secondaryColor,
+          overflow: TextOverflow.ellipsis
 
         ),
     label: label,

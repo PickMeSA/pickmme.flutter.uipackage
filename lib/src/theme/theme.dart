@@ -84,6 +84,7 @@ class AppTheme{
       onSurface: secondaryColor,
     ),
     fontFamily: "Montserrat",
+
     typography: Typography.material2021(),
     chipTheme: const ChipThemeData(
       backgroundColor: neutrals100Color,
