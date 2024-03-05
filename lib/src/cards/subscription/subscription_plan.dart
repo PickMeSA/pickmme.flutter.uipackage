@@ -11,6 +11,7 @@ class AppSubscriptionPlan extends StatelessWidget{
   final List<String> includedItems;
   final Color? color;
   final bool selected;
+  final VoidCallback onInformationClick;
 
   const AppSubscriptionPlan({
     super.key,
@@ -18,6 +19,7 @@ class AppSubscriptionPlan extends StatelessWidget{
     required this.subscriptionType,
     required this.entityType,
     required this.includedItems,
+    required this.onInformationClick,
     this.color,
     this.selected = false
   });
@@ -45,7 +47,10 @@ class AppSubscriptionPlan extends StatelessWidget{
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(price, style: Theme.of(context).textTheme.headlineMedium,),
-                Expanded(child: Text(" / $subscriptionType", style: Theme.of(context).textTheme.bodyLarge,))
+                Expanded(child: Text(" / $subscriptionType", style: Theme.of(context).textTheme.bodyLarge,)),
+                InkWell(onTap: onInformationClick,
+                    child: Icon(Icons.info_outline, color: Theme.of(context).colorScheme.secondary,)
+                )
               ],
             ),
             const AppDivider(),
